@@ -35,6 +35,7 @@ type Opportunity = {
   solicitationNumber: string | null;
   type: string | null;
   description: string;
+  scope?: string;
   url: string;
   matchType?: "strong" | "adjacent";
 };
@@ -337,6 +338,10 @@ function OpportunityModal({ opportunity, onClose }: { opportunity: Opportunity; 
           <p><span className="text-zinc-500">Due:</span> {opportunity.dueDate ?? "TBD"}</p>
           <p><span className="text-zinc-500">Type:</span> {opportunity.type ?? "N/A"}</p>
           <p><span className="text-zinc-500">Solicitation:</span> {opportunity.solicitationNumber ?? "N/A"}</p>
+        </div>
+        <div className="rounded-lg border border-indigo-700/40 bg-indigo-950/20 p-3 text-sm text-indigo-100">
+          <p className="text-xs uppercase tracking-wide text-indigo-300 mb-1">Scope (inferred)</p>
+          <p>{opportunity.scope ?? "General IT modernization support"}</p>
         </div>
         <p className="text-sm text-zinc-300 whitespace-pre-wrap max-h-56 overflow-auto">{opportunity.description}</p>
         <a

@@ -65,19 +65,38 @@ const EXCLUDE_KEYWORDS = [
   "concrete",
 ];
 
-const toCard = (o: SamOpportunity, matchType: "strong" | "adjacent") => ({
-  id: o.noticeId ?? crypto.randomUUID(),
-  title: o.title ?? "Untitled opportunity",
-  source: "SAM.gov",
-  office: o.fullParentPathName ?? o.organizationType ?? "Federal Agency",
-  postedDate: o.postedDate ?? null,
-  dueDate: o.responseDeadLine ?? null,
-  solicitationNumber: o.solicitationNumber ?? null,
-  type: o.type ?? null,
-  description: o.description ?? "No description provided",
-  url: o.uiLink ?? (o.noticeId ? `https://sam.gov/opp/${o.noticeId}/view` : "https://sam.gov/"),
-  matchType,
-});
+const inferScope = (text: string) => {
+  const scopes: string[] = [];
+  if (/\berp\b|enterprise resource planning/.test(text)) scopes.push("ERP implementation/modernization");
+  if (/business intelligence|dashboard|analytics/.test(text)) scopes.push("Business intelligence & analytics");
+  if (/financial|accounting|budget|ocfo/.test(text)) scopes.push("Financial management process improvement");
+  if (/artificial intelligence|machine learning|ai\/ml/.test(text)) scopes.push("AI/ML use-case delivery");
+  if (/program management office|\bit pmo\b|pmo/.test(text)) scopes.push("IT PMO / governance support");
+  if (/integration|api|interface/.test(text)) scopes.push("Systems integration / interfaces");
+  if (/cloud|aws|azure|google cloud/.test(text)) scopes.push("Cloud migration / cloud operations");
+  if (/software|application development|platform/.test(text)) scopes.push("Application/platform development");
+
+  if (scopes.length === 0) return "General IT modernization support";
+  return scopes.slice(0, 3).join("; ");
+};
+
+const toCard = (o: SamOpportunity, matchType: "strong" | "adjacent") => {
+  const text = `${o.title ?? ""} ${o.fullParentPathName ?? ""} ${o.description ?? ""}`.toLowerCase();
+  return {
+    id: o.noticeId ?? crypto.randomUUID(),
+    title: o.title ?? "Untitled opportunity",
+    source: "SAM.gov",
+    office: o.fullParentPathName ?? o.organizationType ?? "Federal Agency",
+    postedDate: o.postedDate ?? null,
+    dueDate: o.responseDeadLine ?? null,
+    solicitationNumber: o.solicitationNumber ?? null,
+    type: o.type ?? null,
+    description: o.description ?? "No description provided",
+    scope: inferScope(text),
+    url: o.uiLink ?? (o.noticeId ? `https://sam.gov/opp/${o.noticeId}/view` : "https://sam.gov/"),
+    matchType,
+  };
+};
 
 const toHaystack = (o: SamOpportunity) =>
   `${o.title ?? ""} ${o.fullParentPathName ?? ""} ${o.description ?? ""}`.toLowerCase();
