@@ -5,9 +5,9 @@ export default function AboutPage() {
     <div className="space-y-8">
       <section className="grid gap-6 md:grid-cols-2 md:items-center">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight">About Innovult LLC</h1>
+          <h1 className="text-4xl font-bold tracking-tight">About innovult LLC</h1>
           <p className="mt-3 max-w-3xl text-lg text-slate-700">
-            Innovult is a modernization-focused consulting partner serving federal agencies and prime contractors.
+            innovult is a modernization-focused consulting partner serving federal agencies and prime contractors.
             We combine execution discipline with practical technology delivery to move mission outcomes forward.
           </p>
         </div>

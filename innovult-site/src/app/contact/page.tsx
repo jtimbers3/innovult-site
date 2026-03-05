@@ -28,7 +28,7 @@ export default function ContactPage() {
         </div>
 
         <div className="mt-8 text-sm text-slate-600">
-          <p>Innovult LLC</p>
+          <p>innovult LLC</p>
           <p>Federal modernization services</p>
         </div>
       </section>
