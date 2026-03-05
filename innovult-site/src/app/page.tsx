@@ -26,8 +26,8 @@ export default function HomePage() {
 
         <div className="relative min-h-[260px] overflow-hidden rounded-xl border border-slate-200">
           <Image
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80"
-            alt="Team reviewing project strategy"
+            src="https://images.unsplash.com/photo-1617581629397-a72507c3de9e?auto=format&fit=crop&w=1400&q=80"
+            alt="Washington DC government district skyline"
             fill
             priority
             className="object-cover"
@@ -40,17 +40,17 @@ export default function HomePage() {
           [
             "ERP & Financial Modernization",
             "Modernize finance operations with practical implementation support and integration.",
-            "https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1638913662252-70efce1e60a7?auto=format&fit=crop&w=900&q=80",
           ],
           [
             "Business Intelligence & Reporting",
             "Turn operational data into decisions with dashboards, reporting, and analytics.",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
           ],
           [
             "IT PMO Delivery",
             "Drive outcomes with disciplined governance, schedules, and risk-managed execution.",
-            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
           ],
         ].map(([title, body, image]) => (
           <article key={title} className="overflow-hidden rounded-xl border border-slate-200 bg-white">
