@@ -13,14 +13,33 @@ type SamOpportunity = {
   description?: string;
 };
 
-const DHS_TARGETS = ["TSA", "FEMA", "CBP", "USCIS", "ICE", "USCG", "CISA", "DHS"];
-const KEYWORDS = ["financial systems", "financial modernization", "ERP", "finance", "OCFO", "budget", "accounting"];
+const PRIMARY_KEYWORDS = [
+  "erp",
+  "business intelligence",
+  "financial business process",
+  "artificial intelligence",
+  "ai",
+  "it pmo",
+  "program management office",
+];
+
+const SECONDARY_KEYWORDS = [
+  "data",
+  "analytics",
+  "financial",
+  "modernization",
+  "integration",
+  "automation",
+  "cloud",
+  "system implementation",
+  "digital transformation",
+];
 
 const toCard = (o: SamOpportunity, matchType: "strong" | "adjacent") => ({
   id: o.noticeId ?? crypto.randomUUID(),
   title: o.title ?? "Untitled opportunity",
   source: "SAM.gov",
-  office: o.fullParentPathName ?? o.organizationType ?? "DHS Component",
+  office: o.fullParentPathName ?? o.organizationType ?? "Federal Agency",
   postedDate: o.postedDate ?? null,
   dueDate: o.responseDeadLine ?? null,
   solicitationNumber: o.solicitationNumber ?? null,
@@ -29,6 +48,9 @@ const toCard = (o: SamOpportunity, matchType: "strong" | "adjacent") => ({
   url: o.uiLink ?? (o.noticeId ? `https://sam.gov/opp/${o.noticeId}/view` : "https://sam.gov/"),
   matchType,
 });
+
+const toHaystack = (o: SamOpportunity) =>
+  `${o.title ?? ""} ${o.fullParentPathName ?? ""} ${o.description ?? ""}`.toLowerCase();
 
 export async function GET() {
   const apiKey = process.env.SAM_API_KEY;
@@ -58,9 +80,12 @@ export async function GET() {
     url.searchParams.set("api_key", apiKey);
     url.searchParams.set("postedFrom", postedFrom);
     url.searchParams.set("postedTo", postedTo);
-    url.searchParams.set("limit", "100");
+    url.searchParams.set("limit", "150");
     url.searchParams.set("ptype", "o");
-    url.searchParams.set("q", "DHS financial systems modernization ERP");
+    url.searchParams.set(
+      "q",
+      "federal ERP business intelligence financial business process artificial intelligence IT PMO"
+    );
 
     const res = await fetch(url.toString(), { cache: "no-store" });
     if (!res.ok) {
@@ -75,12 +100,10 @@ export async function GET() {
 
     const strong = raw
       .filter((o) => {
-        const hay = `${o.title ?? ""} ${o.fullParentPathName ?? ""} ${o.description ?? ""}`.toLowerCase();
-        const targetMatch = DHS_TARGETS.some((t) => hay.includes(t.toLowerCase()));
-        const keywordMatch = KEYWORDS.some((k) => hay.includes(k.toLowerCase()));
-        return targetMatch && keywordMatch;
+        const hay = toHaystack(o);
+        return PRIMARY_KEYWORDS.some((k) => hay.includes(k));
       })
-      .slice(0, 20)
+      .slice(0, 25)
       .map((o) => toCard(o, "strong"));
 
     const opportunities =
@@ -88,11 +111,10 @@ export async function GET() {
         ? strong
         : raw
             .filter((o) => {
-              const hay = `${o.title ?? ""} ${o.fullParentPathName ?? ""} ${o.description ?? ""}`.toLowerCase();
-              const targetMatch = DHS_TARGETS.some((t) => hay.includes(t.toLowerCase()));
-              return targetMatch;
+              const hay = toHaystack(o);
+              return SECONDARY_KEYWORDS.some((k) => hay.includes(k));
             })
-            .slice(0, 20)
+            .slice(0, 25)
             .map((o) => toCard(o, "adjacent"));
 
     return NextResponse.json({

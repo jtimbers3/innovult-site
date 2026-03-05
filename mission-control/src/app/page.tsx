@@ -295,7 +295,7 @@ function OpportunityLane({
       {error && <p className="text-xs text-amber-300 mb-2">{error}</p>}
       {mode === "adjacent" && (
         <p className="text-xs text-indigo-300 mb-2">
-          No strong matches today — showing closest adjacent live DHS opportunities.
+          No strong matches today — showing closest adjacent live federal opportunities.
         </p>
       )}
 
