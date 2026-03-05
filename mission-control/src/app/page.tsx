@@ -1,6 +1,17 @@
 "use client";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  PointerSensor,
+  useDraggable,
+  useDroppable,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
 import { AlertTriangle, CheckCircle2, Circle, Plus, Rocket, Wrench } from "lucide-react";
 
 type Priority = "P1" | "P2" | "P3";
@@ -38,6 +49,9 @@ export default function Page() {
   const [title, setTitle] = useState("");
   const [owner, setOwner] = useState("James");
   const [priority, setPriority] = useState<Priority>("P2");
+  const [activeTaskId, setActiveTaskId] = useState<string | null>(null);
+
+  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }));
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
@@ -52,6 +66,8 @@ export default function Page() {
       { todo: [], doing: [], blocked: [], done: [] }
     );
   }, [tasks]);
+
+  const activeTask = activeTaskId ? tasks.find((t) => t.id === activeTaskId) ?? null : null;
 
   const addTask = () => {
     const t = title.trim();
@@ -68,6 +84,22 @@ export default function Page() {
         return { ...t, status: statusOrder[(i + 1) % statusOrder.length] };
       })
     );
+  };
+
+  const onDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    setActiveTaskId(null);
+    if (!over) return;
+
+    const taskId = String(active.id);
+    const overId = String(over.id);
+    const nextStatus = statusOrder.includes(overId as Status)
+      ? (overId as Status)
+      : tasks.find((t) => t.id === overId)?.status;
+
+    if (!nextStatus) return;
+
+    setTasks((prev) => prev.map((t) => (t.id === taskId ? { ...t, status: nextStatus } : t)));
   };
 
   return (
@@ -120,38 +152,63 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="grid md:grid-cols-4 gap-4">
-          <Column title="To Do" items={grouped.todo} onCycle={cycleStatus} />
-          <Column title="Doing" items={grouped.doing} onCycle={cycleStatus} />
-          <Column
-            title="Blocked"
-            items={grouped.blocked}
-            onCycle={cycleStatus}
-            accent="border-amber-700/60"
-            icon={<AlertTriangle className="w-4 h-4 text-amber-400" />}
-          />
-          <Column title="Done" items={grouped.done} onCycle={cycleStatus} />
-        </section>
+        <DndContext
+          sensors={sensors}
+          onDragStart={(event) => setActiveTaskId(String(event.active.id))}
+          onDragEnd={onDragEnd}
+          onDragCancel={() => setActiveTaskId(null)}
+        >
+          <section className="grid md:grid-cols-4 gap-4">
+            <Column id="todo" title="To Do" items={grouped.todo} onCycle={cycleStatus} />
+            <Column id="doing" title="Doing" items={grouped.doing} onCycle={cycleStatus} />
+            <Column
+              id="blocked"
+              title="Blocked"
+              items={grouped.blocked}
+              onCycle={cycleStatus}
+              accent="border-amber-700/60"
+              icon={<AlertTriangle className="w-4 h-4 text-amber-400" />}
+            />
+            <Column id="done" title="Done" items={grouped.done} onCycle={cycleStatus} />
+          </section>
+
+          <DragOverlay>
+            {activeTask ? (
+              <div className="w-[280px]">
+                <TaskCard task={activeTask} onCycle={() => {}} dragging />
+              </div>
+            ) : null}
+          </DragOverlay>
+        </DndContext>
       </div>
     </main>
   );
 }
 
 function Column({
+  id,
   title,
   items,
   onCycle,
   accent = "border-zinc-800",
   icon,
 }: {
+  id: Status;
   title: string;
   items: Task[];
   onCycle: (id: string) => void;
   accent?: string;
   icon?: ReactNode;
 }) {
+  const { isOver, setNodeRef } = useDroppable({ id });
+
   return (
-    <div className={`bg-zinc-900 border ${accent} rounded-2xl p-4`}>
+    <div
+      ref={setNodeRef}
+      className={`bg-zinc-900 border ${accent} rounded-2xl p-4 min-h-[300px] transition ${
+        isOver ? "ring-2 ring-emerald-500/70" : ""
+      }`}
+    >
       <div className="flex items-center gap-2 mb-3">
         {icon}
         <h3 className="font-semibold">{title}</h3>
@@ -159,29 +216,57 @@ function Column({
       </div>
       <div className="space-y-2">
         {items.map((t) => (
-          <button
-            key={t.id}
-            onClick={() => onCycle(t.id)}
-            className="w-full text-left bg-zinc-800 hover:bg-zinc-700/70 border border-zinc-700 rounded-xl p-3"
-          >
-            <div className="flex items-start gap-2">
-              {t.status === "done" ? (
-                <CheckCircle2 className="w-4 h-4 mt-0.5 text-emerald-400" />
-              ) : (
-                <Circle className="w-4 h-4 mt-0.5 text-zinc-500" />
-              )}
-              <div>
-                <p className="font-medium">{t.title}</p>
-                <p className="text-xs text-zinc-400 mt-1">
-                  {t.owner} • {t.priority}
-                </p>
-              </div>
-            </div>
-          </button>
+          <DraggableTaskCard key={t.id} task={t} onCycle={onCycle} />
         ))}
-        {items.length === 0 && <p className="text-sm text-zinc-500">No items</p>}
+        {items.length === 0 && <p className="text-sm text-zinc-500">Drop tasks here</p>}
       </div>
     </div>
+  );
+}
+
+function DraggableTaskCard({ task, onCycle }: { task: Task; onCycle: (id: string) => void }) {
+  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({ id: task.id });
+
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    opacity: isDragging ? 0.4 : 1,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+      <TaskCard task={task} onCycle={onCycle} />
+    </div>
+  );
+}
+
+function TaskCard({
+  task,
+  onCycle,
+  dragging = false,
+}: {
+  task: Task;
+  onCycle: (id: string) => void;
+  dragging?: boolean;
+}) {
+  return (
+    <button
+      onClick={() => !dragging && onCycle(task.id)}
+      className="w-full text-left bg-zinc-800 hover:bg-zinc-700/70 border border-zinc-700 rounded-xl p-3 cursor-grab active:cursor-grabbing"
+    >
+      <div className="flex items-start gap-2">
+        {task.status === "done" ? (
+          <CheckCircle2 className="w-4 h-4 mt-0.5 text-emerald-400" />
+        ) : (
+          <Circle className="w-4 h-4 mt-0.5 text-zinc-500" />
+        )}
+        <div>
+          <p className="font-medium">{task.title}</p>
+          <p className="text-xs text-zinc-400 mt-1">
+            {task.owner} • {task.priority}
+          </p>
+        </div>
+      </div>
+    </button>
   );
 }
 
