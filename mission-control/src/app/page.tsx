@@ -36,6 +36,7 @@ type Opportunity = {
   type: string | null;
   description: string;
   url: string;
+  matchType?: "strong" | "adjacent";
 };
 
 const seed: Task[] = [
@@ -80,6 +81,7 @@ export default function Page() {
   const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(null);
   const [oppLoading, setOppLoading] = useState(false);
   const [oppError, setOppError] = useState<string | null>(null);
+  const [oppMode, setOppMode] = useState<"strong" | "adjacent" | null>(null);
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }));
 
@@ -139,6 +141,7 @@ export default function Page() {
         return;
       }
       setOpportunities(data.opportunities ?? []);
+      setOppMode(data.mode ?? null);
       localStorage.setItem(OPP_LAST_REFRESH_KEY, new Date().toISOString().slice(0, 10));
     } catch {
       setOppError("Network error while fetching opportunities");
@@ -236,6 +239,7 @@ export default function Page() {
               opportunities={opportunities}
               loading={oppLoading}
               error={oppError}
+              mode={oppMode}
               onRefresh={refreshOpportunities}
               onOpen={setSelectedOpportunity}
             />
@@ -262,12 +266,14 @@ function OpportunityLane({
   opportunities,
   loading,
   error,
+  mode,
   onRefresh,
   onOpen,
 }: {
   opportunities: Opportunity[];
   loading: boolean;
   error: string | null;
+  mode: "strong" | "adjacent" | null;
   onRefresh: () => void;
   onOpen: (opportunity: Opportunity) => void;
 }) {
@@ -287,6 +293,11 @@ function OpportunityLane({
       </button>
 
       {error && <p className="text-xs text-amber-300 mb-2">{error}</p>}
+      {mode === "adjacent" && (
+        <p className="text-xs text-indigo-300 mb-2">
+          No strong matches today — showing closest adjacent live DHS opportunities.
+        </p>
+      )}
 
       <div className="space-y-2">
         {opportunities.map((opp) => (
@@ -298,6 +309,9 @@ function OpportunityLane({
             <p className="font-medium text-sm line-clamp-2">{opp.title}</p>
             <p className="text-xs text-zinc-400 mt-1 line-clamp-1">{opp.office}</p>
             <p className="text-xs text-zinc-400 mt-1">Due: {opp.dueDate ?? "TBD"}</p>
+            {opp.matchType === "adjacent" && (
+              <p className="text-[10px] uppercase tracking-wide text-indigo-300 mt-1">Adjacent</p>
+            )}
           </button>
         ))}
         {opportunities.length === 0 && <p className="text-sm text-zinc-500">No opportunities yet</p>}

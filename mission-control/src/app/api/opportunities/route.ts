@@ -14,7 +14,21 @@ type SamOpportunity = {
 };
 
 const DHS_TARGETS = ["TSA", "FEMA", "CBP", "USCIS", "ICE", "USCG", "CISA", "DHS"];
-const KEYWORDS = ["financial systems", "financial modernization", "ERP", "finance", "OCFO"];
+const KEYWORDS = ["financial systems", "financial modernization", "ERP", "finance", "OCFO", "budget", "accounting"];
+
+const toCard = (o: SamOpportunity, matchType: "strong" | "adjacent") => ({
+  id: o.noticeId ?? crypto.randomUUID(),
+  title: o.title ?? "Untitled opportunity",
+  source: "SAM.gov",
+  office: o.fullParentPathName ?? o.organizationType ?? "DHS Component",
+  postedDate: o.postedDate ?? null,
+  dueDate: o.responseDeadLine ?? null,
+  solicitationNumber: o.solicitationNumber ?? null,
+  type: o.type ?? null,
+  description: o.description ?? "No description provided",
+  url: o.uiLink ?? (o.noticeId ? `https://sam.gov/opp/${o.noticeId}/view` : "https://sam.gov/"),
+  matchType,
+});
 
 export async function GET() {
   const apiKey = process.env.SAM_API_KEY;
@@ -44,7 +58,7 @@ export async function GET() {
     url.searchParams.set("api_key", apiKey);
     url.searchParams.set("postedFrom", postedFrom);
     url.searchParams.set("postedTo", postedTo);
-    url.searchParams.set("limit", "50");
+    url.searchParams.set("limit", "100");
     url.searchParams.set("ptype", "o");
     url.searchParams.set("q", "DHS financial systems modernization ERP");
 
@@ -59,7 +73,7 @@ export async function GET() {
     const data = await res.json();
     const raw: SamOpportunity[] = Array.isArray(data?.opportunitiesData) ? data.opportunitiesData : [];
 
-    const opportunities = raw
+    const strong = raw
       .filter((o) => {
         const hay = `${o.title ?? ""} ${o.fullParentPathName ?? ""} ${o.description ?? ""}`.toLowerCase();
         const targetMatch = DHS_TARGETS.some((t) => hay.includes(t.toLowerCase()));
@@ -67,20 +81,26 @@ export async function GET() {
         return targetMatch && keywordMatch;
       })
       .slice(0, 20)
-      .map((o) => ({
-        id: o.noticeId ?? crypto.randomUUID(),
-        title: o.title ?? "Untitled opportunity",
-        source: "SAM.gov",
-        office: o.fullParentPathName ?? o.organizationType ?? "DHS Component",
-        postedDate: o.postedDate ?? null,
-        dueDate: o.responseDeadLine ?? null,
-        solicitationNumber: o.solicitationNumber ?? null,
-        type: o.type ?? null,
-        description: o.description ?? "No description provided",
-        url: o.uiLink ?? (o.noticeId ? `https://sam.gov/opp/${o.noticeId}/view` : "https://sam.gov/")
-      }));
+      .map((o) => toCard(o, "strong"));
 
-    return NextResponse.json({ ok: true, opportunities, fetchedAt: new Date().toISOString() });
+    const opportunities =
+      strong.length > 0
+        ? strong
+        : raw
+            .filter((o) => {
+              const hay = `${o.title ?? ""} ${o.fullParentPathName ?? ""} ${o.description ?? ""}`.toLowerCase();
+              const targetMatch = DHS_TARGETS.some((t) => hay.includes(t.toLowerCase()));
+              return targetMatch;
+            })
+            .slice(0, 20)
+            .map((o) => toCard(o, "adjacent"));
+
+    return NextResponse.json({
+      ok: true,
+      opportunities,
+      mode: strong.length > 0 ? "strong" : "adjacent",
+      fetchedAt: new Date().toISOString(),
+    });
   } catch (error) {
     return NextResponse.json(
       {
