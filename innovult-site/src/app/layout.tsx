@@ -23,7 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
             <Link href="/" className="flex items-center" aria-label="innovult home">
               <Image
-                src="/innovult-logo.png"
+                src="/innovult-logo.jpg"
                 alt="innovult logo"
                 width={220}
                 height={52}
