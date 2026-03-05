@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 
@@ -20,8 +21,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="bg-slate-50 text-slate-900 antialiased">
         <header className="border-b border-slate-200/90 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-            <Link href="/" className="text-xl font-semibold tracking-tight text-slate-950">
-              innovult LLC
+            <Link href="/" className="flex items-center" aria-label="innovult home">
+              <Image
+                src="/innovult-logo.png"
+                alt="innovult logo"
+                width={220}
+                height={52}
+                priority
+                className="h-10 w-auto"
+              />
             </Link>
             <nav className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 p-1.5 shadow-sm">
               {nav.map((item) => (
