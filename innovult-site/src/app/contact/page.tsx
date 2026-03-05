@@ -14,7 +14,7 @@ export default function ContactPage() {
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           <a
-            href="mailto:hello@innovult.com?subject=Book%20a%20call"
+            href="mailto:jtimbers@innovult.com?subject=Book%20a%20call"
             className="rounded-md bg-[#0A3A66] px-5 py-3 text-center text-sm font-semibold text-white hover:bg-[#072A4A]"
           >
             Email us
@@ -28,8 +28,9 @@ export default function ContactPage() {
         </div>
 
         <div className="mt-8 text-sm text-slate-600">
-          <p>innovult LLC</p>
+          <p>Innovult LLC</p>
           <p>Federal modernization services</p>
+          <p className="mt-2">1607 11th St. S., Arlington, VA 22204</p>
         </div>
       </section>
     </div>
