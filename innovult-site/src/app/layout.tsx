@@ -48,8 +48,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main className="mx-auto max-w-6xl px-6 py-12">{children}</main>
 
         <footer className="border-t border-slate-200 bg-white">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 text-sm text-slate-600">
-            <p>© {new Date().getFullYear()} innovult LLC</p>
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-5 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p>© {new Date().getFullYear()} Innovult LLC</p>
+              <p className="mt-1">1607 11th St. S., Arlington, VA 22204</p>
+            </div>
             <Link href="/contact" className="rounded-md bg-[#0A3A66] px-4 py-2 text-white hover:bg-[#072A4A]">
               Book a call
             </Link>
