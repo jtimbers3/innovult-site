@@ -33,7 +33,7 @@ export default function ServicesPage() {
     <div className="space-y-8">
       <section className="grid gap-6 md:grid-cols-2 md:items-center">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight">Services</h1>
+          <h1 className="text-4xl font-bold tracking-tight text-[#0A3A66]">Services</h1>
           <p className="mt-3 max-w-3xl text-lg text-slate-700">
             We support agencies and prime contractors with delivery-focused services that improve execution and results.
           </p>

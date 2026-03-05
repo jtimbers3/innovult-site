@@ -7,7 +7,7 @@ export default function HomePage() {
       <section className="grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 md:grid-cols-2 md:p-10">
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-600">Federal technology partner</p>
-          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
+          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-[#0A3A66] sm:text-5xl">
             Mission-focused modernization for agencies and prime contractors.
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-slate-700">
@@ -15,10 +15,10 @@ export default function HomePage() {
             and IT PMO execution with speed, clarity, and accountability.
           </p>
           <div className="mt-8 flex gap-3">
-            <Link href="/contact" className="rounded-md bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-700">
+            <Link href="/contact" className="rounded-md bg-[#0A3A66] px-5 py-3 text-sm font-semibold text-white hover:bg-[#072A4A]">
               Book a call
             </Link>
-            <Link href="/services" className="rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-100">
+            <Link href="/services" className="rounded-md border border-[#0A3A66]/30 px-5 py-3 text-sm font-semibold text-[#0A3A66] hover:bg-[#0A3A66]/5">
               Explore services
             </Link>
           </div>
