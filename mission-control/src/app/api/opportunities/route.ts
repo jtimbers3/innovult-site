@@ -18,9 +18,11 @@ const PRIMARY_KEYWORDS = [
   "business intelligence",
   "financial business process",
   "artificial intelligence",
-  "ai",
+  "machine learning",
+  "ai/ml",
   "it pmo",
   "program management office",
+  "enterprise resource planning",
 ];
 
 const SECONDARY_KEYWORDS = [
@@ -33,6 +35,34 @@ const SECONDARY_KEYWORDS = [
   "cloud",
   "system implementation",
   "digital transformation",
+  "systems engineering",
+  "application development",
+  "software",
+  "platform",
+  "dashboard",
+];
+
+const EXCLUDE_KEYWORDS = [
+  "roof",
+  "roofing",
+  "hvac",
+  "air conditioning",
+  "ac unit",
+  "construction",
+  "renovation",
+  "facility",
+  "facilities",
+  "janitorial",
+  "landscaping",
+  "paving",
+  "elevator",
+  "painting",
+  "plumbing",
+  "fire alarm",
+  "furniture",
+  "generator",
+  "asphalt",
+  "concrete",
 ];
 
 const toCard = (o: SamOpportunity, matchType: "strong" | "adjacent") => ({
@@ -51,6 +81,17 @@ const toCard = (o: SamOpportunity, matchType: "strong" | "adjacent") => ({
 
 const toHaystack = (o: SamOpportunity) =>
   `${o.title ?? ""} ${o.fullParentPathName ?? ""} ${o.description ?? ""}`.toLowerCase();
+
+const hasKeyword = (text: string, keyword: string) => {
+  if (keyword.includes("/")) return text.includes(keyword);
+  if (keyword.length <= 3) {
+    const rx = new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")}\\b`, "i");
+    return rx.test(text);
+  }
+  return text.includes(keyword);
+};
+
+const isExcluded = (text: string) => EXCLUDE_KEYWORDS.some((k) => text.includes(k));
 
 export async function GET() {
   const apiKey = process.env.SAM_API_KEY;
@@ -101,7 +142,10 @@ export async function GET() {
     const strong = raw
       .filter((o) => {
         const hay = toHaystack(o);
-        return PRIMARY_KEYWORDS.some((k) => hay.includes(k));
+        if (isExcluded(hay)) return false;
+        const primary = PRIMARY_KEYWORDS.some((k) => hasKeyword(hay, k));
+        const secondary = SECONDARY_KEYWORDS.some((k) => hasKeyword(hay, k));
+        return primary && secondary;
       })
       .slice(0, 25)
       .map((o) => toCard(o, "strong"));
@@ -112,7 +156,8 @@ export async function GET() {
         : raw
             .filter((o) => {
               const hay = toHaystack(o);
-              return SECONDARY_KEYWORDS.some((k) => hay.includes(k));
+              if (isExcluded(hay)) return false;
+              return SECONDARY_KEYWORDS.some((k) => hasKeyword(hay, k));
             })
             .slice(0, 25)
             .map((o) => toCard(o, "adjacent"));
