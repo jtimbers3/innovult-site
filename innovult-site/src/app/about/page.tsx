@@ -1,12 +1,24 @@
+import Image from "next/image";
+
 export default function AboutPage() {
   return (
     <div className="space-y-8">
-      <section>
-        <h1 className="text-4xl font-bold tracking-tight">About Innovult LLC</h1>
-        <p className="mt-3 max-w-3xl text-lg text-slate-700">
-          Innovult is a modernization-focused consulting partner serving federal agencies and prime contractors.
-          We combine execution discipline with practical technology delivery to move mission outcomes forward.
-        </p>
+      <section className="grid gap-6 md:grid-cols-2 md:items-center">
+        <div>
+          <h1 className="text-4xl font-bold tracking-tight">About Innovult LLC</h1>
+          <p className="mt-3 max-w-3xl text-lg text-slate-700">
+            Innovult is a modernization-focused consulting partner serving federal agencies and prime contractors.
+            We combine execution discipline with practical technology delivery to move mission outcomes forward.
+          </p>
+        </div>
+        <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200">
+          <Image
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+            alt="Consulting team collaborating"
+            fill
+            className="object-cover"
+          />
+        </div>
       </section>
 
       <section className="grid gap-4 md:grid-cols-3">

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ServicesPage() {
   const services = [
     {
@@ -29,11 +31,21 @@ export default function ServicesPage() {
 
   return (
     <div className="space-y-8">
-      <section>
-        <h1 className="text-4xl font-bold tracking-tight">Services</h1>
-        <p className="mt-3 max-w-3xl text-lg text-slate-700">
-          We support agencies and prime contractors with delivery-focused services that improve execution and results.
-        </p>
+      <section className="grid gap-6 md:grid-cols-2 md:items-center">
+        <div>
+          <h1 className="text-4xl font-bold tracking-tight">Services</h1>
+          <p className="mt-3 max-w-3xl text-lg text-slate-700">
+            We support agencies and prime contractors with delivery-focused services that improve execution and results.
+          </p>
+        </div>
+        <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200">
+          <Image
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80"
+            alt="Digital services dashboard"
+            fill
+            className="object-cover"
+          />
+        </div>
       </section>
 
       <section className="grid gap-4 md:grid-cols-2">
