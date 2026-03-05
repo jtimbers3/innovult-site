@@ -29,12 +29,21 @@ export async function GET() {
     );
   }
 
-  const postedFrom = new Date(Date.now() - 1000 * 60 * 60 * 24 * 7).toISOString().slice(0, 10);
+  const formatSamDate = (d: Date) => {
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    const yyyy = d.getFullYear();
+    return `${mm}/${dd}/${yyyy}`;
+  };
+
+  const postedFrom = formatSamDate(new Date(Date.now() - 1000 * 60 * 60 * 24 * 7));
+  const postedTo = formatSamDate(new Date());
 
   try {
     const url = new URL("https://api.sam.gov/prod/opportunities/v2/search");
     url.searchParams.set("api_key", apiKey);
     url.searchParams.set("postedFrom", postedFrom);
+    url.searchParams.set("postedTo", postedTo);
     url.searchParams.set("limit", "50");
     url.searchParams.set("ptype", "o");
     url.searchParams.set("q", "DHS financial systems modernization ERP");
