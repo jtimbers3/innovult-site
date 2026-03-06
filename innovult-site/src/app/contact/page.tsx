@@ -57,7 +57,7 @@ export default function ContactPage() {
           <p>
             <span className="font-semibold text-slate-700">Business Address</span>
             <br />
-            1607 11th St. S., Arlington, VA 22204
+            Arlington, VA
           </p>
         </div>
       </section>
