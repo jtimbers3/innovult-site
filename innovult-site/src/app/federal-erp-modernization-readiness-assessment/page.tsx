@@ -104,6 +104,19 @@ const questions: Question[] = [
 
 const MAX_SCORE = 40;
 
+const lowScoreRisks: Record<number, string> = {
+  1: "An undefined accounting structure can lead to reporting inconsistencies, data conversion issues, and significant rework during ERP implementation.",
+  2: "An incomplete inventory of financial feeder systems increases the risk of missing integrations and unexpected data flows during implementation.",
+  3: "Unmanaged system interfaces can create data integrity issues and increase the likelihood of integration failures after system deployment.",
+  4: "Without a defined data conversion strategy, historical financial data may be incomplete, inaccurate, or unavailable in the new ERP system.",
+  5: "Unclear business process ownership can delay decision-making and create inconsistencies in how financial processes are implemented.",
+  6: "Limited governance structures increase the risk of delayed decisions, conflicting priorities, and poor program oversight.",
+  7: "A lack of integration architecture can lead to fragile system connections and higher maintenance costs after implementation.",
+  8: "Insufficient testing planning increases the likelihood of unresolved defects and operational disruptions at system go-live.",
+  9: "Without a reporting strategy, organizations may struggle to produce timely and reliable financial insights after ERP deployment.",
+  10: "Limited change management planning increases the risk of user resistance, training gaps, and operational disruptions.",
+};
+
 function getInterpretation(score: number) {
   if (score >= 80) {
     return {
@@ -224,8 +237,13 @@ export default function AssessmentPage() {
           bold: !!lowScore,
         });
         if (lowScore) {
-          writeLine("⚠ Flagged as potential readiness risk (score 2 or below)", {
+          writeLine("Risk:", {
             indent: 4,
+            color: [185, 28, 28],
+            bold: true,
+          });
+          writeLine(lowScoreRisks[index + 1], {
+            indent: 8,
             color: [185, 28, 28],
           });
         }
