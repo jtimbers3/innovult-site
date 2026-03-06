@@ -45,8 +45,8 @@ export default function HomePage() {
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
               <span className="font-bold tracking-tight">
-                <span className="text-[#0A3A66]">innov</span>
-                <span className="text-[#3C8DDA]">ult</span>
+                <span className="text-[#164067]">innov</span>
+                <span className="text-[#65DCDF]">ult</span>
               </span>{" "}
               supports federal agencies and
               prime contractors delivering ERP, financial systems, and data modernization programs across Oracle, SAP,
