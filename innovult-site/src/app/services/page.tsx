@@ -58,16 +58,16 @@ export default function ServicesPage() {
         </section>
       </FadeInOnScroll>
 
-      <FadeInOnScroll>
-        <section className="grid gap-4 md:grid-cols-2">
-          {services.map((item) => (
-            <article key={item.title} className="rounded-xl border border-slate-200 bg-white p-6">
+      <section className="grid gap-4 md:grid-cols-2">
+        {services.map((item, index) => (
+          <FadeInOnScroll key={item.title} delayMs={index * 80}>
+            <article className="rounded-xl border border-slate-200 bg-white p-6">
               <h2 className="text-xl font-semibold text-slate-950">{item.title}</h2>
               <p className="mt-2 text-slate-700">{item.detail}</p>
             </article>
-          ))}
-        </section>
-      </FadeInOnScroll>
+          </FadeInOnScroll>
+        ))}
+      </section>
 
       <FadeInOnScroll>
         <section className="rounded-xl border border-slate-200 bg-white p-6">

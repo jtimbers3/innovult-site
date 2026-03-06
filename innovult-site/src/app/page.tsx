@@ -76,13 +76,10 @@ export default function HomePage() {
 
       <div className="section-divider" />
 
-      <FadeInOnScroll>
-        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {cards.map((card) => (
-            <article
-              key={card.title}
-              className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-            >
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {cards.map((card, index) => (
+          <FadeInOnScroll key={card.title} delayMs={index * 90}>
+            <article className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
               <div className="relative h-40 overflow-hidden">
                 <Image
                   src={card.image}
@@ -103,9 +100,9 @@ export default function HomePage() {
                 ) : null}
               </div>
             </article>
-          ))}
-        </section>
-      </FadeInOnScroll>
+          </FadeInOnScroll>
+        ))}
+      </section>
     </div>
   );
 }
