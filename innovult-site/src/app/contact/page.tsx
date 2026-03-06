@@ -66,7 +66,7 @@ export default function ContactPage() {
               jtimbers@innovult.com
             </p>
             <p>
-              <span className="font-semibold text-slate-700">Business Address</span>
+              <span className="font-semibold text-slate-700">Headquarters</span>
               <br />
               Arlington, VA
             </p>
