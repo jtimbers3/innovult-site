@@ -1,35 +1,64 @@
 export default function ContactPage() {
+  const reasons = [
+    "ERP modernization program support",
+    "Federal financial system transformation initiatives",
+    "Prime contractor teaming opportunities",
+    "Program and PMO delivery support",
+    "Data and reporting modernization",
+  ];
+
   return (
-    <div className="space-y-8 fade-up">
+    <div className="space-y-8">
       <section>
         <h1 className="text-4xl font-bold tracking-tight text-[#0A3A66]">Contact</h1>
-        <p className="mt-3 max-w-3xl text-lg text-slate-700">
-          Ready to discuss a program, teaming opportunity, or delivery challenge? Send us an email and we’ll follow up quickly.
+        <p className="mt-3 max-w-4xl text-lg text-slate-700">
+          Interested in partnering on a federal ERP or financial system modernization program? Reach out to discuss
+          teaming opportunities or program support.
         </p>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h2 className="text-xl font-semibold">Email us</h2>
-        <p className="mt-2 text-slate-700">Use the button below to open your email client and contact innovult directly.</p>
+      <section className="rounded-2xl border border-slate-200 bg-white p-8">
+        <h2 className="text-xl font-semibold text-[#0A3A66]">Common reasons to contact innovult</h2>
+        <ul className="mt-4 space-y-2 text-slate-700">
+          {reasons.map((reason) => (
+            <li key={reason} className="flex items-start gap-2">
+              <span className="mt-1 h-2 w-2 rounded-full bg-[#0A3A66]" aria-hidden />
+              <span>{reason}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-        <div className="mt-6 max-w-xs">
-          <a href="mailto:jtimbers@innovult.com?subject=innovult%20Inquiry" className="btn-primary block px-5 py-3 text-center text-sm">
-            Email Us
+      <section className="rounded-2xl border border-slate-200 bg-white p-8">
+        <h2 className="text-xl font-semibold text-[#0A3A66]">Contact innovult</h2>
+        <p className="mt-2 text-slate-700">
+          innovult works with federal agencies and prime contractors supporting ERP, financial systems, and enterprise
+          data modernization programs.
+        </p>
+        <p className="mt-3 text-slate-700">
+          The best way to reach innovult is by email. We typically respond within one business day.
+        </p>
+
+        <div className="mt-6">
+          <a
+            href="mailto:jtimbers@innovult.com?subject=Federal%20ERP%20Program%20Support"
+            className="inline-flex rounded-md bg-[#0A3A66] px-5 py-3 text-sm font-semibold text-white hover:bg-[#072A4A]"
+          >
+            Email jtimbers@innovult.com
           </a>
         </div>
 
-        <div className="mt-8 grid gap-4 md:max-w-2xl md:grid-cols-2">
-          <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Email</p>
-            <a className="mt-1 block text-sm font-medium text-[#0A3A66] hover:underline" href="mailto:jtimbers@innovult.com">
-              jtimbers@innovult.com
-            </a>
-          </div>
-
-          <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Business Address</p>
-            <p className="mt-1 text-sm font-medium text-slate-700">1607 11th St. S., Arlington, VA 22204</p>
-          </div>
+        <div className="mt-8 space-y-3 text-sm text-slate-600">
+          <p>
+            <span className="font-semibold text-slate-700">Email</span>
+            <br />
+            jtimbers@innovult.com
+          </p>
+          <p>
+            <span className="font-semibold text-slate-700">Business Address</span>
+            <br />
+            1607 11th St. S., Arlington, VA 22204
+          </p>
         </div>
       </section>
     </div>
