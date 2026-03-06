@@ -81,8 +81,15 @@ export default function HomePage() {
       </section>
 
       <section className="fade-up fade-up-delay-2 rounded-xl border border-slate-200 bg-white p-6 text-slate-700">
-        innovult partners with prime contractors to strengthen teams delivering federal ERP and financial
-        modernization programs.
+        <p>
+          innovult partners with prime contractors to strengthen teams delivering federal ERP and financial
+          modernization programs.
+        </p>
+        <div className="mt-4">
+          <Link href="/federal-erp-modernization-readiness-assessment" className="btn-outline px-4 py-2 text-sm">
+            Federal ERP Modernization Readiness Assessment
+          </Link>
+        </div>
       </section>
     </div>
   );

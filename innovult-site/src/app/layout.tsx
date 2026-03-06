@@ -12,6 +12,7 @@ const nav = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
+  { href: "/federal-erp-modernization-readiness-assessment", label: "Readiness Assessment" },
   { href: "/contact", label: "Contact" },
 ];
 
