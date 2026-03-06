@@ -2,6 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function HomePage() {
+  const cards = [
+    {
+      title: "ERP & Financial Systems Implementation",
+      body: "Support ERP implementations including financial management, procurement integration, and system transition planning.",
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80",
+    },
+    {
+      title: "Business Intelligence & Data Platforms",
+      body: "Build reporting and analytics environments that support federal financial operations, program management, and executive oversight.",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
+    },
+    {
+      title: "IT PMO & Program Delivery",
+      body: "Provide PMO leadership for large federal IT programs, including governance, scheduling, stakeholder coordination, and delivery oversight.",
+      image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
+    },
+    {
+      title: "ERP Modernization Readiness Assessment",
+      body: "Evaluate your organization’s readiness for financial system modernization. Identify potential risks in governance, integration, data conversion, and change management before implementation begins.",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80",
+      href: "/federal-erp-modernization-readiness-assessment",
+    },
+  ];
+
   return (
     <div className="space-y-12">
       <section className="fade-up grid gap-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:grid-cols-2 md:p-10">
@@ -42,54 +66,33 @@ export default function HomePage() {
 
       <div className="section-divider" />
 
-      <section className="fade-up fade-up-delay-1 grid gap-4 md:grid-cols-3">
-        {[
-          [
-            "ERP & Financial Systems Implementation",
-            "Support ERP implementations including financial management, procurement integration, and system transition planning.",
-            "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80",
-          ],
-          [
-            "Business Intelligence & Data Platforms",
-            "Build reporting and analytics environments that support federal financial operations, program management, and executive oversight.",
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
-          ],
-          [
-            "IT PMO & Program Delivery",
-            "Provide PMO leadership for large federal IT programs, including governance, scheduling, stakeholder coordination, and delivery oversight.",
-            "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
-          ],
-        ].map(([title, body, image]) => (
+      <section className="fade-up fade-up-delay-1 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {cards.map((card) => (
           <article
-            key={title}
+            key={card.title}
             className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
           >
             <div className="relative h-40 overflow-hidden">
               <Image
-                src={image}
-                alt={title}
+                src={card.image}
+                alt={card.title}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
             <div className="p-6">
-              <h2 className="text-lg font-semibold text-slate-950">{title}</h2>
-              <p className="mt-2 leading-7 text-slate-700">{body}</p>
+              <h2 className="text-lg font-semibold text-slate-950">{card.title}</h2>
+              <p className="mt-2 leading-7 text-slate-700">{card.body}</p>
+              {card.href ? (
+                <div className="mt-4">
+                  <Link href={card.href} className="btn-outline px-4 py-2 text-sm">
+                    Open Assessment
+                  </Link>
+                </div>
+              ) : null}
             </div>
           </article>
         ))}
-      </section>
-
-      <section className="fade-up fade-up-delay-2 rounded-xl border border-slate-200 bg-white p-6 text-slate-700">
-        <p>
-          innovult partners with prime contractors to strengthen teams delivering federal ERP and financial
-          modernization programs.
-        </p>
-        <div className="mt-4">
-          <Link href="/federal-erp-modernization-readiness-assessment" className="btn-outline px-4 py-2 text-sm">
-            ERP Readiness
-          </Link>
-        </div>
       </section>
     </div>
   );
