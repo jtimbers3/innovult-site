@@ -87,7 +87,7 @@ export default function HomePage() {
         </p>
         <div className="mt-4">
           <Link href="/federal-erp-modernization-readiness-assessment" className="btn-outline px-4 py-2 text-sm">
-            Federal ERP Modernization Readiness Assessment
+            ERP Readiness
           </Link>
         </div>
       </section>
