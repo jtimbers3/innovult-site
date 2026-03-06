@@ -24,6 +24,11 @@ export default function HomePage() {
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80",
       href: "/federal-erp-modernization-readiness-assessment",
     },
+    {
+      title: "AI-Enabled Analysis & Decision Support",
+      body: "Use modern artificial intelligence tools to support analysis, insight generation, and informed decision-making across complex federal technology and financial modernization programs.",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80",
+    },
   ];
 
   return (
