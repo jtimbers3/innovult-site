@@ -23,6 +23,11 @@ export default function ServicesPage() {
         "Provide PMO leadership across complex federal IT programs including governance structures, integrated master schedules, risk management, and stakeholder coordination.",
     },
     {
+      title: "AI-Enabled Analysis & Program Insights",
+      detail:
+        "Leverage modern AI tools to accelerate analysis, synthesize complex information, and generate insights that support decision-making across ERP modernization and federal financial management programs.",
+    },
+    {
       title: "ERP Program Strategy & Planning",
       detail:
         "Support early-stage ERP modernization efforts including implementation planning, governance design, and program readiness assessments.",
