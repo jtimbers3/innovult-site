@@ -20,9 +20,13 @@ export default function AboutPage() {
             Senior Expertise for Federal ERP Modernization
           </h1>
           <p className="mt-4 max-w-4xl text-base leading-7 text-slate-700 sm:text-lg">
-            innovult provides senior-level expertise supporting federal ERP and financial system modernization programs.
-            We work with agencies and prime contractors delivering complex transformations involving enterprise
-            platforms such as Oracle and SAP.
+            <span className="font-bold tracking-tight">
+              <span className="text-[#164067]">innov</span>
+              <span className="text-[#65DCDF]">ult</span>
+            </span>{" "}
+            provides senior-level expertise supporting federal ERP and financial system modernization programs. We work
+            with agencies and prime contractors delivering complex transformations involving enterprise platforms such
+            as Oracle and SAP.
           </p>
         </section>
       </FadeInOnScroll>

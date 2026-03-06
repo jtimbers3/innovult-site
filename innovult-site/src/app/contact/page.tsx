@@ -23,7 +23,9 @@ export default function ContactPage() {
 
       <FadeInOnScroll>
         <section className="rounded-2xl border border-slate-200 bg-white p-8">
-          <h2 className="text-xl font-semibold text-[#0A3A66]">Common reasons to contact innovult</h2>
+          <h2 className="text-xl font-semibold text-[#0A3A66]">
+            Common reasons to contact <span className="tracking-tight"><span className="text-[#164067]">innov</span><span className="text-[#65DCDF]">ult</span></span>
+          </h2>
           <ul className="mt-4 space-y-2 text-slate-700">
             {reasons.map((reason) => (
               <li key={reason} className="flex items-start gap-2">
@@ -37,7 +39,9 @@ export default function ContactPage() {
 
       <FadeInOnScroll>
         <section className="rounded-2xl border border-slate-200 bg-white p-8">
-          <h2 className="text-xl font-semibold text-[#0A3A66]">Contact innovult</h2>
+          <h2 className="text-xl font-semibold text-[#0A3A66]">
+            Contact <span className="tracking-tight"><span className="text-[#164067]">innov</span><span className="text-[#65DCDF]">ult</span></span>
+          </h2>
           <p className="mt-2 text-slate-700">
             innovult works with federal agencies and prime contractors supporting ERP, financial systems, and enterprise
             data modernization programs.

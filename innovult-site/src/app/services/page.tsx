@@ -42,9 +42,13 @@ export default function ServicesPage() {
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-[#0A3A66] sm:text-4xl">Services</h1>
             <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700 sm:text-lg">
-              innovult provides specialized support for federal ERP modernization, financial system transformation,
-              and data platforms. We partner with agencies and prime contractors to strengthen program delivery
-              across complex IT initiatives.
+              <span className="font-bold tracking-tight">
+                <span className="text-[#164067]">innov</span>
+                <span className="text-[#65DCDF]">ult</span>
+              </span>{" "}
+              provides specialized support for federal ERP modernization, financial system transformation, and data
+              platforms. We partner with agencies and prime contractors to strengthen program delivery across complex
+              IT initiatives.
             </p>
           </div>
           <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200">
