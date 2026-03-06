@@ -13,19 +13,23 @@ export default function ContactPage() {
         <p className="mt-2 text-slate-700">Use the button below to open your email client and contact innovult directly.</p>
 
         <div className="mt-6 max-w-xs">
-          <a
-            href="mailto:jtimbers@innovult.com?subject=innovult%20Inquiry"
-            className="btn-primary block px-5 py-3 text-center text-sm"
-          >
+          <a href="mailto:jtimbers@innovult.com?subject=innovult%20Inquiry" className="btn-primary block px-5 py-3 text-center text-sm">
             Email Us
           </a>
         </div>
 
-        <div className="mt-8 text-sm text-slate-600">
-          <p>innovult LLC</p>
-          <p className="mt-1">Email: jtimbers@innovult.com</p>
-          <p className="mt-1">Federal modernization services</p>
-          <p className="mt-2">1607 11th St. S., Arlington, VA 22204</p>
+        <div className="mt-8 grid gap-4 md:max-w-2xl md:grid-cols-2">
+          <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Email</p>
+            <a className="mt-1 block text-sm font-medium text-[#0A3A66] hover:underline" href="mailto:jtimbers@innovult.com">
+              jtimbers@innovult.com
+            </a>
+          </div>
+
+          <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Business Address</p>
+            <p className="mt-1 text-sm font-medium text-slate-700">1607 11th St. S., Arlington, VA 22204</p>
+          </div>
         </div>
       </section>
     </div>
