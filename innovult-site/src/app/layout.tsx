@@ -6,6 +6,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "innovult LLC",
   description: "Federal-friendly technology and modernization services.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 const nav = [
