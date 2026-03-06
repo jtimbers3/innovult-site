@@ -41,7 +41,7 @@ export default function ContactPage() {
 
         <div className="mt-6">
           <a
-            href="mailto:jtimbers@innovult.com?subject=Federal%20ERP%20Program%20Support"
+            href="mailto:jtimbers@innovult.com?subject=innovult%20Inquiry"
             className="inline-flex rounded-md bg-[#0A3A66] px-5 py-3 text-sm font-semibold text-white hover:bg-[#072A4A]"
           >
             Email jtimbers@innovult.com
