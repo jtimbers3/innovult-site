@@ -15,10 +15,10 @@ export default function HomePage() {
             and IT PMO execution with speed, clarity, and accountability.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/contact" className="rounded-md bg-[#0A3A66] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#072A4A]">
+            <Link href="/contact" className="btn-primary px-5 py-3 text-sm">
               Book a call
             </Link>
-            <Link href="/services" className="rounded-md border border-[#0A3A66]/30 px-5 py-3 text-sm font-semibold text-[#0A3A66] transition-colors hover:bg-[#0A3A66]/5">
+            <Link href="/services" className="btn-outline px-5 py-3 text-sm">
               Explore services
             </Link>
           </div>

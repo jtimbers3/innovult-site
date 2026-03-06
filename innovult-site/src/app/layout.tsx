@@ -36,7 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-md px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-[#0A3A66]"
+                  className="nav-link"
                 >
                   {item.label}
                 </Link>
@@ -53,7 +53,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <p>© {new Date().getFullYear()} Innovult LLC</p>
               <p className="mt-1">1607 11th St. S., Arlington, VA 22204</p>
             </div>
-            <Link href="/contact" className="rounded-md bg-[#0A3A66] px-4 py-2 text-white hover:bg-[#072A4A]">
+            <Link href="/contact" className="btn-primary px-4 py-2">
               Book a call
             </Link>
           </div>
