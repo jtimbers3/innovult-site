@@ -11,7 +11,7 @@ export default function HomePage() {
             Mission-focused modernization for agencies and prime contractors.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-700">
-            Innovult LLC helps federal teams deliver ERP, business intelligence, financial process modernization,
+            innovult LLC helps federal teams deliver ERP, business intelligence, financial process modernization,
             and IT PMO execution with speed, clarity, and accountability.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">

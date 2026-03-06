@@ -43,10 +43,10 @@ export async function POST(req: Request) {
     const phone = typeof body.phone === "string" ? body.phone.trim() : "";
 
     await transporter.sendMail({
-      from: `Innovult Intake <${smtpUser}>`,
+      from: `innovult Intake <${smtpUser}>`,
       to: toEmail,
       replyTo: body.email.trim(),
-      subject: `[Innovult Intake] ${body.subject.trim()}`,
+      subject: `[innovult Intake] ${body.subject.trim()}`,
       text: `New intake form submission\n\nName: ${body.name.trim()}\nEmail: ${body.email.trim()}\nPhone: ${phone || "N/A"}\nSubject: ${body.subject.trim()}\n\nMessage:\n${body.message.trim()}`,
     });
 

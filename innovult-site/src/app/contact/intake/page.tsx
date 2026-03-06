@@ -51,7 +51,7 @@ export default function IntakePage() {
       <section>
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A3A66]">Contact Intake</p>
         <h1 className="mt-2 text-4xl font-bold tracking-tight text-[#0A3A66]">Send us a message</h1>
-        <p className="mt-3 max-w-3xl text-lg text-slate-700">Complete the form and your message will be delivered to Innovult.</p>
+        <p className="mt-3 max-w-3xl text-lg text-slate-700">Complete the form and your message will be delivered to innovult.</p>
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
