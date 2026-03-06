@@ -46,11 +46,10 @@ export default function AboutPage() {
 
       <section className="rounded-xl border border-slate-200 bg-white p-6">
         <h2 className="text-xl font-semibold text-[#0A3A66]">innovult provides expertise in</h2>
-        <ul className="mt-4 space-y-2 text-slate-700">
+        <ul className="mt-4 list-disc space-y-2 pl-6 text-slate-700 marker:text-[#0A3A66]">
           {expertise.map((item) => (
-            <li key={item} className="flex items-start gap-2">
-              <span className="mt-1 h-2 w-2 rounded-full bg-[#0A3A66]" aria-hidden />
-              <span>{item}</span>
+            <li key={item} className="leading-8">
+              {item}
             </li>
           ))}
         </ul>
