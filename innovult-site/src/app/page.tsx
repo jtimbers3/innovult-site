@@ -4,15 +4,15 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <div className="space-y-12">
-      <section className="fade-up grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 md:p-10">
+      <section className="fade-up grid gap-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:grid-cols-2 md:p-10">
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-600">
             Federal ERP & Financial Systems Consulting
           </p>
-          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-[#0A3A66] sm:text-5xl">
+          <h1 className="max-w-3xl text-3xl font-bold tracking-tight text-[#0A3A66] sm:text-5xl">
             Federal ERP and Financial Modernization Delivered by Practitioners
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-700">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
             innovult supports federal agencies and prime contractors delivering ERP, financial systems, and data
             modernization programs across Oracle, SAP, and enterprise analytics platforms.
           </p>

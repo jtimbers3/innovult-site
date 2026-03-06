@@ -10,8 +10,8 @@ export default function ContactPage() {
   return (
     <div className="space-y-8">
       <section>
-        <h1 className="text-4xl font-bold tracking-tight text-[#0A3A66]">Contact</h1>
-        <p className="mt-3 max-w-4xl text-lg text-slate-700">
+        <h1 className="text-3xl font-bold tracking-tight text-[#0A3A66] sm:text-4xl">Contact</h1>
+        <p className="mt-3 max-w-4xl text-base leading-7 text-slate-700 sm:text-lg">
           Interested in partnering on a federal ERP or financial system modernization program? Reach out to discuss
           teaming opportunities or program support.
         </p>

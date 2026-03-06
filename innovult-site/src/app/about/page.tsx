@@ -12,10 +12,10 @@ export default function AboutPage() {
   return (
     <div className="space-y-8">
       <section className="rounded-xl border border-slate-200 bg-white p-8">
-        <h1 className="text-4xl font-bold tracking-tight text-[#0A3A66]">
+        <h1 className="text-3xl font-bold tracking-tight text-[#0A3A66] sm:text-4xl">
           Senior Expertise for Federal ERP Modernization
         </h1>
-        <p className="mt-4 max-w-4xl text-lg text-slate-700">
+        <p className="mt-4 max-w-4xl text-base leading-7 text-slate-700 sm:text-lg">
           innovult provides senior-level expertise supporting federal ERP and financial system modernization
           programs. We work with agencies and prime contractors delivering complex transformations involving
           enterprise platforms such as Oracle and SAP.

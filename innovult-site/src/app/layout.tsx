@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className="bg-slate-50 text-slate-900 antialiased">
         <header className="border-b border-slate-200/90 bg-white/95 backdrop-blur">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 px-4 py-4 sm:flex-row sm:items-center sm:px-6">
             <Link href="/" className="flex items-center" aria-label="innovult home">
               <Image
                 src="/innovult-logo.jpg"
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 className="h-10 w-auto"
               />
             </Link>
-            <nav className="flex items-center gap-1">
+            <nav className="flex w-full flex-wrap items-center justify-center gap-1 sm:w-auto sm:justify-end">
               {nav.map((item) => (
                 <Link
                   key={item.href}
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </div>
         </header>
 
-        <main className="mx-auto max-w-6xl px-6 py-12">{children}</main>
+        <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">{children}</main>
 
         <footer className="border-t border-slate-200 bg-white">
           <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-5 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
