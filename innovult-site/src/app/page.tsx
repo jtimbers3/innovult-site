@@ -9,6 +9,12 @@ export default function HomePage() {
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80",
     },
     {
+      title: "ERP Modernization Readiness Assessment",
+      body: "Evaluate your organization’s readiness for financial system modernization. Identify potential risks in governance, integration, data conversion, and change management before implementation begins.",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80",
+      href: "/federal-erp-modernization-readiness-assessment",
+    },
+    {
       title: "Business Intelligence & Data Platforms",
       body: "Build reporting and analytics environments that support federal financial operations, program management, and executive oversight.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
@@ -17,12 +23,6 @@ export default function HomePage() {
       title: "IT PMO & Program Delivery",
       body: "Provide PMO leadership for large federal IT programs, including governance, scheduling, stakeholder coordination, and delivery oversight.",
       image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
-    },
-    {
-      title: "ERP Modernization Readiness Assessment",
-      body: "Evaluate your organization’s readiness for financial system modernization. Identify potential risks in governance, integration, data conversion, and change management before implementation begins.",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80",
-      href: "/federal-erp-modernization-readiness-assessment",
     },
     {
       title: "AI-Enabled Analysis & Decision Support",
