@@ -163,15 +163,26 @@ export default function AssessmentPage() {
   );
 
   const discussMailto = useMemo(() => {
+    const questionScores = questions
+      .map((q, i) => {
+        const selected = selectedAnswers[i];
+        const scoreText = selected ? `${selected.score}/4` : "Not answered";
+        return `Q${i + 1}: ${q.prompt} — Score: ${scoreText}`;
+      })
+      .join("\n");
+
     const body = [
       "Hello innovult team,",
       "",
       "I would like to discuss my ERP readiness assessment results.",
       `Readiness score: ${readinessPercent}% (${interpretation.title})`,
+      "",
+      "Question scores:",
+      questionScores,
     ].join("\n");
 
     return `mailto:jtimbers@innovult.com?subject=${encodeURIComponent("Discuss My ERP Readiness")}&body=${encodeURIComponent(body)}`;
-  }, [interpretation.title, readinessPercent]);
+  }, [interpretation.title, readinessPercent, selectedAnswers]);
 
   function handleStart() {
     setStarted(true);
