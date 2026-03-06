@@ -47,7 +47,7 @@ export default function HomePage() {
           [
             "ERP & Financial Systems Implementation",
             "Support ERP implementations including financial management, procurement integration, and system transition planning.",
-            "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80",
           ],
           [
             "Business Intelligence & Data Platforms",
