@@ -1,83 +1,69 @@
-import Image from "next/image";
-
-const expertise = [
-  "ERP modernization programs (SAP, Oracle, and related enterprise systems)",
-  "Federal financial management transformation",
-  "IT program and project management",
-  "Business process and operational design",
-  "System implementation oversight and vendor coordination",
-  "Change management and user adoption",
-  "Data integration and reporting strategy",
-];
-
 export default function AboutPage() {
+  const expertise = [
+    "Federal ERP modernization (SAP, Oracle, and related platforms)",
+    "Federal financial management transformation",
+    "IT program and project management",
+    "System implementation oversight and vendor coordination",
+    "Data integration and enterprise reporting",
+    "Business process modernization",
+    "Change management and user adoption",
+  ];
+
   return (
-    <div className="space-y-10">
-      <section className="fade-up grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 md:items-center md:p-10">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0A3A66]">About innovult</p>
-          <h1 className="mt-2 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">Built for federal modernization outcomes</h1>
-          <p className="mt-4 text-lg leading-8 text-slate-700">
-            innovult is a specialized consulting firm focused on helping federal agencies modernize financial and
-            operational systems. We support complex transformation initiatives involving enterprise resource planning
-            (ERP), financial management, and data-driven decision making.
-          </p>
-        </div>
-
-        <div className="group relative h-72 overflow-hidden rounded-xl border border-slate-200">
-          <Image
-            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80"
-            alt="Team reviewing modernization strategy"
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A3A66]/20 via-transparent to-transparent" />
-        </div>
+    <div className="space-y-8">
+      <section className="rounded-xl border border-slate-200 bg-white p-8">
+        <h1 className="text-4xl font-bold tracking-tight text-[#0A3A66]">
+          Senior Expertise for Federal ERP Modernization
+        </h1>
+        <p className="mt-4 max-w-4xl text-lg text-slate-700">
+          innovult provides senior-level expertise supporting federal ERP and financial system modernization
+          programs. We work with agencies and prime contractors delivering complex transformations involving
+          enterprise platforms such as SAP and Oracle.
+        </p>
       </section>
 
-      <div className="section-divider" />
-
-      <section className="fade-up fade-up-delay-1 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-        <div className="space-y-5 text-slate-700">
-          <p className="leading-8">
-            Founded in 2025, innovult brings senior-level expertise to government organizations implementing and
-            operating modern platforms such as SAP, Oracle, and other enterprise technologies. Our work spans the full
-            lifecycle of modernization efforts—from strategy and planning to implementation, change management, and
-            operational support.
+      <section className="grid gap-4 md:grid-cols-2">
+        <article className="rounded-xl border border-slate-200 bg-white p-6">
+          <h2 className="text-lg font-semibold text-slate-950">Built for complex federal programs</h2>
+          <p className="mt-2 text-slate-700">
+            Founded in 2025, innovult was created to provide experienced support for federal modernization
+            initiatives involving ERP, financial systems, and enterprise data platforms.
           </p>
-
-          <p className="leading-8">
-            We focus on programs where financial management, technology, and operations intersect. These initiatives
-            often involve large-scale system implementations, process redesign, and the integration of multiple legacy
-            systems into modern enterprise platforms.
+          <p className="mt-3 text-slate-700">
+            Our work spans the lifecycle of these programs—from early strategy and planning to implementation
+            oversight, change management, and operational transition.
           </p>
-        </div>
+        </article>
+
+        <article className="rounded-xl border border-[#0A3A66]/25 bg-[#0A3A66]/5 p-6">
+          <h2 className="text-lg font-semibold text-[#0A3A66]">Program credibility</h2>
+          <p className="mt-2 text-slate-700">
+            Our experience includes supporting large federal ERP modernization efforts involving financial
+            management, procurement, and enterprise data platforms.
+          </p>
+        </article>
       </section>
 
-      <section className="fade-up fade-up-delay-2 rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-6 shadow-sm md:p-10">
-        <h2 className="text-2xl font-semibold tracking-tight text-slate-950">innovult provides expertise in</h2>
-        <ul className="mt-5 grid gap-3 md:grid-cols-2">
+      <section className="rounded-xl border border-slate-200 bg-white p-6">
+        <h2 className="text-xl font-semibold text-[#0A3A66]">innovult provides expertise in</h2>
+        <ul className="mt-4 space-y-2 text-slate-700">
           {expertise.map((item) => (
-            <li
-              key={item}
-              className="flex items-start gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm"
-            >
-              <span className="mt-1 h-2 w-2 rounded-full bg-[#0A3A66]" aria-hidden="true" />
+            <li key={item} className="flex items-start gap-2">
+              <span className="mt-1 h-2 w-2 rounded-full bg-[#0A3A66]" aria-hidden />
               <span>{item}</span>
             </li>
           ))}
         </ul>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-        <p className="text-lg leading-8 text-slate-700">
-          Our approach is simple: bring experienced leadership, focus on practical execution, and help agencies deliver
-          results on complex programs.
+      <section className="rounded-xl border border-slate-200 bg-white p-6">
+        <p className="text-slate-700">
+          Our approach is simple: bring experienced leadership, focus on practical execution, and help agencies
+          deliver results on complex programs.
         </p>
-        <p className="mt-4 leading-8 text-slate-700">
-          innovult works primarily as a trusted partner to government organizations and large system integrators,
-          providing targeted expertise where it matters most.
+        <p className="mt-3 text-slate-700">
+          innovult works alongside federal agencies and prime contractors, providing experienced support where
+          additional expertise strengthens program delivery.
         </p>
       </section>
     </div>
