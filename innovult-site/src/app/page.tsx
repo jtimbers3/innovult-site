@@ -17,9 +17,6 @@ export default function HomePage() {
             modernization programs across Oracle, SAP, and enterprise analytics platforms.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/contact" className="btn-primary px-5 py-3 text-sm">
-              Book a call
-            </Link>
             <Link href="/services" className="btn-outline px-5 py-3 text-sm">
               Explore services
             </Link>
