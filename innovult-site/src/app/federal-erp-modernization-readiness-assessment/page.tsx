@@ -155,8 +155,6 @@ export default function AssessmentPage() {
       "",
       "I would like to discuss my ERP readiness assessment results.",
       `Readiness score: ${readinessPercent}% (${interpretation.title})`,
-      "",
-      "I have downloaded the PDF. Please see it attached to this email.",
     ].join("\n");
 
     return `mailto:jtimbers@innovult.com?subject=${encodeURIComponent("Discuss My ERP Readiness")}&body=${encodeURIComponent(body)}`;
@@ -372,9 +370,7 @@ export default function AssessmentPage() {
               Click <strong>Discuss My Results</strong> to open an email to jtimbers@innovult.com with subject
               “Discuss My ERP Readiness”.
             </p>
-            <p className="mt-2 text-sm text-slate-700">
-              Your email client will open with pre-filled content. Please attach the downloaded PDF before sending.
-            </p>
+
           </div>
         </section>
       ) : null}
