@@ -4,38 +4,41 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <div className="space-y-12">
-      <section className="grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 md:grid-cols-2 md:p-10">
+      <section className="fade-up grid gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2 md:p-10">
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-600">Federal technology partner</p>
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-[#0A3A66] sm:text-5xl">
             Mission-focused modernization for agencies and prime contractors.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-slate-700">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-700">
             Innovult LLC helps federal teams deliver ERP, business intelligence, financial process modernization,
             and IT PMO execution with speed, clarity, and accountability.
           </p>
-          <div className="mt-8 flex gap-3">
-            <Link href="/contact" className="rounded-md bg-[#0A3A66] px-5 py-3 text-sm font-semibold text-white hover:bg-[#072A4A]">
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/contact" className="rounded-md bg-[#0A3A66] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#072A4A]">
               Book a call
             </Link>
-            <Link href="/services" className="rounded-md border border-[#0A3A66]/30 px-5 py-3 text-sm font-semibold text-[#0A3A66] hover:bg-[#0A3A66]/5">
+            <Link href="/services" className="rounded-md border border-[#0A3A66]/30 px-5 py-3 text-sm font-semibold text-[#0A3A66] transition-colors hover:bg-[#0A3A66]/5">
               Explore services
             </Link>
           </div>
         </div>
 
-        <div className="relative min-h-[260px] overflow-hidden rounded-xl border border-slate-200">
+        <div className="group relative min-h-[260px] overflow-hidden rounded-xl border border-slate-200">
           <Image
             src="https://images.unsplash.com/photo-1617581629397-a72507c3de9e?auto=format&fit=crop&w=1400&q=80"
             alt="Washington DC government district skyline"
             fill
             priority
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A3A66]/15 via-transparent to-transparent" />
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-3">
+      <div className="section-divider" />
+
+      <section className="fade-up fade-up-delay-1 grid gap-4 md:grid-cols-3">
         {[
           [
             "ERP & Financial Modernization",
@@ -53,13 +56,13 @@ export default function HomePage() {
             "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
           ],
         ].map(([title, body, image]) => (
-          <article key={title} className="overflow-hidden rounded-xl border border-slate-200 bg-white">
-            <div className="relative h-40">
-              <Image src={image} alt={title} fill className="object-cover" />
+          <article key={title} className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+            <div className="relative h-40 overflow-hidden">
+              <Image src={image} alt={title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
             </div>
             <div className="p-6">
               <h2 className="text-lg font-semibold text-slate-950">{title}</h2>
-              <p className="mt-2 text-slate-700">{body}</p>
+              <p className="mt-2 leading-7 text-slate-700">{body}</p>
             </div>
           </article>
         ))}
