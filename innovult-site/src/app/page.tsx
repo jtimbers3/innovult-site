@@ -44,8 +44,9 @@ export default function HomePage() {
               Federal ERP and Financial Modernization Delivered by Practitioners
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
-              innovult supports federal agencies and prime contractors delivering ERP, financial systems, and data
-              modernization programs across Oracle, SAP, and enterprise analytics platforms.
+              <span className="font-bold tracking-tight text-[#0A3A66]">innovult</span> supports federal agencies and
+              prime contractors delivering ERP, financial systems, and data modernization programs across Oracle, SAP,
+              and enterprise analytics platforms.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/services" className="btn-outline px-5 py-3 text-sm">
