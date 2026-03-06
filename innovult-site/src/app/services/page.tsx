@@ -1,4 +1,5 @@
 import Image from "next/image";
+import FadeInOnScroll from "@/components/FadeInOnScroll";
 
 export default function ServicesPage() {
   const services = [
@@ -36,42 +37,48 @@ export default function ServicesPage() {
 
   return (
     <div className="space-y-8">
-      <section className="grid gap-6 md:grid-cols-2 md:items-center">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#0A3A66] sm:text-4xl">Services</h1>
-          <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700 sm:text-lg">
-            innovult provides specialized support for federal ERP modernization, financial system transformation,
-            and data platforms. We partner with agencies and prime contractors to strengthen program delivery
-            across complex IT initiatives.
+      <FadeInOnScroll>
+        <section className="grid gap-6 md:grid-cols-2 md:items-center">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight text-[#0A3A66] sm:text-4xl">Services</h1>
+            <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700 sm:text-lg">
+              innovult provides specialized support for federal ERP modernization, financial system transformation,
+              and data platforms. We partner with agencies and prime contractors to strengthen program delivery
+              across complex IT initiatives.
+            </p>
+          </div>
+          <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200">
+            <Image
+              src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80"
+              alt="Digital services dashboard"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </section>
+      </FadeInOnScroll>
+
+      <FadeInOnScroll>
+        <section className="grid gap-4 md:grid-cols-2">
+          {services.map((item) => (
+            <article key={item.title} className="rounded-xl border border-slate-200 bg-white p-6">
+              <h2 className="text-xl font-semibold text-slate-950">{item.title}</h2>
+              <p className="mt-2 text-slate-700">{item.detail}</p>
+            </article>
+          ))}
+        </section>
+      </FadeInOnScroll>
+
+      <FadeInOnScroll>
+        <section className="rounded-xl border border-slate-200 bg-white p-6">
+          <h2 className="text-xl font-semibold text-[#0A3A66]">Working With Prime Contractors</h2>
+          <p className="mt-2 text-slate-700">
+            innovult partners with prime contractors delivering federal ERP and financial modernization programs.
+            We provide experienced support across ERP implementation, analytics, financial operations, and program
+            delivery to strengthen teams executing complex IT initiatives.
           </p>
-        </div>
-        <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200">
-          <Image
-            src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80"
-            alt="Digital services dashboard"
-            fill
-            className="object-cover"
-          />
-        </div>
-      </section>
-
-      <section className="grid gap-4 md:grid-cols-2">
-        {services.map((item) => (
-          <article key={item.title} className="rounded-xl border border-slate-200 bg-white p-6">
-            <h2 className="text-xl font-semibold text-slate-950">{item.title}</h2>
-            <p className="mt-2 text-slate-700">{item.detail}</p>
-          </article>
-        ))}
-      </section>
-
-      <section className="rounded-xl border border-slate-200 bg-white p-6">
-        <h2 className="text-xl font-semibold text-[#0A3A66]">Working With Prime Contractors</h2>
-        <p className="mt-2 text-slate-700">
-          innovult partners with prime contractors delivering federal ERP and financial modernization programs.
-          We provide experienced support across ERP implementation, analytics, financial operations, and program
-          delivery to strengthen teams executing complex IT initiatives.
-        </p>
-      </section>
+        </section>
+      </FadeInOnScroll>
     </div>
   );
 }
