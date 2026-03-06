@@ -23,7 +23,7 @@ export default function LeadershipPage() {
                 alt="James, Founder and Principal of innovult"
                 width={320}
                 height={320}
-                className="h-auto w-full rounded-xl object-cover shadow-sm"
+                className="aspect-[4/5] w-full rounded-xl object-cover object-center shadow-sm sm:aspect-auto"
                 priority
               />
             </div>
