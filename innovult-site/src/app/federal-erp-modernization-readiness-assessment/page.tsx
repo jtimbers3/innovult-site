@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { jsPDF } from "jspdf";
 
 type Option = { label: string; score: 1 | 2 | 3 | 4 };
@@ -135,7 +135,6 @@ export default function AssessmentPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>(Array(questions.length).fill(0));
   const [submitted, setSubmitted] = useState(false);
-  const [leadSent, setLeadSent] = useState(false);
 
   const currentQuestion = questions[currentIndex];
   const canGoNext = answers[currentIndex] > 0;
@@ -144,6 +143,24 @@ export default function AssessmentPage() {
   const totalScore = useMemo(() => answers.reduce((sum, item) => sum + item, 0), [answers]);
   const readinessPercent = Math.round((totalScore / MAX_SCORE) * 100);
   const interpretation = getInterpretation(readinessPercent);
+
+  const selectedAnswers = useMemo(
+    () => questions.map((q, i) => q.options.find((opt) => opt.score === answers[i]) ?? null),
+    [answers]
+  );
+
+  const discussMailto = useMemo(() => {
+    const body = [
+      "Hello innovult team,",
+      "",
+      "I would like to discuss my ERP readiness assessment results.",
+      `Readiness score: ${readinessPercent}% (${interpretation.title})`,
+      "",
+      "I have downloaded the PDF. Please see it attached to this email.",
+    ].join("\n");
+
+    return `mailto:jtimbers@innovult.com?subject=${encodeURIComponent("Discuss My ERP Readiness")}&body=${encodeURIComponent(body)}`;
+  }, [interpretation.title, readinessPercent]);
 
   function handleStart() {
     setStarted(true);
@@ -162,37 +179,72 @@ export default function AssessmentPage() {
     }, 80);
   }
 
-  function handleLeadSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setLeadSent(true);
-  }
-
   function downloadResults() {
     const doc = new jsPDF();
-    const lines = [
-      "federal ERP modernization readiness assessment",
-      "",
-      `Readiness Score: ${readinessPercent}%`,
-      `Interpretation: ${interpretation.title}`,
-      interpretation.text,
-      "",
-      "Common ERP Modernization Risk Areas:",
-      "- Incomplete feeder system inventories",
-      "- Limited interface governance",
-      "- Unclear business process ownership",
-      "- Data conversion challenges",
-      "- Insufficient change management planning",
-    ];
+
+    let y = 18;
+    const pageHeight = 282;
+    const bottomMargin = 16;
+
+    const ensureSpace = (needed = 10) => {
+      if (y + needed > pageHeight - bottomMargin) {
+        doc.addPage();
+        y = 18;
+      }
+    };
+
+    const writeLine = (text: string, opts?: { color?: [number, number, number]; indent?: number; bold?: boolean }) => {
+      ensureSpace(8);
+      doc.setFont("helvetica", opts?.bold ? "bold" : "normal");
+      const color = opts?.color ?? [30, 41, 59];
+      doc.setTextColor(color[0], color[1], color[2]);
+      const x = 14 + (opts?.indent ?? 0);
+      const wrapped = doc.splitTextToSize(text, 180 - (opts?.indent ?? 0));
+      doc.text(wrapped, x, y);
+      y += 6 + (wrapped.length - 1) * 5;
+    };
 
     doc.setFontSize(14);
-    doc.text("federal ERP modernization readiness assessment", 14, 18);
+    writeLine("federal ERP modernization readiness assessment", { bold: true, color: [10, 58, 102] });
     doc.setFontSize(11);
-    let y = 30;
-    lines.slice(2).forEach((line) => {
-      const wrapped = doc.splitTextToSize(line, 180);
-      doc.text(wrapped, 14, y);
-      y += 8 + (wrapped.length - 1) * 5;
+    writeLine(`Readiness Score: ${readinessPercent}%`, { bold: true });
+    writeLine(`Interpretation: ${interpretation.title}`, { bold: true });
+    writeLine(interpretation.text);
+
+    y += 2;
+    writeLine("Question Responses", { bold: true, color: [10, 58, 102] });
+
+    questions.forEach((question, index) => {
+      const selected = selectedAnswers[index];
+      const lowScore = selected && selected.score <= 2;
+
+      writeLine(`${index + 1}. ${question.prompt}`, { bold: true });
+      if (selected) {
+        writeLine(`Answer: ${selected.label} (${selected.score}/4)`, {
+          indent: 4,
+          color: lowScore ? [185, 28, 28] : [30, 41, 59],
+          bold: !!lowScore,
+        });
+        if (lowScore) {
+          writeLine("⚠ Flagged as potential readiness risk (score 2 or below)", {
+            indent: 4,
+            color: [185, 28, 28],
+          });
+        }
+      } else {
+        writeLine("Answer: Not answered", { indent: 4, color: [120, 120, 120] });
+      }
+      y += 2;
     });
+
+    writeLine("Common ERP Modernization Risk Areas", { bold: true, color: [10, 58, 102] });
+    [
+      "Incomplete feeder system inventories",
+      "Limited interface governance",
+      "Unclear business process ownership",
+      "Data conversion challenges",
+      "Insufficient change management planning",
+    ].forEach((item) => writeLine(`• ${item}`, { indent: 2 }));
 
     doc.save("innovult-readiness-assessment-results.pdf");
   }
@@ -305,42 +357,24 @@ export default function AssessmentPage() {
             </ul>
           </div>
 
-          <button className="btn-outline px-4 py-2 text-sm" onClick={downloadResults}>
-            Download Results
-          </button>
+          <div className="flex flex-wrap gap-3">
+            <button className="btn-outline px-4 py-2 text-sm" onClick={downloadResults}>
+              Download Results
+            </button>
+            <a href={discussMailto} className="btn-primary px-4 py-2 text-sm">
+              Discuss My Results
+            </a>
+          </div>
 
           <div className="rounded-xl border border-slate-200 bg-white p-5">
             <h3 className="text-lg font-semibold text-slate-950">Discuss Your Results</h3>
-            <form onSubmit={handleLeadSubmit} className="mt-4 grid gap-4 md:grid-cols-2">
-              <label className="text-sm text-slate-700">
-                Name
-                <input required className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2" name="name" />
-              </label>
-              <label className="text-sm text-slate-700">
-                Organization
-                <input required className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2" name="organization" />
-              </label>
-              <label className="text-sm text-slate-700">
-                Email
-                <input required type="email" className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2" name="email" />
-              </label>
-              <label className="text-sm text-slate-700 md:col-span-2">
-                Optional Message
-                <textarea className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2" rows={4} name="message" />
-              </label>
-
-              <div className="md:col-span-2">
-                <button className="btn-primary px-5 py-3 text-sm" type="submit">
-                  Request Consultation
-                </button>
-              </div>
-
-              {leadSent ? (
-                <p className="text-sm text-emerald-700 md:col-span-2">
-                  Thank you. We received your request and will follow up shortly.
-                </p>
-              ) : null}
-            </form>
+            <p className="mt-2 text-sm text-slate-700">
+              Click <strong>Discuss My Results</strong> to open an email to jtimbers@innovult.com with subject
+              “Discuss My ERP Readiness”.
+            </p>
+            <p className="mt-2 text-sm text-slate-700">
+              Your email client will open with pre-filled content. Please attach the downloaded PDF before sending.
+            </p>
           </div>
         </section>
       ) : null}
