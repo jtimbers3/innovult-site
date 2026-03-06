@@ -1,6 +1,6 @@
 export default function AboutPage() {
   const expertise = [
-    "Federal ERP modernization (SAP, Oracle, and related platforms)",
+    "Federal ERP modernization (Oracle, SAP, and related platforms)",
     "Federal financial management transformation",
     "IT program and project management",
     "System implementation oversight and vendor coordination",
@@ -18,7 +18,7 @@ export default function AboutPage() {
         <p className="mt-4 max-w-4xl text-lg text-slate-700">
           innovult provides senior-level expertise supporting federal ERP and financial system modernization
           programs. We work with agencies and prime contractors delivering complex transformations involving
-          enterprise platforms such as SAP and Oracle.
+          enterprise platforms such as Oracle and SAP.
         </p>
       </section>
 
