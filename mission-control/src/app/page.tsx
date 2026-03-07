@@ -45,16 +45,16 @@ type ApiOpportunity = Omit<Opportunity, "stage" | "proposalDraft" | "proposalGen
 
 const STAGES: { id: Stage; title: string; help: string; accent?: string }[] = [
   { id: "sam_gov", title: "SAM.gov", help: "Fresh opportunities" },
-  { id: "potential", title: "Potential Opportunities", help: "Worth tracking", accent: "border-indigo-700/60" },
+  { id: "potential", title: "Potential Opportunities", help: "Worth tracking", accent: "border-[#0A3A66]/35" },
   { id: "qualified", title: "Qualified", help: "Good fit / pursue" },
   {
     id: "proposal_generation",
     title: "Proposal Generation",
     help: "Auto-generates draft on drop",
-    accent: "border-emerald-700/60",
+    accent: "border-[#65DCDF]/45",
   },
   { id: "review", title: "Review", help: "Polish + red-team" },
-  { id: "submitted", title: "Submitted", help: "Delivered", accent: "border-teal-700/60" },
+  { id: "submitted", title: "Submitted", help: "Delivered", accent: "border-[#65DCDF]/45" },
 ];
 
 const OPP_STORAGE_KEY = "mission-control.pipeline-opportunities.v2";
@@ -174,16 +174,16 @@ export default function Page() {
   };
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-zinc-100 p-6">
+    <main className="min-h-screen bg-slate-50 text-slate-900 p-6">
       <div className="max-w-[1700px] mx-auto space-y-6">
         <header className="flex items-center justify-between gap-3 flex-wrap">
           <div>
             <h1 className="text-3xl font-bold">Pursuit Tracker</h1>
-            <p className="text-zinc-400">SAM.gov opportunity pipeline + proposal actions</p>
+            <p className="text-slate-600">SAM.gov opportunity pipeline + proposal actions</p>
           </div>
           <button
             onClick={refreshOpportunities}
-            className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 py-2 text-sm font-medium"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#0A3A66] hover:bg-[#072a4a] px-4 py-2 text-sm font-medium"
           >
             <RefreshCcw className={`w-4 h-4 ${oppLoading ? "animate-spin" : ""}`} />
             {oppLoading ? "Refreshing..." : "Refresh from SAM.gov"}
@@ -192,7 +192,7 @@ export default function Page() {
 
         {oppError && <p className="text-sm text-amber-300">{oppError}</p>}
         {oppMode === "adjacent" && (
-          <p className="text-xs text-indigo-300">
+          <p className="text-xs text-[#0A3A66]">
             No strong matches today — showing closest adjacent live federal opportunities.
           </p>
         )}
@@ -314,7 +314,7 @@ function StageColumn({
   title,
   help,
   items,
-  accent = "border-zinc-800",
+  accent = "border-slate-200",
   onOpen,
 }: {
   id: Stage;
@@ -329,24 +329,24 @@ function StageColumn({
   return (
     <div
       ref={setNodeRef}
-      className={`bg-zinc-900 border ${accent} rounded-2xl p-4 min-h-[420px] transition ${
-        isOver ? "ring-2 ring-emerald-500/70" : ""
+      className={`bg-white border ${accent} rounded-2xl p-4 min-h-[420px] transition ${
+        isOver ? "ring-2 ring-[#65DCDF]/70" : ""
       }`}
     >
       <div className="flex items-center gap-2 mb-1">
-        {id === "sam_gov" ? <Search className="w-4 h-4 text-indigo-300" /> : null}
-        {id === "proposal_generation" ? <Sparkles className="w-4 h-4 text-emerald-300" /> : null}
-        {id === "submitted" ? <CheckCircle2 className="w-4 h-4 text-teal-300" /> : null}
+        {id === "sam_gov" ? <Search className="w-4 h-4 text-[#0A3A66]" /> : null}
+        {id === "proposal_generation" ? <Sparkles className="w-4 h-4 text-[#0A3A66]" /> : null}
+        {id === "submitted" ? <CheckCircle2 className="w-4 h-4 text-[#0A3A66]" /> : null}
         <h3 className="font-semibold text-sm">{title}</h3>
-        <span className="ml-auto text-xs text-zinc-400">{items.length}</span>
+        <span className="ml-auto text-xs text-slate-600">{items.length}</span>
       </div>
-      <p className="text-[11px] text-zinc-500 mb-3">{help}</p>
+      <p className="text-[11px] text-slate-500 mb-3">{help}</p>
 
       <div className="space-y-2">
         {items.map((o) => (
           <DraggableOpportunityCard key={o.id} opportunity={o} onOpen={onOpen} />
         ))}
-        {items.length === 0 && <p className="text-sm text-zinc-500">Drop opportunities here</p>}
+        {items.length === 0 && <p className="text-sm text-slate-500">Drop opportunities here</p>}
       </div>
     </div>
   );
@@ -385,13 +385,13 @@ function OpportunityCard({
   return (
     <button
       onClick={() => !dragging && onOpen()}
-      className="w-full text-left bg-zinc-800 hover:bg-zinc-700/70 border border-zinc-700 rounded-xl p-3 cursor-grab active:cursor-grabbing"
+      className="w-full text-left bg-zinc-800 hover:bg-zinc-700/70 border border-slate-300 rounded-xl p-3 cursor-grab active:cursor-grabbing"
     >
       <p className="font-medium text-sm line-clamp-2">{opportunity.title}</p>
-      <p className="text-xs text-zinc-400 mt-1 line-clamp-1">{opportunity.office}</p>
-      <p className="text-xs text-zinc-400 mt-1">Due: {opportunity.dueDate ?? "TBD"}</p>
+      <p className="text-xs text-slate-600 mt-1 line-clamp-1">{opportunity.office}</p>
+      <p className="text-xs text-slate-600 mt-1">Due: {opportunity.dueDate ?? "TBD"}</p>
       {opportunity.proposalDraft ? (
-        <p className="text-[10px] uppercase tracking-wide text-emerald-300 mt-2 inline-flex items-center gap-1">
+        <p className="text-[10px] uppercase tracking-wide text-[#0A3A66] mt-2 inline-flex items-center gap-1">
           <FileText className="w-3 h-3" /> Draft Ready
         </p>
       ) : null}
@@ -409,8 +409,8 @@ function OpportunityModal({
   onRegenerate: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="w-full max-w-3xl bg-zinc-900 border border-zinc-700 rounded-2xl p-5 space-y-4 max-h-[90vh] overflow-auto">
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="w-full max-w-3xl bg-white border border-slate-300 rounded-2xl p-5 space-y-4 max-h-[90vh] overflow-auto">
         <div className="flex items-start justify-between gap-3">
           <h2 className="text-lg font-semibold">{opportunity.title}</h2>
           <button onClick={onClose} className="p-1 rounded hover:bg-zinc-800">
@@ -418,46 +418,46 @@ function OpportunityModal({
           </button>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 text-sm text-zinc-300">
+        <div className="grid grid-cols-2 gap-2 text-sm text-slate-700">
           <p>
-            <span className="text-zinc-500">Office:</span> {opportunity.office}
+            <span className="text-slate-500">Office:</span> {opportunity.office}
           </p>
           <p>
-            <span className="text-zinc-500">Due:</span> {opportunity.dueDate ?? "TBD"}
+            <span className="text-slate-500">Due:</span> {opportunity.dueDate ?? "TBD"}
           </p>
           <p>
-            <span className="text-zinc-500">Type:</span> {opportunity.type ?? "N/A"}
+            <span className="text-slate-500">Type:</span> {opportunity.type ?? "N/A"}
           </p>
           <p>
-            <span className="text-zinc-500">Solicitation:</span> {opportunity.solicitationNumber ?? "N/A"}
+            <span className="text-slate-500">Solicitation:</span> {opportunity.solicitationNumber ?? "N/A"}
           </p>
         </div>
 
-        <p className="text-sm text-zinc-300 whitespace-pre-wrap">{opportunity.description}</p>
+        <p className="text-sm text-slate-700 whitespace-pre-wrap">{opportunity.description}</p>
 
-        <div className="rounded-lg border border-emerald-700/40 bg-emerald-950/20 p-3">
+        <div className="rounded-lg border border-[#0A3A66]/25 bg-[#0A3A66]/5 p-3">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-xs uppercase tracking-wide text-emerald-300">Proposal Draft</p>
+            <p className="text-xs uppercase tracking-wide text-[#0A3A66]">Proposal Draft</p>
             <button
               onClick={onRegenerate}
-              className="rounded-md bg-emerald-700 hover:bg-emerald-600 px-2 py-1 text-xs font-medium"
+              className="rounded-md bg-[#0A3A66] hover:bg-[#072a4a] px-2 py-1 text-xs font-medium"
             >
               Regenerate Draft
             </button>
           </div>
           {opportunity.proposalDraft ? (
-            <pre className="text-xs text-emerald-100 whitespace-pre-wrap font-mono leading-relaxed">
+            <pre className="text-xs text-slate-700 whitespace-pre-wrap font-mono leading-relaxed">
               {opportunity.proposalDraft}
             </pre>
           ) : (
-            <p className="text-sm text-zinc-400">Move this card to “Proposal Generation” to auto-create a draft.</p>
+            <p className="text-sm text-slate-600">Move this card to “Proposal Generation” to auto-create a draft.</p>
           )}
         </div>
 
         {!!opportunity.actionNotes?.length && (
-          <div className="rounded-lg border border-zinc-700 bg-zinc-800/40 p-3">
-            <p className="text-xs uppercase tracking-wide text-zinc-400 mb-2">Action Log</p>
-            <ul className="text-xs text-zinc-300 space-y-1 list-disc pl-4">
+          <div className="rounded-lg border border-slate-300 bg-slate-50 p-3">
+            <p className="text-xs uppercase tracking-wide text-slate-600 mb-2">Action Log</p>
+            <ul className="text-xs text-slate-700 space-y-1 list-disc pl-4">
               {opportunity.actionNotes.map((note, i) => (
                 <li key={`${note}-${i}`}>{note}</li>
               ))}
@@ -469,7 +469,7 @@ function OpportunityModal({
           href={opportunity.url}
           target="_blank"
           rel="noreferrer"
-          className="inline-block rounded-lg bg-indigo-600 hover:bg-indigo-500 px-3 py-2 text-sm font-medium"
+          className="inline-block rounded-lg bg-[#0A3A66] hover:bg-[#072a4a] px-3 py-2 text-sm font-medium"
         >
           Open on SAM.gov
         </a>
@@ -477,3 +477,4 @@ function OpportunityModal({
     </div>
   );
 }
+
