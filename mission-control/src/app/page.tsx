@@ -385,7 +385,7 @@ function OpportunityCard({
   return (
     <button
       onClick={() => !dragging && onOpen()}
-      className="w-full text-left bg-zinc-800 hover:bg-zinc-700/70 border border-slate-300 rounded-xl p-3 cursor-grab active:cursor-grabbing"
+      className="w-full text-left bg-white hover:bg-slate-50 border border-slate-300 rounded-xl p-3 cursor-grab active:cursor-grabbing shadow-sm"
     >
       <p className="font-medium text-sm line-clamp-2">{opportunity.title}</p>
       <p className="text-xs text-slate-600 mt-1 line-clamp-1">{opportunity.office}</p>
@@ -413,7 +413,7 @@ function OpportunityModal({
       <div className="w-full max-w-3xl bg-white border border-slate-300 rounded-2xl p-5 space-y-4 max-h-[90vh] overflow-auto">
         <div className="flex items-start justify-between gap-3">
           <h2 className="text-lg font-semibold">{opportunity.title}</h2>
-          <button onClick={onClose} className="p-1 rounded hover:bg-zinc-800">
+          <button onClick={onClose} className="p-1 rounded hover:bg-slate-100">
             <X className="w-5 h-5" />
           </button>
         </div>
