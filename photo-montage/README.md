@@ -25,6 +25,16 @@ pip install -r requirements.txt
 
 ## Run
 
+### Option A: Single-click Windows launcher
+
+Double-click:
+
+- `run_montage.bat`
+
+It will prompt you for album/date/output and then run everything.
+
+### Option B: Command line
+
 ```bash
 python make_video.py \
   --album "Video - Mom" \
