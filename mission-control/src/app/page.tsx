@@ -178,7 +178,7 @@ export default function Page() {
       <div className="max-w-[1700px] mx-auto space-y-6">
         <header className="flex items-center justify-between gap-3 flex-wrap">
           <div>
-            <h1 className="text-3xl font-bold">Mission Control</h1>
+            <h1 className="text-3xl font-bold">Pursuit Tracker</h1>
             <p className="text-zinc-400">SAM.gov opportunity pipeline + proposal actions</p>
           </div>
           <button
