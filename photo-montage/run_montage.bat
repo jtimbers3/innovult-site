@@ -6,6 +6,25 @@ echo ==========================================
 echo   Google Photos Best-Of Video Launcher
 echo ==========================================
 
+REM --- Find Python command (python or py -3) ---
+set "PY_CMD="
+where python >nul 2>nul
+if %errorlevel%==0 set "PY_CMD=python"
+if "%PY_CMD%"=="" (
+  where py >nul 2>nul
+  if %errorlevel%==0 set "PY_CMD=py -3"
+)
+
+if "%PY_CMD%"=="" (
+  echo.
+  echo Python was not found.
+  echo Install Python from https://www.python.org/downloads/windows/
+  echo During install, CHECK: "Add python.exe to PATH"
+  echo Then re-run this launcher.
+  pause
+  exit /b 1
+)
+
 echo.
 set /p ALBUM=Google Photos album name (example: Video - Mom): 
 if "%ALBUM%"=="" (
@@ -34,7 +53,7 @@ set /p MUSIC=Music path [optional, example assets\song.mp3]:
 echo.
 echo Running build...
 
-set CMD=python make_video.py --album "%ALBUM%" --max-items %MAX_ITEMS% --keep-percent %KEEP_PERCENT% --out "%OUTFILE%"
+set CMD=%PY_CMD% make_video.py --album "%ALBUM%" --max-items %MAX_ITEMS% --keep-percent %KEEP_PERCENT% --out "%OUTFILE%"
 
 if not "%START%"=="" set CMD=!CMD! --start "%START%"
 if not "%END%"=="" set CMD=!CMD! --end "%END%"
@@ -46,8 +65,8 @@ call !CMD!
 if errorlevel 1 (
   echo.
   echo Failed. Common fixes:
-  echo - Install Python and ensure "python" works in Command Prompt
-  echo - Install requirements: pip install -r requirements.txt
+  echo - Install Python and ensure "python" or "py" works in Command Prompt
+  echo - Install requirements: python -m pip install -r requirements.txt
   echo - Install FFmpeg and ensure ffmpeg is in PATH
   echo - Add secrets\client_secret.json
   pause
