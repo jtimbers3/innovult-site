@@ -183,7 +183,7 @@ export default function Page() {
           </div>
           <button
             onClick={refreshOpportunities}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#0A3A66] hover:bg-[#072a4a] px-4 py-2 text-sm font-medium"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#65DCDF] hover:bg-[#4ecfd2] text-[#0A3A66] px-4 py-2 text-sm font-semibold"
           >
             <RefreshCcw className={`w-4 h-4 ${oppLoading ? "animate-spin" : ""}`} />
             {oppLoading ? "Refreshing..." : "Refresh from SAM.gov"}
