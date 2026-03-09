@@ -98,6 +98,25 @@ export default function AboutPage() {
               <p className="text-sm font-semibold uppercase tracking-wider text-[#0A3A66]">Founder and Principal</p>
               <h2 className="mt-2 text-2xl font-bold text-slate-950 sm:text-3xl">James Timbers</h2>
 
+              <a
+                href="https://www.linkedin.com/in/james-timbers-15437522?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="James Timbers on LinkedIn"
+                className="mt-3 inline-flex items-center gap-2 rounded-md border border-[#0A66C2]/30 bg-[#0A66C2]/10 px-3 py-2 text-sm font-medium text-[#0A66C2] transition hover:bg-[#0A66C2]/15"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2 2 0 1 0 5.3 7a2 2 0 0 0-.05-4ZM20.44 13.47c0-3.27-1.74-4.79-4.07-4.79-1.88 0-2.72 1.03-3.19 1.76V8.5H9.8V20h3.38v-6.04c0-1.59.3-3.13 2.27-3.13 1.94 0 1.97 1.82 1.97 3.23V20h3.38v-6.53Z" />
+                </svg>
+                LinkedIn
+              </a>
+
               <p className="mt-4 text-base leading-7 text-slate-700">
                 James is the Founder and Principal of innovult, a consulting firm focused on supporting federal ERP
                 modernization and financial management transformation initiatives.
