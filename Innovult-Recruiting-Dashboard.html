@@ -1,23 +1,32 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
   <title>Innovult Recruiting & BD Dashboard</title>
   <style>
-    body{font-family:Segoe UI,Arial,sans-serif;background:#0b1020;color:#e8ecf4;margin:0;padding:24px}
-    h1,h2{margin:0 0 10px}
-    .muted{color:#9fb0d0}
-    .card{background:#121a33;border:1px solid #243055;border-radius:12px;padding:16px;margin:14px 0}
+    :root{--brand:#0a3a66;--brand-dark:#072a4a;--bg:#f4f8fc;--text:#123;--card:#ffffff;--line:#d8e3ef;--muted:#5f748c}
+    body{font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:24px}
+    h1,h2{margin:0 0 10px;color:var(--brand-dark)}
+    .muted{color:var(--muted)}
+    .brandbar{height:6px;background:linear-gradient(90deg,var(--brand),#1a6bb8)}
+    .header{display:flex;align-items:center;gap:14px;margin:14px 0}
+    .logo{height:44px;width:auto;border-radius:6px;border:1px solid var(--line);background:#fff}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0;box-shadow:0 2px 8px rgba(10,58,102,.05)}
     table{width:100%;border-collapse:collapse;font-size:13px}
-    th,td{border-bottom:1px solid #263455;padding:8px;vertical-align:top}
-    th{color:#9fc3ff;text-align:left}
-    a{color:#8ec5ff}
-    .pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#1f2c50;border:1px solid #33508d;font-size:12px}
-    .btn{background:#1a356b;color:#e8f1ff;border:1px solid #3d67b5;border-radius:8px;padding:8px 12px;cursor:pointer;margin-right:8px}
+    th,td{border-bottom:1px solid var(--line);padding:8px;vertical-align:top}
+    th{color:var(--brand);text-align:left;background:#f8fbff}
+    a{color:var(--brand)}
+    .pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#eaf3ff;border:1px solid #bfd6f3;font-size:12px;color:var(--brand-dark)}
+    .btn{background:var(--brand);color:#fff;border:1px solid var(--brand-dark);border-radius:8px;padding:8px 12px;cursor:pointer;margin-right:8px}
+    .btn:hover{background:var(--brand-dark)}
   </style>
 </head>
 <body>
-  <h1>Innovult Recruiting & Business Development Dashboard</h1>
+  <div class="brandbar"></div>
+  <div class="header">
+    <img class="logo" src="file:///C:/Users/jtimb/.openclaw/workspace/public/innovult-logo.jpg" alt="Innovult logo" />
+    <h1>Innovult Recruiting & Business Development Dashboard</h1>
+  </div>
   <div style="margin:8px 0 12px">
     <button class="btn" onclick="window.open('http://127.0.0.1:8765/refresh','_self')">Refresh Dashboard</button>
     <button class="btn" onclick="window.open('https://www.linkedin.com/jobs/search/?keywords=ERP%20Project%20Manager%20Contract%20C2C&location=United%20States','_blank')">Refresh LinkedIn PM Jobs</button>
@@ -25,7 +34,7 @@
     <button class="btn" onclick="window.open('https://www.google.com/search?sca_esv=bb692e0fdf80bd80&udm=8&q=ERP+functional+consultant+contract+United+States','_blank')">Refresh Google Jobs</button>
     <button class="btn" onclick="window.open('file:///C:/Users/jtimb/Desktop/Innovult-Subagents.html','_blank')">View Sub-Agents & Roles</button>
   </div>
-  <div class="muted">Generated: 2026-03-11 1:54 PM ET • Review-only (no outreach sent) • US-based jobs only • Refresh server: http://127.0.0.1:8765</div>
+  <div class="muted">Generated: 2026-03-11 3:13 PM ET •  Review-only (no outreach sent)  •  US-based jobs only  •  Refresh server: http://127.0.0.1:8765</div>
 
   <div class="card">
     <h2>Executive Summary</h2>
@@ -34,7 +43,7 @@
       <li>Shortlisted opportunities: <b>9</b></li>
       <li>Candidates found: <b>4</b> (Freelancer public profiles)</li>
       <li>Strong matches (75+): <b>4</b></li>
-      <li>Email drafts prepared: <b>4 pairs</b> (company + candidate) — <span class="pill">Pending your review</span></li>
+      <li>Email drafts prepared: <b>4 pairs</b> (company + candidate)  —  <span class="pill">Pending your review</span></li>
     </ul>
   </div>
 
@@ -59,7 +68,7 @@
       <tr><td>J007</td><td>IT Project Manager - ERP</td><td>The Carrera Agency</td><td>Irvine, CA</td><td>Not listed</td><td>Possible/unclear</td><td>68</td><td><a href="https://www.linkedin.com/jobs/search/?keywords=ERP%20Project%20Manager%20Contract%20C2C&location=United%20States">LinkedIn Jobs Source</a></td></tr>
       <tr><td>J008</td><td>Informatica Sage 500 ERP Integration Consultant</td><td>Blue Star Partners</td><td>Columbus, OH</td><td>Not listed</td><td>Possible/unclear</td><td>66</td><td><a href="https://www.linkedin.com/jobs/search/?keywords=ERP%20Project%20Manager%20Contract%20C2C&location=United%20States">LinkedIn Jobs Source</a></td></tr>
       <tr><td>J009</td><td>Workday FIN Advisory Consultant</td><td>Medasource</td><td>United States</td><td>Not listed</td><td>Possible/unclear</td><td>67</td><td><a href="https://www.linkedin.com/jobs/search/?keywords=Workday%20Financials%20Contract&location=United%20States">LinkedIn Jobs Source</a></td></tr>
-      <tr><td>J010</td><td>Senior Test Lead — Workday ERP (Public Sector Financials)</td><td>Subtle Scale</td><td>United States</td><td>Not listed</td><td>Possible/unclear</td><td>72</td><td><a href="https://www.linkedin.com/jobs/search/?keywords=Workday%20Financials%20Contract&location=United%20States">LinkedIn Jobs Source</a></td></tr>
+      <tr><td>J010</td><td>Senior Test Lead  —  Workday ERP (Public Sector Financials)</td><td>Subtle Scale</td><td>United States</td><td>Not listed</td><td>Possible/unclear</td><td>72</td><td><a href="https://www.linkedin.com/jobs/search/?keywords=Workday%20Financials%20Contract&location=United%20States">LinkedIn Jobs Source</a></td></tr>
       <tr><td>J011</td><td>Workday System Analyst - Financials & PSA</td><td>Elliott Davis</td><td>United States / NC / SC / TN postings</td><td>Not listed</td><td>Possible/unclear</td><td>74</td><td><a href="https://www.linkedin.com/jobs/search/?keywords=Workday%20Financials%20Contract&location=United%20States">LinkedIn Jobs Source</a></td></tr>
       <tr><td>J012</td><td>Workday Financials Support Analyst</td><td>Kforce Inc</td><td>Grand Rapids, MI</td><td>Not listed</td><td>Possible/unclear</td><td>71</td><td><a href="https://www.linkedin.com/jobs/search/?keywords=Workday%20Financials%20Contract&location=United%20States">LinkedIn Jobs Source</a></td></tr>
       <tr><td>J013</td><td>Informatica Sage 500 ERP Integration Consultant (Part Time)</td><td>Blue Star Partners</td><td>Columbus, OH</td><td>Not listed</td><td>Possible/unclear</td><td>70</td><td><a href="https://www.linkedin.com/jobs/search/?keywords=ERP%20Project%20Manager%20Contract%20C2C&location=United%20States">LinkedIn Jobs Source</a></td></tr>
@@ -101,3 +110,5 @@
   </div>
 </body>
 </html>
+
+
