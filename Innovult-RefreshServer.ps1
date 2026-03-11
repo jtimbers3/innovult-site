@@ -4,6 +4,7 @@ $workspace = 'C:\Users\jtimb\.openclaw\workspace'
 $dashboard = Join-Path $workspace 'Innovult-Recruiting-Dashboard.html'
 $refreshScript = Join-Path $workspace 'Refresh-InnovultDashboard.ps1'
 $logoPath = Join-Path $workspace 'public\innovult-logo.jpg'
+$subagentsPath = Join-Path $workspace 'Innovult-Subagents.html'
 
 $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add($prefix)
@@ -27,6 +28,22 @@ while ($listener.IsListening) {
       if (Test-Path $logoPath) {
         $bytes = [System.IO.File]::ReadAllBytes($logoPath)
         $ctx.Response.ContentType = 'image/jpeg'
+        $ctx.Response.AddHeader('Access-Control-Allow-Origin','*')
+        $ctx.Response.ContentLength64 = $bytes.Length
+        $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length)
+        $ctx.Response.OutputStream.Close()
+      } else {
+        $ctx.Response.StatusCode = 404
+        $ctx.Response.Close()
+      }
+      continue
+    }
+
+    if ($path -eq '/subagents') {
+      if (Test-Path $subagentsPath) {
+        $html = Get-Content $subagentsPath -Raw
+        $bytes = [System.Text.Encoding]::UTF8.GetBytes($html)
+        $ctx.Response.ContentType = 'text/html; charset=utf-8'
         $ctx.Response.AddHeader('Access-Control-Allow-Origin','*')
         $ctx.Response.ContentLength64 = $bytes.Length
         $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length)
