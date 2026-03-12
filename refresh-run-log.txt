@@ -1,4 +1,4 @@
-﻿[2026-03-12 12:58:43 -04:00] Pursuit tracker refresh started
+﻿[2026-03-12 13:04:54 -04:00] Pursuit tracker refresh started
 SKIP SAM Opportunities https://sam.gov/opportunities (unavailable)
 SKIP CISA Doing Business https://www.cisa.gov/doing-business-cisa (unavailable)
 SKIP DHS S&T SBIR https://www.dhs.gov/science-and-technology/sbir (unavailable)
@@ -11,4 +11,4 @@ Bundle B: "business process improvement", "business process re-engineering", doc
 Bundle C: "financial management", ERP, "contract writing", PRISM, invoicing, obligations
 Enrichment: Brave/web search not configured; proceeding SAM-direct only.
 Result policy: SAM-direct first. Never return zero because enrichment is unavailable; return adjacent live opportunities with Low-confidence flag when strict filters fail.
-[2026-03-12 12:58:43 -04:00] Refresh completed (resilient mode)
+[2026-03-12 13:04:54 -04:00] Refresh completed (resilient mode)
