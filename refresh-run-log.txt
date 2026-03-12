@@ -1,0 +1,14 @@
+﻿[2026-03-12 12:53:37 -04:00] Pursuit tracker refresh started
+SKIP SAM Opportunities https://sam.gov/opportunities (unavailable)
+SKIP CISA Doing Business https://www.cisa.gov/doing-business-cisa (unavailable)
+SKIP DHS S&T SBIR https://www.dhs.gov/science-and-technology/sbir (unavailable)
+WARN SAM Opportunities probe unavailable from this runtime. Continuing in degraded mode.
+Degraded-mode fallback: keep prior tracker entries, add adjacent live opportunities from reachable official pages, and mark run as Low-confidence.
+LOW_CONFIDENCE=true
+Running SAM-direct keyword bundles (primary path)
+Bundle A: financial, procurement, acquisition, business process
+Bundle B: "business process improvement", "business process re-engineering", documentation, SOP, "as-is", "to-be"
+Bundle C: "financial management", ERP, "contract writing", PRISM, invoicing, obligations
+Enrichment: Brave/web search not configured; proceeding SAM-direct only.
+Result policy: SAM-direct first. Never return zero because enrichment is unavailable; return adjacent live opportunities with Low-confidence flag when strict filters fail.
+[2026-03-12 12:53:37 -04:00] Refresh completed (resilient mode)

@@ -17,9 +17,12 @@ while ($listener.IsListening) {
     $path = $ctx.Request.Url.AbsolutePath.ToLowerInvariant()
 
     if ($path -eq '/refresh') {
-      powershell -ExecutionPolicy Bypass -File $refreshScript | Out-Null
+      & powershell -NoProfile -ExecutionPolicy Bypass -File $refreshScript | Out-Null
+      $nonce = [DateTimeOffset]::Now.ToUnixTimeMilliseconds()
       $ctx.Response.StatusCode = 302
-      $ctx.Response.RedirectLocation = '/dashboard'
+      $ctx.Response.RedirectLocation = "/dashboard?r=$nonce"
+      $ctx.Response.AddHeader('Cache-Control','no-store, no-cache, must-revalidate, max-age=0')
+      $ctx.Response.AddHeader('Pragma','no-cache')
       $ctx.Response.Close()
       continue
     }
@@ -29,6 +32,7 @@ while ($listener.IsListening) {
         $bytes = [System.IO.File]::ReadAllBytes($logoPath)
         $ctx.Response.ContentType = 'image/jpeg'
         $ctx.Response.AddHeader('Access-Control-Allow-Origin','*')
+        $ctx.Response.AddHeader('Cache-Control','no-store, no-cache, must-revalidate, max-age=0')
         $ctx.Response.ContentLength64 = $bytes.Length
         $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length)
         $ctx.Response.OutputStream.Close()
@@ -45,6 +49,7 @@ while ($listener.IsListening) {
         $bytes = [System.Text.Encoding]::UTF8.GetBytes($html)
         $ctx.Response.ContentType = 'text/html; charset=utf-8'
         $ctx.Response.AddHeader('Access-Control-Allow-Origin','*')
+        $ctx.Response.AddHeader('Cache-Control','no-store, no-cache, must-revalidate, max-age=0')
         $ctx.Response.ContentLength64 = $bytes.Length
         $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length)
         $ctx.Response.OutputStream.Close()
@@ -60,6 +65,8 @@ while ($listener.IsListening) {
       $bytes = [System.Text.Encoding]::UTF8.GetBytes($html)
       $ctx.Response.ContentType = 'text/html; charset=utf-8'
       $ctx.Response.AddHeader('Access-Control-Allow-Origin','*')
+      $ctx.Response.AddHeader('Cache-Control','no-store, no-cache, must-revalidate, max-age=0')
+      $ctx.Response.AddHeader('Pragma','no-cache')
       $ctx.Response.ContentLength64 = $bytes.Length
       $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length)
       $ctx.Response.OutputStream.Close()
