@@ -9,167 +9,107 @@
     <Style ss:ID="Header">
       <Font ss:Bold="1"/>
       <Interior ss:Color="#D9E1F2" ss:Pattern="Solid"/>
-      <Borders>
-        <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
-      </Borders>
+      <Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/></Borders>
     </Style>
-    <Style ss:ID="Title">
-      <Font ss:Bold="1" ss:Size="14"/>
-    </Style>
-    <Style ss:ID="Wrap">
-      <Alignment ss:Vertical="Top" ss:WrapText="1"/>
-    </Style>
+    <Style ss:ID="Title"><Font ss:Bold="1" ss:Size="14"/></Style>
+    <Style ss:ID="Wrap"><Alignment ss:Vertical="Top" ss:WrapText="1"/></Style>
   </Styles>
 
   <Worksheet ss:Name="Cover">
     <Table>
-      <Row><Cell ss:StyleID="Title"><Data ss:Type="String">Federal Agency Accounting Treatment Manual (Template)</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">Version</Data></Cell><Cell><Data ss:Type="String">1.0</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">Prepared By</Data></Cell><Cell><Data ss:Type="String">Accounting Policy Team</Data></Cell></Row>
+      <Row><Cell ss:StyleID="Title"><Data ss:Type="String">Federal Agency Accounting Treatment Manual</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Version</Data></Cell><Cell><Data ss:Type="String">2.0</Data></Cell></Row>
       <Row><Cell><Data ss:Type="String">Effective Date</Data></Cell><Cell><Data ss:Type="String">[Enter Date]</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">Review Cycle</Data></Cell><Cell><Data ss:Type="String">Annual</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">Scope</Data></Cell><Cell ss:StyleID="Wrap"><Data ss:Type="String">This workbook documents standard accounting treatments for common federal transactions and references to USSGL, OMB A-136, Treasury Financial Manual, and SFFAS requirements.</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Scope</Data></Cell><Cell ss:StyleID="Wrap"><Data ss:Type="String">Comprehensive framework for common federal transaction classes across budgetary and proprietary accounting. Adapt USSGL posting logic to agency fund symbols, trading partners, and system configuration.</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Important</Data></Cell><Cell ss:StyleID="Wrap"><Data ss:Type="String">No single workbook can literally include every possible transaction. This version expands coverage to major federal transaction families and provides a transaction library + controls for agency tailoring.</Data></Cell></Row>
     </Table>
   </Worksheet>
 
   <Worksheet ss:Name="Accounting Treatments">
     <Table>
       <Row ss:StyleID="Header">
-        <Cell><Data ss:Type="String">Policy Area</Data></Cell>
-        <Cell><Data ss:Type="String">Transaction Scenario</Data></Cell>
-        <Cell><Data ss:Type="String">Recognition Basis</Data></Cell>
-        <Cell><Data ss:Type="String">Measurement</Data></Cell>
-        <Cell><Data ss:Type="String">Debit USSGL</Data></Cell>
-        <Cell><Data ss:Type="String">Credit USSGL</Data></Cell>
-        <Cell><Data ss:Type="String">Disclosure / Reporting</Data></Cell>
-        <Cell><Data ss:Type="String">Authority</Data></Cell>
-        <Cell><Data ss:Type="String">Control Owner</Data></Cell>
-        <Cell><Data ss:Type="String">Notes</Data></Cell>
+        <Cell><Data ss:Type="String">Policy Area</Data></Cell><Cell><Data ss:Type="String">Transaction Scenario</Data></Cell><Cell><Data ss:Type="String">Recognition Basis</Data></Cell><Cell><Data ss:Type="String">Measurement</Data></Cell><Cell><Data ss:Type="String">Debit USSGL</Data></Cell><Cell><Data ss:Type="String">Credit USSGL</Data></Cell><Cell><Data ss:Type="String">Disclosure / Reporting</Data></Cell><Cell><Data ss:Type="String">Authority</Data></Cell><Cell><Data ss:Type="String">Control Owner</Data></Cell><Cell><Data ss:Type="String">Notes</Data></Cell>
       </Row>
-      <Row>
-        <Cell><Data ss:Type="String">Fund Balance</Data></Cell>
-        <Cell><Data ss:Type="String">Appropriation received</Data></Cell>
-        <Cell><Data ss:Type="String">When apportionment/allotment available</Data></Cell>
-        <Cell><Data ss:Type="String">Face amount</Data></Cell>
-        <Cell><Data ss:Type="String">101000</Data></Cell>
-        <Cell><Data ss:Type="String">310100</Data></Cell>
-        <Cell><Data ss:Type="String">Statement of Changes in Net Position</Data></Cell>
-        <Cell><Data ss:Type="String">TFM USSGL, SFFAS 7</Data></Cell>
-        <Cell><Data ss:Type="String">Funds Control</Data></Cell>
-        <Cell><Data ss:Type="String">Tailor to agency fund symbols</Data></Cell>
-      </Row>
-      <Row>
-        <Cell><Data ss:Type="String">Accounts Payable</Data></Cell>
-        <Cell><Data ss:Type="String">Vendor invoice received and accepted</Data></Cell>
-        <Cell><Data ss:Type="String">Accrual at goods/services receipt</Data></Cell>
-        <Cell><Data ss:Type="String">Invoice amount net of discounts</Data></Cell>
-        <Cell><Data ss:Type="String">610000</Data></Cell>
-        <Cell><Data ss:Type="String">211000</Data></Cell>
-        <Cell><Data ss:Type="String">Balance Sheet + note support</Data></Cell>
-        <Cell><Data ss:Type="String">SFFAS 1</Data></Cell>
-        <Cell><Data ss:Type="String">AP Supervisor</Data></Cell>
-        <Cell><Data ss:Type="String">Include three-way match evidence</Data></Cell>
-      </Row>
-      <Row>
-        <Cell><Data ss:Type="String">Payroll</Data></Cell>
-        <Cell><Data ss:Type="String">Accrued payroll at period end</Data></Cell>
-        <Cell><Data ss:Type="String">At month-end close</Data></Cell>
-        <Cell><Data ss:Type="String">Estimated earned unpaid payroll</Data></Cell>
-        <Cell><Data ss:Type="String">611000</Data></Cell>
-        <Cell><Data ss:Type="String">221000</Data></Cell>
-        <Cell><Data ss:Type="String">Balance Sheet + operating cost</Data></Cell>
-        <Cell><Data ss:Type="String">SFFAS 5</Data></Cell>
-        <Cell><Data ss:Type="String">Payroll Lead</Data></Cell>
-        <Cell><Data ss:Type="String">Reverse in next period</Data></Cell>
-      </Row>
-      <Row>
-        <Cell><Data ss:Type="String">Revenue</Data></Cell>
-        <Cell><Data ss:Type="String">Earned exchange revenue</Data></Cell>
-        <Cell><Data ss:Type="String">When earned</Data></Cell>
-        <Cell><Data ss:Type="String">Contract rate or billing support</Data></Cell>
-        <Cell><Data ss:Type="String">131000</Data></Cell>
-        <Cell><Data ss:Type="String">510000</Data></Cell>
-        <Cell><Data ss:Type="String">Statement of Net Cost / financing sources</Data></Cell>
-        <Cell><Data ss:Type="String">SFFAS 7</Data></Cell>
-        <Cell><Data ss:Type="String">Revenue Accountant</Data></Cell>
-        <Cell><Data ss:Type="String">Tie to subsidiary ledger</Data></Cell>
-      </Row>
-      <Row>
-        <Cell><Data ss:Type="String">Property</Data></Cell>
-        <Cell><Data ss:Type="String">Capitalize equipment purchase</Data></Cell>
-        <Cell><Data ss:Type="String">At placed-in-service date</Data></Cell>
-        <Cell><Data ss:Type="String">Cost incl. ancillary charges</Data></Cell>
-        <Cell><Data ss:Type="String">172000</Data></Cell>
-        <Cell><Data ss:Type="String">211000 or 101000</Data></Cell>
-        <Cell><Data ss:Type="String">PP&amp;E footnote</Data></Cell>
-        <Cell><Data ss:Type="String">SFFAS 6</Data></Cell>
-        <Cell><Data ss:Type="String">Property Manager</Data></Cell>
-        <Cell><Data ss:Type="String">Apply capitalization threshold</Data></Cell>
-      </Row>
+      <Row><Cell><Data ss:Type="String">Appropriations</Data></Cell><Cell><Data ss:Type="String">Appropriation received</Data></Cell><Cell><Data ss:Type="String">Upon warrant/allotment</Data></Cell><Cell><Data ss:Type="String">Face value</Data></Cell><Cell><Data ss:Type="String">101000</Data></Cell><Cell><Data ss:Type="String">310100</Data></Cell><Cell><Data ss:Type="String">SCNP</Data></Cell><Cell><Data ss:Type="String">TFM USSGL, SFFAS 7</Data></Cell><Cell><Data ss:Type="String">Funds Control</Data></Cell><Cell><Data ss:Type="String">By TAS/TAFS</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Budget Execution</Data></Cell><Cell><Data ss:Type="String">Commitment/obligation (budgetary)</Data></Cell><Cell><Data ss:Type="String">When order placed/award signed</Data></Cell><Cell><Data ss:Type="String">Documented amount</Data></Cell><Cell><Data ss:Type="String">750000</Data></Cell><Cell><Data ss:Type="String">[Budgetary offset]</Data></Cell><Cell><Data ss:Type="String">SF-133 support</Data></Cell><Cell><Data ss:Type="String">TFM USSGL</Data></Cell><Cell><Data ss:Type="String">Budget Office</Data></Cell><Cell><Data ss:Type="String">Agency-specific posting model</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">AP / Expenses</Data></Cell><Cell><Data ss:Type="String">Vendor invoice accepted</Data></Cell><Cell><Data ss:Type="String">Accrual at receipt</Data></Cell><Cell><Data ss:Type="String">Invoice net amount</Data></Cell><Cell><Data ss:Type="String">610000</Data></Cell><Cell><Data ss:Type="String">211000</Data></Cell><Cell><Data ss:Type="String">Balance Sheet + SNC</Data></Cell><Cell><Data ss:Type="String">SFFAS 1</Data></Cell><Cell><Data ss:Type="String">AP Manager</Data></Cell><Cell><Data ss:Type="String">3-way match</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Disbursements</Data></Cell><Cell><Data ss:Type="String">Payment issued</Data></Cell><Cell><Data ss:Type="String">When certified and transmitted</Data></Cell><Cell><Data ss:Type="String">Amount paid</Data></Cell><Cell><Data ss:Type="String">211000</Data></Cell><Cell><Data ss:Type="String">101000</Data></Cell><Cell><Data ss:Type="String">CARS tie-out</Data></Cell><Cell><Data ss:Type="String">TFM</Data></Cell><Cell><Data ss:Type="String">Disbursing</Data></Cell><Cell><Data ss:Type="String">Reconcile with Treasury reports</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Payroll</Data></Cell><Cell><Data ss:Type="String">Payroll accrual month-end</Data></Cell><Cell><Data ss:Type="String">Period-end accrual</Data></Cell><Cell><Data ss:Type="String">Earned unpaid estimate</Data></Cell><Cell><Data ss:Type="String">611000</Data></Cell><Cell><Data ss:Type="String">221000</Data></Cell><Cell><Data ss:Type="String">SNC</Data></Cell><Cell><Data ss:Type="String">SFFAS 5</Data></Cell><Cell><Data ss:Type="String">Payroll Lead</Data></Cell><Cell><Data ss:Type="String">Reverse next period</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Payroll Taxes</Data></Cell><Cell><Data ss:Type="String">Employer tax liability</Data></Cell><Cell><Data ss:Type="String">As incurred</Data></Cell><Cell><Data ss:Type="String">Payroll calc</Data></Cell><Cell><Data ss:Type="String">611000</Data></Cell><Cell><Data ss:Type="String">222000</Data></Cell><Cell><Data ss:Type="String">Balance Sheet</Data></Cell><Cell><Data ss:Type="String">SFFAS 5</Data></Cell><Cell><Data ss:Type="String">Payroll Lead</Data></Cell><Cell><Data ss:Type="String">Separate from gross pay accrual</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Travel</Data></Cell><Cell><Data ss:Type="String">Travel voucher payable</Data></Cell><Cell><Data ss:Type="String">When travel performed/approved</Data></Cell><Cell><Data ss:Type="String">Approved voucher</Data></Cell><Cell><Data ss:Type="String">612000</Data></Cell><Cell><Data ss:Type="String">211000</Data></Cell><Cell><Data ss:Type="String">SNC</Data></Cell><Cell><Data ss:Type="String">SFFAS 1</Data></Cell><Cell><Data ss:Type="String">Travel Office</Data></Cell><Cell><Data ss:Type="String">Concur/ETS tie-out</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Reimbursements</Data></Cell><Cell><Data ss:Type="String">Intragovernmental reimbursable earned</Data></Cell><Cell><Data ss:Type="String">When performance complete</Data></Cell><Cell><Data ss:Type="String">Billing support</Data></Cell><Cell><Data ss:Type="String">131000</Data></Cell><Cell><Data ss:Type="String">510000</Data></Cell><Cell><Data ss:Type="String">Exchange revenue note</Data></Cell><Cell><Data ss:Type="String">SFFAS 7</Data></Cell><Cell><Data ss:Type="String">Revenue Team</Data></Cell><Cell><Data ss:Type="String">Track buyer/seller TP codes</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Nonexchange Revenue</Data></Cell><Cell><Data ss:Type="String">Fines/penalties assessed</Data></Cell><Cell><Data ss:Type="String">When legally enforceable</Data></Cell><Cell><Data ss:Type="String">Expected collectible amount</Data></Cell><Cell><Data ss:Type="String">131000</Data></Cell><Cell><Data ss:Type="String">531000/5xx</Data></Cell><Cell><Data ss:Type="String">Stewardship/notes as required</Data></Cell><Cell><Data ss:Type="String">SFFAS 7</Data></Cell><Cell><Data ss:Type="String">Receivables Team</Data></Cell><Cell><Data ss:Type="String">Apply allowance policy</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Deferred Revenue</Data></Cell><Cell><Data ss:Type="String">Advance from customer</Data></Cell><Cell><Data ss:Type="String">Upon receipt before earning</Data></Cell><Cell><Data ss:Type="String">Cash received</Data></Cell><Cell><Data ss:Type="String">101000</Data></Cell><Cell><Data ss:Type="String">232000</Data></Cell><Cell><Data ss:Type="String">Balance Sheet</Data></Cell><Cell><Data ss:Type="String">SFFAS 7</Data></Cell><Cell><Data ss:Type="String">Revenue Team</Data></Cell><Cell><Data ss:Type="String">Relieve as earned</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Inventory</Data></Cell><Cell><Data ss:Type="String">Inventory purchase</Data></Cell><Cell><Data ss:Type="String">Upon title transfer</Data></Cell><Cell><Data ss:Type="String">Acquisition cost</Data></Cell><Cell><Data ss:Type="String">151000/152000</Data></Cell><Cell><Data ss:Type="String">211000 or 101000</Data></Cell><Cell><Data ss:Type="String">Inventory footnote</Data></Cell><Cell><Data ss:Type="String">SFFAS 3</Data></Cell><Cell><Data ss:Type="String">Logistics + GL</Data></Cell><Cell><Data ss:Type="String">Use moving average/FIFO policy</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">PP&amp;E</Data></Cell><Cell><Data ss:Type="String">Capitalize equipment</Data></Cell><Cell><Data ss:Type="String">Placed-in-service date</Data></Cell><Cell><Data ss:Type="String">Cost incl. ancillary</Data></Cell><Cell><Data ss:Type="String">172000</Data></Cell><Cell><Data ss:Type="String">211000/101000</Data></Cell><Cell><Data ss:Type="String">PP&amp;E note</Data></Cell><Cell><Data ss:Type="String">SFFAS 6</Data></Cell><Cell><Data ss:Type="String">Property Manager</Data></Cell><Cell><Data ss:Type="String">Apply threshold/useful life</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Depreciation</Data></Cell><Cell><Data ss:Type="String">Monthly depreciation</Data></Cell><Cell><Data ss:Type="String">Systematic allocation</Data></Cell><Cell><Data ss:Type="String">Depreciation schedule</Data></Cell><Cell><Data ss:Type="String">610000</Data></Cell><Cell><Data ss:Type="String">175000/174000</Data></Cell><Cell><Data ss:Type="String">SNC + PP&amp;E note</Data></Cell><Cell><Data ss:Type="String">SFFAS 6</Data></Cell><Cell><Data ss:Type="String">GL Team</Data></Cell><Cell><Data ss:Type="String">Straight-line unless justified</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Internal Use Software</Data></Cell><Cell><Data ss:Type="String">Capitalize software development</Data></Cell><Cell><Data ss:Type="String">After preliminary stage</Data></Cell><Cell><Data ss:Type="String">Direct allocable costs</Data></Cell><Cell><Data ss:Type="String">183000</Data></Cell><Cell><Data ss:Type="String">211000/101000</Data></Cell><Cell><Data ss:Type="String">IUS note</Data></Cell><Cell><Data ss:Type="String">SFFAS 10</Data></Cell><Cell><Data ss:Type="String">IT Finance</Data></Cell><Cell><Data ss:Type="String">Expense preliminary/post-implementation</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Leases</Data></Cell><Cell><Data ss:Type="String">Recognize lease liability/asset</Data></Cell><Cell><Data ss:Type="String">Lease commencement</Data></Cell><Cell><Data ss:Type="String">PV of lease payments</Data></Cell><Cell><Data ss:Type="String">[Lease asset USSGL]</Data></Cell><Cell><Data ss:Type="String">[Lease liability USSGL]</Data></Cell><Cell><Data ss:Type="String">Lease note disclosures</Data></Cell><Cell><Data ss:Type="String">SFFAS 54</Data></Cell><Cell><Data ss:Type="String">Technical Accounting</Data></Cell><Cell><Data ss:Type="String">Maintain lease inventory</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Loan Programs</Data></Cell><Cell><Data ss:Type="String">Direct loan disbursement</Data></Cell><Cell><Data ss:Type="String">At disbursement date</Data></Cell><Cell><Data ss:Type="String">Principal disbursed</Data></Cell><Cell><Data ss:Type="String">133000</Data></Cell><Cell><Data ss:Type="String">101000</Data></Cell><Cell><Data ss:Type="String">Credit reform note</Data></Cell><Cell><Data ss:Type="String">SFFAS 2</Data></Cell><Cell><Data ss:Type="String">Credit Program Office</Data></Cell><Cell><Data ss:Type="String">Track subsidy separately</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Loan Guarantees</Data></Cell><Cell><Data ss:Type="String">Record guarantee liability</Data></Cell><Cell><Data ss:Type="String">At commitment/when probable</Data></Cell><Cell><Data ss:Type="String">Subsidy estimate</Data></Cell><Cell><Data ss:Type="String">610000/68x</Data></Cell><Cell><Data ss:Type="String">231000</Data></Cell><Cell><Data ss:Type="String">Credit reform note</Data></Cell><Cell><Data ss:Type="String">SFFAS 2</Data></Cell><Cell><Data ss:Type="String">Credit Program Office</Data></Cell><Cell><Data ss:Type="String">Reestimate periodically</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Environmental Liabilities</Data></Cell><Cell><Data ss:Type="String">Cleanup liability</Data></Cell><Cell><Data ss:Type="String">When probable and measurable</Data></Cell><Cell><Data ss:Type="String">Best estimate or range</Data></Cell><Cell><Data ss:Type="String">610000/685000</Data></Cell><Cell><Data ss:Type="String">261000</Data></Cell><Cell><Data ss:Type="String">Environmental note</Data></Cell><Cell><Data ss:Type="String">SFFAS 5</Data></Cell><Cell><Data ss:Type="String">Facilities + GL</Data></Cell><Cell><Data ss:Type="String">Discounting policy as applicable</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Legal Contingencies</Data></Cell><Cell><Data ss:Type="String">Claims/litigation accrual</Data></Cell><Cell><Data ss:Type="String">Probable and measurable</Data></Cell><Cell><Data ss:Type="String">Estimated settlement</Data></Cell><Cell><Data ss:Type="String">610000/685000</Data></Cell><Cell><Data ss:Type="String">261000</Data></Cell><Cell><Data ss:Type="String">Contingency note</Data></Cell><Cell><Data ss:Type="String">SFFAS 5</Data></Cell><Cell><Data ss:Type="String">OGC + CFO</Data></Cell><Cell><Data ss:Type="String">Coordinate with legal counsel</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Intragovernmental</Data></Cell><Cell><Data ss:Type="String">Trading partner eliminations</Data></Cell><Cell><Data ss:Type="String">At reporting close</Data></Cell><Cell><Data ss:Type="String">Confirmed balances</Data></Cell><Cell><Data ss:Type="String">Varies</Data></Cell><Cell><Data ss:Type="String">Varies</Data></Cell><Cell><Data ss:Type="String">GTAS/A-136 eliminations</Data></Cell><Cell><Data ss:Type="String">TFM, A-136</Data></Cell><Cell><Data ss:Type="String">Financial Reporting</Data></Cell><Cell><Data ss:Type="String">Resolve partner differences</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Non-Entity Assets</Data></Cell><Cell><Data ss:Type="String">Collections held for others</Data></Cell><Cell><Data ss:Type="String">Upon collection</Data></Cell><Cell><Data ss:Type="String">Cash collected</Data></Cell><Cell><Data ss:Type="String">101000</Data></Cell><Cell><Data ss:Type="String">241000</Data></Cell><Cell><Data ss:Type="String">Custodial note</Data></Cell><Cell><Data ss:Type="String">SFFAS 1, 7</Data></Cell><Cell><Data ss:Type="String">Funds Control</Data></Cell><Cell><Data ss:Type="String">Transfer to Treasury timely</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Transfers</Data></Cell><Cell><Data ss:Type="String">Nonexchange transfer-in</Data></Cell><Cell><Data ss:Type="String">When authorized/effective</Data></Cell><Cell><Data ss:Type="String">Transferred amount</Data></Cell><Cell><Data ss:Type="String">101000/asset</Data></Cell><Cell><Data ss:Type="String">571000</Data></Cell><Cell><Data ss:Type="String">SCNP</Data></Cell><Cell><Data ss:Type="String">SFFAS 7</Data></Cell><Cell><Data ss:Type="String">Controller</Data></Cell><Cell><Data ss:Type="String">Document statutory authority</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Seized/Forfeited</Data></Cell><Cell><Data ss:Type="String">Asset forfeiture recognition</Data></Cell><Cell><Data ss:Type="String">When legal criteria met</Data></Cell><Cell><Data ss:Type="String">Fair value less costs</Data></Cell><Cell><Data ss:Type="String">191000</Data></Cell><Cell><Data ss:Type="String">573000</Data></Cell><Cell><Data ss:Type="String">Stewardship/other notes</Data></Cell><Cell><Data ss:Type="String">SFFAS 3,7</Data></Cell><Cell><Data ss:Type="String">Asset Forfeiture Office</Data></Cell><Cell><Data ss:Type="String">Track disposition proceeds</Data></Cell></Row>
+    </Table>
+  </Worksheet>
+
+  <Worksheet ss:Name="Federal Transaction Library">
+    <Table>
+      <Row ss:StyleID="Header"><Cell><Data ss:Type="String">Category</Data></Cell><Cell><Data ss:Type="String">Transaction Type</Data></Cell><Cell><Data ss:Type="String">Primary SFFAS/Guidance</Data></Cell><Cell><Data ss:Type="String">Budgetary Impact</Data></Cell><Cell><Data ss:Type="String">Proprietary Impact</Data></Cell><Cell><Data ss:Type="String">Agency Tailoring Needed</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Budgetary</Data></Cell><Cell><Data ss:Type="String">Apportionment/Allotment</Data></Cell><Cell><Data ss:Type="String">TFM USSGL</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Indirect</Data></Cell><Cell><Data ss:Type="String">Fund symbols, allocation structure</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Procurement</Data></Cell><Cell><Data ss:Type="String">Contract obligations/deobligations</Data></Cell><Cell><Data ss:Type="String">TFM USSGL</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Via expense/AP</Data></Cell><Cell><Data ss:Type="String">Contract type, funding source</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Revenue</Data></Cell><Cell><Data ss:Type="String">Exchange &amp; nonexchange</Data></Cell><Cell><Data ss:Type="String">SFFAS 7</Data></Cell><Cell><Data ss:Type="String">Sometimes</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Billing method, allowance policy</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Assets</Data></Cell><Cell><Data ss:Type="String">PP&amp;E, IUS, inventory, advances</Data></Cell><Cell><Data ss:Type="String">SFFAS 3/6/10</Data></Cell><Cell><Data ss:Type="String">No</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Thresholds, useful lives</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Liabilities</Data></Cell><Cell><Data ss:Type="String">AP, payroll, legal, environmental</Data></Cell><Cell><Data ss:Type="String">SFFAS 1/5</Data></Cell><Cell><Data ss:Type="String">No</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Estimation methodology</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Credit Reform</Data></Cell><Cell><Data ss:Type="String">Direct loans and guarantees</Data></Cell><Cell><Data ss:Type="String">SFFAS 2, OMB A-11</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Subsidy model/reestimates</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Leases</Data></Cell><Cell><Data ss:Type="String">Intragov and non-intragov leases</Data></Cell><Cell><Data ss:Type="String">SFFAS 54</Data></Cell><Cell><Data ss:Type="String">Depends</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Discount rate, lease term judgments</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Reporting</Data></Cell><Cell><Data ss:Type="String">GTAS, A-136 statements</Data></Cell><Cell><Data ss:Type="String">A-136, TFM</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Yes</Data></Cell><Cell><Data ss:Type="String">Crosswalk and eliminations</Data></Cell></Row>
     </Table>
   </Worksheet>
 
   <Worksheet ss:Name="Journal Entry Templates">
     <Table>
-      <Row ss:StyleID="Header">
-        <Cell><Data ss:Type="String">JE ID</Data></Cell>
-        <Cell><Data ss:Type="String">Description</Data></Cell>
-        <Cell><Data ss:Type="String">Trigger</Data></Cell>
-        <Cell><Data ss:Type="String">Debit USSGL</Data></Cell>
-        <Cell><Data ss:Type="String">Credit USSGL</Data></Cell>
-        <Cell><Data ss:Type="String">Support Required</Data></Cell>
-        <Cell><Data ss:Type="String">Prepared By</Data></Cell>
-        <Cell><Data ss:Type="String">Approved By</Data></Cell>
-      </Row>
-      <Row><Cell><Data ss:Type="String">JE-001</Data></Cell><Cell><Data ss:Type="String">Month-end payroll accrual</Data></Cell><Cell><Data ss:Type="String">Last business day monthly</Data></Cell><Cell><Data ss:Type="String">611000</Data></Cell><Cell><Data ss:Type="String">221000</Data></Cell><Cell><Data ss:Type="String">Payroll register and accrual calc</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">JE-002</Data></Cell><Cell><Data ss:Type="String">Depreciation</Data></Cell><Cell><Data ss:Type="String">Month-end monthly</Data></Cell><Cell><Data ss:Type="String">610000</Data></Cell><Cell><Data ss:Type="String">175000</Data></Cell><Cell><Data ss:Type="String">Depreciation schedule</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">JE-003</Data></Cell><Cell><Data ss:Type="String">AP accrual</Data></Cell><Cell><Data ss:Type="String">Month-end monthly</Data></Cell><Cell><Data ss:Type="String">610000</Data></Cell><Cell><Data ss:Type="String">211000</Data></Cell><Cell><Data ss:Type="String">Open PO/services received report</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
+      <Row ss:StyleID="Header"><Cell><Data ss:Type="String">JE ID</Data></Cell><Cell><Data ss:Type="String">Description</Data></Cell><Cell><Data ss:Type="String">Trigger</Data></Cell><Cell><Data ss:Type="String">Debit USSGL</Data></Cell><Cell><Data ss:Type="String">Credit USSGL</Data></Cell><Cell><Data ss:Type="String">Support Required</Data></Cell><Cell><Data ss:Type="String">Prepared By</Data></Cell><Cell><Data ss:Type="String">Approved By</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">JE-001</Data></Cell><Cell><Data ss:Type="String">Payroll accrual</Data></Cell><Cell><Data ss:Type="String">Month-end</Data></Cell><Cell><Data ss:Type="String">611000</Data></Cell><Cell><Data ss:Type="String">221000</Data></Cell><Cell><Data ss:Type="String">Payroll register + calc</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">JE-002</Data></Cell><Cell><Data ss:Type="String">Depreciation</Data></Cell><Cell><Data ss:Type="String">Month-end</Data></Cell><Cell><Data ss:Type="String">610000</Data></Cell><Cell><Data ss:Type="String">175000</Data></Cell><Cell><Data ss:Type="String">Depreciation schedule</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">JE-003</Data></Cell><Cell><Data ss:Type="String">AP accrual</Data></Cell><Cell><Data ss:Type="String">Month-end</Data></Cell><Cell><Data ss:Type="String">610000</Data></Cell><Cell><Data ss:Type="String">211000</Data></Cell><Cell><Data ss:Type="String">Received not invoiced report</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">JE-004</Data></Cell><Cell><Data ss:Type="String">Deferred revenue recognition</Data></Cell><Cell><Data ss:Type="String">As earned</Data></Cell><Cell><Data ss:Type="String">232000</Data></Cell><Cell><Data ss:Type="String">510000</Data></Cell><Cell><Data ss:Type="String">Performance evidence</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">JE-005</Data></Cell><Cell><Data ss:Type="String">Allowance adjustment</Data></Cell><Cell><Data ss:Type="String">Quarter-end</Data></Cell><Cell><Data ss:Type="String">610000</Data></Cell><Cell><Data ss:Type="String">1319xx</Data></Cell><Cell><Data ss:Type="String">Aging + model support</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
     </Table>
   </Worksheet>
 
   <Worksheet ss:Name="Month-End Close">
     <Table>
-      <Row ss:StyleID="Header">
-        <Cell><Data ss:Type="String">Task</Data></Cell>
-        <Cell><Data ss:Type="String">Due Day</Data></Cell>
-        <Cell><Data ss:Type="String">Owner</Data></Cell>
-        <Cell><Data ss:Type="String">Control</Data></Cell>
-        <Cell><Data ss:Type="String">Evidence</Data></Cell>
-        <Cell><Data ss:Type="String">Status</Data></Cell>
-      </Row>
-      <Row><Cell><Data ss:Type="String">Post recurring JEs</Data></Cell><Cell><Data ss:Type="String">WD+1</Data></Cell><Cell><Data ss:Type="String">GL Team</Data></Cell><Cell><Data ss:Type="String">JE review checklist</Data></Cell><Cell><Data ss:Type="String">Signed JE package</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">Reconcile Fund Balance with Treasury</Data></Cell><Cell><Data ss:Type="String">WD+2</Data></Cell><Cell><Data ss:Type="String">Treasury Liaison</Data></Cell><Cell><Data ss:Type="String">FBWT reconciliation</Data></Cell><Cell><Data ss:Type="String">Reconciliation workbook</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">Reconcile AP aging to GL</Data></Cell><Cell><Data ss:Type="String">WD+3</Data></Cell><Cell><Data ss:Type="String">AP Team</Data></Cell><Cell><Data ss:Type="String">Subledger-to-GL tie-out</Data></Cell><Cell><Data ss:Type="String">Aging report + tie-out</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">Management review of trial balance</Data></Cell><Cell><Data ss:Type="String">WD+4</Data></Cell><Cell><Data ss:Type="String">Controller</Data></Cell><Cell><Data ss:Type="String">Analytical review</Data></Cell><Cell><Data ss:Type="String">Signed review memo</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
+      <Row ss:StyleID="Header"><Cell><Data ss:Type="String">Task</Data></Cell><Cell><Data ss:Type="String">Due Day</Data></Cell><Cell><Data ss:Type="String">Owner</Data></Cell><Cell><Data ss:Type="String">Control</Data></Cell><Cell><Data ss:Type="String">Evidence</Data></Cell><Cell><Data ss:Type="String">Status</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Post recurring JEs</Data></Cell><Cell><Data ss:Type="String">WD+1</Data></Cell><Cell><Data ss:Type="String">GL Team</Data></Cell><Cell><Data ss:Type="String">JE checklist</Data></Cell><Cell><Data ss:Type="String">Signed package</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">FBWT reconciliation</Data></Cell><Cell><Data ss:Type="String">WD+2</Data></Cell><Cell><Data ss:Type="String">Treasury Liaison</Data></Cell><Cell><Data ss:Type="String">FBWT recon</Data></Cell><Cell><Data ss:Type="String">Recon workbook</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Intragov balances reconcile</Data></Cell><Cell><Data ss:Type="String">WD+3</Data></Cell><Cell><Data ss:Type="String">Reporting Team</Data></Cell><Cell><Data ss:Type="String">Trading partner match</Data></Cell><Cell><Data ss:Type="String">Difference log</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">A-136 package review</Data></Cell><Cell><Data ss:Type="String">WD+5</Data></Cell><Cell><Data ss:Type="String">Controller</Data></Cell><Cell><Data ss:Type="String">Analytical review</Data></Cell><Cell><Data ss:Type="String">Review memo</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
     </Table>
   </Worksheet>
 
   <Worksheet ss:Name="Key Controls">
     <Table>
-      <Row ss:StyleID="Header">
-        <Cell><Data ss:Type="String">Control ID</Data></Cell>
-        <Cell><Data ss:Type="String">Control Description</Data></Cell>
-        <Cell><Data ss:Type="String">Frequency</Data></Cell>
-        <Cell><Data ss:Type="String">Owner</Data></Cell>
-        <Cell><Data ss:Type="String">Evidence Retention</Data></Cell>
-      </Row>
-      <Row><Cell><Data ss:Type="String">GL-01</Data></Cell><Cell><Data ss:Type="String">All manual JEs reviewed and approved before posting</Data></Cell><Cell><Data ss:Type="String">Each JE</Data></Cell><Cell><Data ss:Type="String">GL Manager</Data></Cell><Cell><Data ss:Type="String">7 years</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">GL-02</Data></Cell><Cell><Data ss:Type="String">Monthly reconciliation of key balance sheet accounts</Data></Cell><Cell><Data ss:Type="String">Monthly</Data></Cell><Cell><Data ss:Type="String">Accounting Ops</Data></Cell><Cell><Data ss:Type="String">7 years</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">BUD-01</Data></Cell><Cell><Data ss:Type="String">Funds availability check before obligation</Data></Cell><Cell><Data ss:Type="String">Per transaction</Data></Cell><Cell><Data ss:Type="String">Budget Office</Data></Cell><Cell><Data ss:Type="String">Life of record</Data></Cell></Row>
+      <Row ss:StyleID="Header"><Cell><Data ss:Type="String">Control ID</Data></Cell><Cell><Data ss:Type="String">Control Description</Data></Cell><Cell><Data ss:Type="String">Frequency</Data></Cell><Cell><Data ss:Type="String">Owner</Data></Cell><Cell><Data ss:Type="String">Evidence Retention</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">GL-01</Data></Cell><Cell><Data ss:Type="String">Manual JEs approved before posting</Data></Cell><Cell><Data ss:Type="String">Each JE</Data></Cell><Cell><Data ss:Type="String">GL Manager</Data></Cell><Cell><Data ss:Type="String">7 years</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">GL-02</Data></Cell><Cell><Data ss:Type="String">Monthly balance sheet reconciliations</Data></Cell><Cell><Data ss:Type="String">Monthly</Data></Cell><Cell><Data ss:Type="String">Accounting Ops</Data></Cell><Cell><Data ss:Type="String">7 years</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">BUD-01</Data></Cell><Cell><Data ss:Type="String">Funds availability check pre-obligation</Data></Cell><Cell><Data ss:Type="String">Per transaction</Data></Cell><Cell><Data ss:Type="String">Budget Office</Data></Cell><Cell><Data ss:Type="String">Life of record</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">REP-01</Data></Cell><Cell><Data ss:Type="String">GTAS trial balance tie to GL</Data></Cell><Cell><Data ss:Type="String">Monthly/Quarterly</Data></Cell><Cell><Data ss:Type="String">Financial Reporting</Data></Cell><Cell><Data ss:Type="String">7 years</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">ITC-01</Data></Cell><Cell><Data ss:Type="String">System interface completeness/accuracy</Data></Cell><Cell><Data ss:Type="String">Monthly</Data></Cell><Cell><Data ss:Type="String">ERP Admin</Data></Cell><Cell><Data ss:Type="String">7 years</Data></Cell></Row>
     </Table>
   </Worksheet>
 
   <Worksheet ss:Name="References">
     <Table>
-      <Row ss:StyleID="Header">
-        <Cell><Data ss:Type="String">Reference</Data></Cell>
-        <Cell><Data ss:Type="String">Topic</Data></Cell>
-      </Row>
-      <Row><Cell><Data ss:Type="String">USSGL (Treasury TFM)</Data></Cell><Cell><Data ss:Type="String">Standard federal account structure and posting models</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">OMB Circular A-136</Data></Cell><Cell><Data ss:Type="String">Financial report form and content requirements</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">FASAB SFFAS</Data></Cell><Cell><Data ss:Type="String">Federal accounting standards recognition and measurement</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">Treasury Financial Manual (TFM)</Data></Cell><Cell><Data ss:Type="String">Governmentwide accounting and reporting requirements</Data></Cell></Row>
-      <Row><Cell><Data ss:Type="String">Agency-specific accounting policy</Data></Cell><Cell><Data ss:Type="String">Internal policy decisions and thresholds</Data></Cell></Row>
+      <Row ss:StyleID="Header"><Cell><Data ss:Type="String">Reference</Data></Cell><Cell><Data ss:Type="String">Topic</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Treasury Financial Manual (TFM), USSGL</Data></Cell><Cell><Data ss:Type="String">Standard federal account structure and posting models</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">OMB Circular A-136</Data></Cell><Cell><Data ss:Type="String">Federal financial statements form/content and note requirements</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">OMB Circular A-11</Data></Cell><Cell><Data ss:Type="String">Budget execution and credit reform guidance</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">FASAB SFFAS</Data></Cell><Cell><Data ss:Type="String">Federal GAAP recognition, measurement, and disclosure</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Agency-specific policy and SOPs</Data></Cell><Cell><Data ss:Type="String">Internal thresholds, workflows, and approvals</Data></Cell></Row>
     </Table>
   </Worksheet>
 </Workbook>
