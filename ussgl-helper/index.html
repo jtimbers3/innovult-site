@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USSGL Account Lookup</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
+    .wrap { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+    .card { background: #111827; border: 1px solid #334155; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+    h1 { margin-top: 0; font-size: 1.6rem; }
+    p { color: #cbd5e1; }
+    input, button, textarea { font: inherit; }
+    input[type="text"] { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0b1220; color: #e2e8f0; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    button { background: #2563eb; color: white; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; }
+    button.secondary { background: #334155; }
+    button:hover { filter: brightness(1.08); }
+    .result { background: #0b1220; border: 1px solid #334155; border-radius: 8px; padding: 12px; margin-top: 10px; }
+    .account { font-weight: bold; font-size: 1.1rem; }
+    .muted { color: #94a3b8; font-size: 0.95rem; }
+    ul { padding-left: 20px; }
+    code { background: #1e293b; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>USSGL Account Lookup</h1>
+      <p>Ask a question (example: <code>What is USSGL 101000?</code>) or enter an account number directly (example: <code>211000</code>).</p>
+      <input id="query" type="text" placeholder="Enter question or USSGL account..." />
+      <div class="row">
+        <button id="searchBtn">Find Account</button>
+        <button id="clearBtn" class="secondary">Clear</button>
+      </div>
+      <div id="output"></div>
+    </div>
+
+    <div class="card">
+      <h2>Optional: Load Full USSGL CSV</h2>
+      <p class="muted">If you have an official USSGL export, load it to replace the starter list.</p>
+      <input id="csvFile" type="file" accept=".csv" />
+      <p class="muted">Supported headers (any one): <code>account</code>, <code>ussgl</code>, <code>account_number</code>, <code>number</code> for account; and <code>description</code>, <code>title</code>, <code>name</code> for description.</p>
+    </div>
+  </div>
+
+  <script>
+    let accounts = [];
+
+    async function loadStarterData() {
+      const res = await fetch('./ussgl-data.json');
+      accounts = await res.json();
+    }
+
+    function normalize(s) {
+      return (s || '').toString().toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function extractAccountNumber(query) {
+      const m = (query || '').match(/\b\d{6}\b/);
+      return m ? m[0] : null;
+    }
+
+    function searchAccounts(rawQuery) {
+      const query = normalize(rawQuery);
+      const exactNum = extractAccountNumber(rawQuery);
+
+      if (exactNum) {
+        const exact = accounts.filter(a => a.account === exactNum);
+        if (exact.length) return exact;
+      }
+
+      const words = query.split(' ').filter(Boolean);
+      const scored = accounts.map(acc => {
+        const hay = normalize(acc.account + ' ' + acc.description);
+        let score = 0;
+        if (query && hay.includes(query)) score += 10;
+        for (const w of words) if (hay.includes(w)) score += 1;
+        return { acc, score };
+      }).filter(x => x.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 8)
+        .map(x => x.acc);
+
+      return scored;
+    }
+
+    function renderResults(results, rawQuery) {
+      const out = document.getElementById('output');
+      if (!rawQuery.trim()) {
+        out.innerHTML = '<p class="muted">Enter a question or account number.</p>';
+        return;
+      }
+
+      if (!results.length) {
+        out.innerHTML = '<div class="result">No matching USSGL account found. Try a 6-digit account number, or load a full USSGL CSV export.</div>';
+        return;
+      }
+
+      out.innerHTML = results.map(r => `
+        <div class="result">
+          <div class="account">${r.account}</div>
+          <div>${r.description}</div>
+        </div>
+      `).join('');
+    }
+
+    function parseCSV(text) {
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      if (lines.length < 2) return [];
+
+      const split = (line) => {
+        const out = [];
+        let cur = '';
+        let inQ = false;
+        for (let i = 0; i < line.length; i++) {
+          const c = line[i];
+          if (c === '"') {
+            if (inQ && line[i + 1] === '"') { cur += '"'; i++; }
+            else inQ = !inQ;
+          } else if (c === ',' && !inQ) {
+            out.push(cur); cur = '';
+          } else cur += c;
+        }
+        out.push(cur);
+        return out.map(x => x.trim());
+      };
+
+      const headers = split(lines[0]).map(h => normalize(h));
+      const accountIdx = headers.findIndex(h => ['account','ussgl','account number','account_number','number'].includes(h));
+      const descIdx = headers.findIndex(h => ['description','title','name','account description'].includes(h));
+      if (accountIdx === -1 || descIdx === -1) return [];
+
+      const rows = [];
+      for (let i = 1; i < lines.length; i++) {
+        const cols = split(lines[i]);
+        const account = (cols[accountIdx] || '').replace(/\D/g, '').slice(0, 6);
+        const description = (cols[descIdx] || '').trim();
+        if (account.length === 6 && description) rows.push({ account, description });
+      }
+      return rows;
+    }
+
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const q = document.getElementById('query').value || '';
+      const results = searchAccounts(q);
+      renderResults(results, q);
+    });
+
+    document.getElementById('query').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('searchBtn').click();
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      document.getElementById('query').value = '';
+      document.getElementById('output').innerHTML = '';
+    });
+
+    document.getElementById('csvFile').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const text = await file.text();
+      const parsed = parseCSV(text);
+      const out = document.getElementById('output');
+      if (!parsed.length) {
+        out.innerHTML = '<div class="result">Could not parse CSV. Check header names and file format.</div>';
+        return;
+      }
+      accounts = parsed;
+      out.innerHTML = `<div class="result">Loaded ${parsed.length} USSGL accounts from CSV.</div>`;
+    });
+
+    loadStarterData().then(() => {
+      document.getElementById('output').innerHTML = '<p class="muted">Starter USSGL data loaded. Ready.</p>';
+    });
+  </script>
+</body>
+</html>
