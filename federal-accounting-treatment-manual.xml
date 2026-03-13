@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Styles>
+    <Style ss:ID="Header">
+      <Font ss:Bold="1"/>
+      <Interior ss:Color="#D9E1F2" ss:Pattern="Solid"/>
+      <Borders>
+        <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+    </Style>
+    <Style ss:ID="Title">
+      <Font ss:Bold="1" ss:Size="14"/>
+    </Style>
+    <Style ss:ID="Wrap">
+      <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+    </Style>
+  </Styles>
+
+  <Worksheet ss:Name="Cover">
+    <Table>
+      <Row><Cell ss:StyleID="Title"><Data ss:Type="String">Federal Agency Accounting Treatment Manual (Template)</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Version</Data></Cell><Cell><Data ss:Type="String">1.0</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Prepared By</Data></Cell><Cell><Data ss:Type="String">Accounting Policy Team</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Effective Date</Data></Cell><Cell><Data ss:Type="String">[Enter Date]</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Review Cycle</Data></Cell><Cell><Data ss:Type="String">Annual</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Scope</Data></Cell><Cell ss:StyleID="Wrap"><Data ss:Type="String">This workbook documents standard accounting treatments for common federal transactions and references to USSGL, OMB A-136, Treasury Financial Manual, and SFFAS requirements.</Data></Cell></Row>
+    </Table>
+  </Worksheet>
+
+  <Worksheet ss:Name="Accounting Treatments">
+    <Table>
+      <Row ss:StyleID="Header">
+        <Cell><Data ss:Type="String">Policy Area</Data></Cell>
+        <Cell><Data ss:Type="String">Transaction Scenario</Data></Cell>
+        <Cell><Data ss:Type="String">Recognition Basis</Data></Cell>
+        <Cell><Data ss:Type="String">Measurement</Data></Cell>
+        <Cell><Data ss:Type="String">Debit USSGL</Data></Cell>
+        <Cell><Data ss:Type="String">Credit USSGL</Data></Cell>
+        <Cell><Data ss:Type="String">Disclosure / Reporting</Data></Cell>
+        <Cell><Data ss:Type="String">Authority</Data></Cell>
+        <Cell><Data ss:Type="String">Control Owner</Data></Cell>
+        <Cell><Data ss:Type="String">Notes</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Fund Balance</Data></Cell>
+        <Cell><Data ss:Type="String">Appropriation received</Data></Cell>
+        <Cell><Data ss:Type="String">When apportionment/allotment available</Data></Cell>
+        <Cell><Data ss:Type="String">Face amount</Data></Cell>
+        <Cell><Data ss:Type="String">101000</Data></Cell>
+        <Cell><Data ss:Type="String">310100</Data></Cell>
+        <Cell><Data ss:Type="String">Statement of Changes in Net Position</Data></Cell>
+        <Cell><Data ss:Type="String">TFM USSGL, SFFAS 7</Data></Cell>
+        <Cell><Data ss:Type="String">Funds Control</Data></Cell>
+        <Cell><Data ss:Type="String">Tailor to agency fund symbols</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Accounts Payable</Data></Cell>
+        <Cell><Data ss:Type="String">Vendor invoice received and accepted</Data></Cell>
+        <Cell><Data ss:Type="String">Accrual at goods/services receipt</Data></Cell>
+        <Cell><Data ss:Type="String">Invoice amount net of discounts</Data></Cell>
+        <Cell><Data ss:Type="String">610000</Data></Cell>
+        <Cell><Data ss:Type="String">211000</Data></Cell>
+        <Cell><Data ss:Type="String">Balance Sheet + note support</Data></Cell>
+        <Cell><Data ss:Type="String">SFFAS 1</Data></Cell>
+        <Cell><Data ss:Type="String">AP Supervisor</Data></Cell>
+        <Cell><Data ss:Type="String">Include three-way match evidence</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Payroll</Data></Cell>
+        <Cell><Data ss:Type="String">Accrued payroll at period end</Data></Cell>
+        <Cell><Data ss:Type="String">At month-end close</Data></Cell>
+        <Cell><Data ss:Type="String">Estimated earned unpaid payroll</Data></Cell>
+        <Cell><Data ss:Type="String">611000</Data></Cell>
+        <Cell><Data ss:Type="String">221000</Data></Cell>
+        <Cell><Data ss:Type="String">Balance Sheet + operating cost</Data></Cell>
+        <Cell><Data ss:Type="String">SFFAS 5</Data></Cell>
+        <Cell><Data ss:Type="String">Payroll Lead</Data></Cell>
+        <Cell><Data ss:Type="String">Reverse in next period</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Revenue</Data></Cell>
+        <Cell><Data ss:Type="String">Earned exchange revenue</Data></Cell>
+        <Cell><Data ss:Type="String">When earned</Data></Cell>
+        <Cell><Data ss:Type="String">Contract rate or billing support</Data></Cell>
+        <Cell><Data ss:Type="String">131000</Data></Cell>
+        <Cell><Data ss:Type="String">510000</Data></Cell>
+        <Cell><Data ss:Type="String">Statement of Net Cost / financing sources</Data></Cell>
+        <Cell><Data ss:Type="String">SFFAS 7</Data></Cell>
+        <Cell><Data ss:Type="String">Revenue Accountant</Data></Cell>
+        <Cell><Data ss:Type="String">Tie to subsidiary ledger</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Property</Data></Cell>
+        <Cell><Data ss:Type="String">Capitalize equipment purchase</Data></Cell>
+        <Cell><Data ss:Type="String">At placed-in-service date</Data></Cell>
+        <Cell><Data ss:Type="String">Cost incl. ancillary charges</Data></Cell>
+        <Cell><Data ss:Type="String">172000</Data></Cell>
+        <Cell><Data ss:Type="String">211000 or 101000</Data></Cell>
+        <Cell><Data ss:Type="String">PP&amp;E footnote</Data></Cell>
+        <Cell><Data ss:Type="String">SFFAS 6</Data></Cell>
+        <Cell><Data ss:Type="String">Property Manager</Data></Cell>
+        <Cell><Data ss:Type="String">Apply capitalization threshold</Data></Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+
+  <Worksheet ss:Name="Journal Entry Templates">
+    <Table>
+      <Row ss:StyleID="Header">
+        <Cell><Data ss:Type="String">JE ID</Data></Cell>
+        <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Trigger</Data></Cell>
+        <Cell><Data ss:Type="String">Debit USSGL</Data></Cell>
+        <Cell><Data ss:Type="String">Credit USSGL</Data></Cell>
+        <Cell><Data ss:Type="String">Support Required</Data></Cell>
+        <Cell><Data ss:Type="String">Prepared By</Data></Cell>
+        <Cell><Data ss:Type="String">Approved By</Data></Cell>
+      </Row>
+      <Row><Cell><Data ss:Type="String">JE-001</Data></Cell><Cell><Data ss:Type="String">Month-end payroll accrual</Data></Cell><Cell><Data ss:Type="String">Last business day monthly</Data></Cell><Cell><Data ss:Type="String">611000</Data></Cell><Cell><Data ss:Type="String">221000</Data></Cell><Cell><Data ss:Type="String">Payroll register and accrual calc</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">JE-002</Data></Cell><Cell><Data ss:Type="String">Depreciation</Data></Cell><Cell><Data ss:Type="String">Month-end monthly</Data></Cell><Cell><Data ss:Type="String">610000</Data></Cell><Cell><Data ss:Type="String">175000</Data></Cell><Cell><Data ss:Type="String">Depreciation schedule</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">JE-003</Data></Cell><Cell><Data ss:Type="String">AP accrual</Data></Cell><Cell><Data ss:Type="String">Month-end monthly</Data></Cell><Cell><Data ss:Type="String">610000</Data></Cell><Cell><Data ss:Type="String">211000</Data></Cell><Cell><Data ss:Type="String">Open PO/services received report</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell><Cell><Data ss:Type="String">[Name]</Data></Cell></Row>
+    </Table>
+  </Worksheet>
+
+  <Worksheet ss:Name="Month-End Close">
+    <Table>
+      <Row ss:StyleID="Header">
+        <Cell><Data ss:Type="String">Task</Data></Cell>
+        <Cell><Data ss:Type="String">Due Day</Data></Cell>
+        <Cell><Data ss:Type="String">Owner</Data></Cell>
+        <Cell><Data ss:Type="String">Control</Data></Cell>
+        <Cell><Data ss:Type="String">Evidence</Data></Cell>
+        <Cell><Data ss:Type="String">Status</Data></Cell>
+      </Row>
+      <Row><Cell><Data ss:Type="String">Post recurring JEs</Data></Cell><Cell><Data ss:Type="String">WD+1</Data></Cell><Cell><Data ss:Type="String">GL Team</Data></Cell><Cell><Data ss:Type="String">JE review checklist</Data></Cell><Cell><Data ss:Type="String">Signed JE package</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Reconcile Fund Balance with Treasury</Data></Cell><Cell><Data ss:Type="String">WD+2</Data></Cell><Cell><Data ss:Type="String">Treasury Liaison</Data></Cell><Cell><Data ss:Type="String">FBWT reconciliation</Data></Cell><Cell><Data ss:Type="String">Reconciliation workbook</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Reconcile AP aging to GL</Data></Cell><Cell><Data ss:Type="String">WD+3</Data></Cell><Cell><Data ss:Type="String">AP Team</Data></Cell><Cell><Data ss:Type="String">Subledger-to-GL tie-out</Data></Cell><Cell><Data ss:Type="String">Aging report + tie-out</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Management review of trial balance</Data></Cell><Cell><Data ss:Type="String">WD+4</Data></Cell><Cell><Data ss:Type="String">Controller</Data></Cell><Cell><Data ss:Type="String">Analytical review</Data></Cell><Cell><Data ss:Type="String">Signed review memo</Data></Cell><Cell><Data ss:Type="String">Open</Data></Cell></Row>
+    </Table>
+  </Worksheet>
+
+  <Worksheet ss:Name="Key Controls">
+    <Table>
+      <Row ss:StyleID="Header">
+        <Cell><Data ss:Type="String">Control ID</Data></Cell>
+        <Cell><Data ss:Type="String">Control Description</Data></Cell>
+        <Cell><Data ss:Type="String">Frequency</Data></Cell>
+        <Cell><Data ss:Type="String">Owner</Data></Cell>
+        <Cell><Data ss:Type="String">Evidence Retention</Data></Cell>
+      </Row>
+      <Row><Cell><Data ss:Type="String">GL-01</Data></Cell><Cell><Data ss:Type="String">All manual JEs reviewed and approved before posting</Data></Cell><Cell><Data ss:Type="String">Each JE</Data></Cell><Cell><Data ss:Type="String">GL Manager</Data></Cell><Cell><Data ss:Type="String">7 years</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">GL-02</Data></Cell><Cell><Data ss:Type="String">Monthly reconciliation of key balance sheet accounts</Data></Cell><Cell><Data ss:Type="String">Monthly</Data></Cell><Cell><Data ss:Type="String">Accounting Ops</Data></Cell><Cell><Data ss:Type="String">7 years</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">BUD-01</Data></Cell><Cell><Data ss:Type="String">Funds availability check before obligation</Data></Cell><Cell><Data ss:Type="String">Per transaction</Data></Cell><Cell><Data ss:Type="String">Budget Office</Data></Cell><Cell><Data ss:Type="String">Life of record</Data></Cell></Row>
+    </Table>
+  </Worksheet>
+
+  <Worksheet ss:Name="References">
+    <Table>
+      <Row ss:StyleID="Header">
+        <Cell><Data ss:Type="String">Reference</Data></Cell>
+        <Cell><Data ss:Type="String">Topic</Data></Cell>
+      </Row>
+      <Row><Cell><Data ss:Type="String">USSGL (Treasury TFM)</Data></Cell><Cell><Data ss:Type="String">Standard federal account structure and posting models</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">OMB Circular A-136</Data></Cell><Cell><Data ss:Type="String">Financial report form and content requirements</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">FASAB SFFAS</Data></Cell><Cell><Data ss:Type="String">Federal accounting standards recognition and measurement</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Treasury Financial Manual (TFM)</Data></Cell><Cell><Data ss:Type="String">Governmentwide accounting and reporting requirements</Data></Cell></Row>
+      <Row><Cell><Data ss:Type="String">Agency-specific accounting policy</Data></Cell><Cell><Data ss:Type="String">Internal policy decisions and thresholds</Data></Cell></Row>
+    </Table>
+  </Worksheet>
+</Workbook>
