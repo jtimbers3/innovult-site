@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Launcher Hub</title>
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; background:#0b1020; color:#e8ecf4; margin:0; }
+    .wrap { max-width: 980px; margin: 32px auto; padding: 0 16px; }
+    h1 { margin: 0 0 8px; }
+    .muted { color:#9fb0d2; margin-bottom:20px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+    .card { background:#121a33; border:1px solid #243055; border-radius:12px; padding:14px; }
+    .title { font-size:1.05rem; font-weight:700; margin-bottom:6px; }
+    .desc { color:#b7c6e6; font-size:.95rem; min-height:40px; }
+    .row { margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
+    a.btn { text-decoration:none; color:#fff; background:#2563eb; padding:8px 10px; border-radius:8px; font-size:.9rem; }
+    a.btn.secondary { background:#334155; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>One-Click App Launcher</h1>
+    <div class="muted">Open any app you've built in this workspace with one click.</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="title">Innovult Recruiting Dashboard</div>
+        <div class="desc">Main recruiting dashboard snapshot.</div>
+        <div class="row">
+          <a class="btn" href="./Innovult-Recruiting-Dashboard.html" target="_blank">Open</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="title">Innovult Sub-Agents</div>
+        <div class="desc">Sub-agent role overview and notes.</div>
+        <div class="row">
+          <a class="btn" href="./Innovult-Subagents.html" target="_blank">Open</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="title">USSGL Helper</div>
+        <div class="desc">Lookup tool for USSGL account descriptions.</div>
+        <div class="row">
+          <a class="btn" href="./ussgl-helper/index.html" target="_blank">Open</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="title">APFS Forecast</div>
+        <div class="desc">APFS forecast page.</div>
+        <div class="row">
+          <a class="btn" href="./apfs_forecast.html" target="_blank">Open</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="title">Federal Accounting Manual (Excel)</div>
+        <div class="desc">Spreadsheet-compatible accounting treatment manual template.</div>
+        <div class="row">
+          <a class="btn" href="./federal-accounting-treatment-manual.xml" target="_blank">Open</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="title">Innovult Site (Local Dev)</div>
+        <div class="desc">Opens local app if running on localhost:3000.</div>
+        <div class="row">
+          <a class="btn secondary" href="http://localhost:3000" target="_blank">Open localhost:3000</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
