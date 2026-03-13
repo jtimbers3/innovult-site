@@ -22,4 +22,3 @@ function New-Shortcut {
 
 New-Shortcut -Name 'App Launcher Hub' -Target 'C:\Windows\System32\cmd.exe' -Arguments '/c start "" "file:///C:/Users/jtimb/.openclaw/workspace/App-Launcher-Hub.html"'
 New-Shortcut -Name 'Open Federal Accounting Manual (Excel)' -Target (Join-Path $ws 'Open-Federal-Accounting-Manual.cmd')
-New-Shortcut -Name 'Render Surprise Reel (15s)' -Target (Join-Path $ws 'video-montage\Run-Surprise-Reel.cmd')
