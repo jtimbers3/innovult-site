@@ -5,10 +5,17 @@ Simple browser-based tool for looking up USSGL account descriptions.
 ## What it does
 
 - Accepts either:
-  - a direct USSGL account number (`211000`), or
-  - a natural-language question (`What is USSGL 101000?`)
+  - a direct USSGL account number (`211000`),
+  - a natural-language question (`What is USSGL 101000?`), or
+  - description keywords (`accounts payable`)
 - Returns matching account description(s)
+- Match modes:
+  - `Smart` (ranked natural-language search)
+  - `Exact` (exact account/description match)
+  - `Contains` (substring match)
 - Supports loading a full USSGL CSV export to replace the built-in starter list
+- Can export current results to CSV
+- Can print current results
 
 ## Run
 

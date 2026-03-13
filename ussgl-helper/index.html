@@ -6,33 +6,49 @@
   <title>USSGL Account Lookup</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
-    .wrap { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+    .wrap { max-width: 950px; margin: 40px auto; padding: 0 20px; }
     .card { background: #111827; border: 1px solid #334155; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
-    h1 { margin-top: 0; font-size: 1.6rem; }
+    h1, h2 { margin-top: 0; }
     p { color: #cbd5e1; }
-    input, button, textarea { font: inherit; }
-    input[type="text"] { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0b1220; color: #e2e8f0; }
-    .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    input, button, select { font: inherit; }
+    input[type="text"], select { padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0b1220; color: #e2e8f0; }
+    #query { flex: 1 1 420px; min-width: 260px; }
+    #matchMode { min-width: 170px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; align-items: center; }
     button { background: #2563eb; color: white; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; }
     button.secondary { background: #334155; }
+    button.success { background: #059669; }
     button:hover { filter: brightness(1.08); }
     .result { background: #0b1220; border: 1px solid #334155; border-radius: 8px; padding: 12px; margin-top: 10px; }
     .account { font-weight: bold; font-size: 1.1rem; }
     .muted { color: #94a3b8; font-size: 0.95rem; }
-    ul { padding-left: 20px; }
     code { background: #1e293b; padding: 2px 4px; border-radius: 4px; }
+    .summary { margin-top: 10px; color: #cbd5e1; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
       <h1>USSGL Account Lookup</h1>
-      <p>Ask a question (example: <code>What is USSGL 101000?</code>) or enter an account number directly (example: <code>211000</code>).</p>
-      <input id="query" type="text" placeholder="Enter question or USSGL account..." />
+      <p>Ask a question (example: <code>What is USSGL 101000?</code>) or search by account or description (example: <code>accounts payable</code>).</p>
+
+      <div class="row">
+        <input id="query" type="text" placeholder="Enter question, USSGL account, or keywords..." />
+        <select id="matchMode" title="Match mode">
+          <option value="smart">Smart (default)</option>
+          <option value="exact">Exact match</option>
+          <option value="contains">Contains text</option>
+        </select>
+      </div>
+
       <div class="row">
         <button id="searchBtn">Find Account</button>
         <button id="clearBtn" class="secondary">Clear</button>
+        <button id="exportBtn" class="success" disabled>Export Results CSV</button>
+        <button id="printBtn" class="secondary" disabled>Print Results</button>
       </div>
+
+      <div id="summary" class="summary muted"></div>
       <div id="output"></div>
     </div>
 
@@ -46,6 +62,7 @@
 
   <script>
     let accounts = [];
+    let lastResults = [];
 
     async function loadStarterData() {
       const res = await fetch('./ussgl-data.json');
@@ -61,46 +78,85 @@
       return m ? m[0] : null;
     }
 
-    function searchAccounts(rawQuery) {
+    function searchAccounts(rawQuery, mode = 'smart') {
       const query = normalize(rawQuery);
-      const exactNum = extractAccountNumber(rawQuery);
+      if (!query) return [];
 
+      const exactNum = extractAccountNumber(rawQuery);
+      const qNoSpace = query.replace(/\s+/g, '');
+
+      if (mode === 'exact') {
+        return accounts.filter(a => {
+          const acc = normalize(a.account);
+          const desc = normalize(a.description);
+          return acc === qNoSpace || desc === query || normalize(a.account + ' ' + a.description) === query;
+        }).slice(0, 25);
+      }
+
+      if (mode === 'contains') {
+        return accounts.filter(a => {
+          const hay = normalize(a.account + ' ' + a.description);
+          return hay.includes(query) || normalize(a.account).includes(qNoSpace);
+        }).slice(0, 25);
+      }
+
+      // Smart mode: prioritize exact account match, then keyword scoring.
       if (exactNum) {
         const exact = accounts.filter(a => a.account === exactNum);
         if (exact.length) return exact;
       }
 
       const words = query.split(' ').filter(Boolean);
-      const scored = accounts.map(acc => {
+      return accounts.map(acc => {
         const hay = normalize(acc.account + ' ' + acc.description);
         let score = 0;
-        if (query && hay.includes(query)) score += 10;
-        for (const w of words) if (hay.includes(w)) score += 1;
+
+        if (hay.includes(query)) score += 12;
+        if (normalize(acc.account) === qNoSpace) score += 30;
+        if (normalize(acc.description) === query) score += 20;
+
+        for (const w of words) {
+          if (hay.includes(w)) score += 2;
+        }
+
         return { acc, score };
       }).filter(x => x.score > 0)
         .sort((a, b) => b.score - a.score)
-        .slice(0, 8)
+        .slice(0, 25)
         .map(x => x.acc);
-
-      return scored;
     }
 
-    function renderResults(results, rawQuery) {
+    function escapeHtml(s) {
+      return (s || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+    }
+
+    function renderResults(results, rawQuery, modeLabel) {
       const out = document.getElementById('output');
+      const summary = document.getElementById('summary');
+      const exportBtn = document.getElementById('exportBtn');
+      const printBtn = document.getElementById('printBtn');
+
+      lastResults = results;
+      exportBtn.disabled = results.length === 0;
+      printBtn.disabled = results.length === 0;
+
       if (!rawQuery.trim()) {
-        out.innerHTML = '<p class="muted">Enter a question or account number.</p>';
+        summary.textContent = 'Enter a question or account number.';
+        out.innerHTML = '';
         return;
       }
 
       if (!results.length) {
-        out.innerHTML = '<div class="result">No matching USSGL account found. Try a 6-digit account number, or load a full USSGL CSV export.</div>';
+        summary.textContent = `No matches for "${rawQuery}" (${modeLabel} mode).`;
+        out.innerHTML = '<div class="result">No matching USSGL account found. Try a 6-digit account number, use different keywords, or load a full USSGL CSV export.</div>';
         return;
       }
 
+      summary.textContent = `Showing ${results.length} match(es) for "${rawQuery}" (${modeLabel} mode).`;
       out.innerHTML = results.map(r => `
         <div class="result">
-          <div class="account">${r.account}</div>
-          <div>${r.description}</div>
+          <div class="account">${escapeHtml(r.account)}</div>
+          <div>${escapeHtml(r.description)}</div>
         </div>
       `).join('');
     }
@@ -141,20 +197,53 @@
       return rows;
     }
 
-    document.getElementById('searchBtn').addEventListener('click', () => {
+    function doSearch() {
       const q = document.getElementById('query').value || '';
-      const results = searchAccounts(q);
-      renderResults(results, q);
-    });
+      const mode = document.getElementById('matchMode').value;
+      const results = searchAccounts(q, mode);
+      renderResults(results, q, mode);
+    }
+
+    function exportResultsCsv() {
+      if (!lastResults.length) return;
+      const rows = ['account,description', ...lastResults.map(r => `${r.account},"${(r.description || '').replace(/"/g, '""')}"`)];
+      const blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const stamp = new Date().toISOString().slice(0, 19).replace(/[T:]/g, '-');
+      a.href = url;
+      a.download = `ussgl-results-${stamp}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function printResults() {
+      if (!lastResults.length) return;
+      const rows = lastResults.map(r => `<tr><td>${escapeHtml(r.account)}</td><td>${escapeHtml(r.description)}</td></tr>`).join('');
+      const w = window.open('', '_blank');
+      w.document.write(`<!doctype html><html><head><title>USSGL Results</title><style>body{font-family:Arial;padding:20px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #bbb;padding:8px;text-align:left}</style></head><body><h2>USSGL Results</h2><table><thead><tr><th>Account</th><th>Description</th></tr></thead><tbody>${rows}</tbody></table></body></html>`);
+      w.document.close();
+      w.focus();
+      w.print();
+    }
+
+    document.getElementById('searchBtn').addEventListener('click', doSearch);
 
     document.getElementById('query').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') document.getElementById('searchBtn').click();
+      if (e.key === 'Enter') doSearch();
     });
 
     document.getElementById('clearBtn').addEventListener('click', () => {
       document.getElementById('query').value = '';
+      document.getElementById('summary').textContent = '';
       document.getElementById('output').innerHTML = '';
+      lastResults = [];
+      document.getElementById('exportBtn').disabled = true;
+      document.getElementById('printBtn').disabled = true;
     });
+
+    document.getElementById('exportBtn').addEventListener('click', exportResultsCsv);
+    document.getElementById('printBtn').addEventListener('click', printResults);
 
     document.getElementById('csvFile').addEventListener('change', async (e) => {
       const file = e.target.files[0];
@@ -162,16 +251,19 @@
       const text = await file.text();
       const parsed = parseCSV(text);
       const out = document.getElementById('output');
+      const summary = document.getElementById('summary');
       if (!parsed.length) {
+        summary.textContent = '';
         out.innerHTML = '<div class="result">Could not parse CSV. Check header names and file format.</div>';
         return;
       }
       accounts = parsed;
-      out.innerHTML = `<div class="result">Loaded ${parsed.length} USSGL accounts from CSV.</div>`;
+      summary.textContent = `Loaded ${parsed.length} accounts from CSV.`;
+      out.innerHTML = '<div class="result">CSV loaded successfully. Run a search.</div>';
     });
 
     loadStarterData().then(() => {
-      document.getElementById('output').innerHTML = '<p class="muted">Starter USSGL data loaded. Ready.</p>';
+      document.getElementById('summary').textContent = 'Starter USSGL data loaded. Ready.';
     });
   </script>
 </body>
