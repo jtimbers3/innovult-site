@@ -149,6 +149,14 @@
       return m ? m[0] : null;
     }
 
+    const STOP_WORDS = new Set([
+      'what','which','how','should','could','would','for','the','a','an','to','of','in','on','at','by','and','or','is','are','do','i','we','you','our','my','me','it','this','that','with'
+    ]);
+
+    function hasAnyToken(tokens, words) {
+      return words.some(w => tokens.includes(w));
+    }
+
     function searchAccounts(rawQuery, mode = 'smart') {
       const query = normalize(rawQuery);
       if (!query) return [];
@@ -171,23 +179,42 @@
         }).slice(0, 25);
       }
 
-      // Smart mode: prioritize exact account match, then keyword scoring.
+      // Smart mode: prioritize exact account match, then intent-aware scoring.
       if (exactNum) {
         const exact = accounts.filter(a => a.account === exactNum);
         if (exact.length) return exact;
       }
 
       const words = query.split(' ').filter(Boolean);
+      const tokens = words.filter(w => w.length > 2 && !STOP_WORDS.has(w));
+      const invoiceIntent = hasAnyToken(tokens, ['invoice','invoices','bill','bills','vendor','payable','payment','payments']);
+      const accrualIntent = hasAnyToken(tokens, ['accrual','accrued']);
+
       return accounts.map(acc => {
         const hay = normalize(acc.account + ' ' + acc.description);
+        const desc = normalize(acc.description);
+        const accNum = normalize(acc.account);
         let score = 0;
 
         if (hay.includes(query)) score += 12;
-        if (normalize(acc.account) === qNoSpace) score += 30;
-        if (normalize(acc.description) === query) score += 20;
+        if (accNum === qNoSpace) score += 30;
+        if (desc === query) score += 20;
 
-        for (const w of words) {
-          if (hay.includes(w)) score += 2;
+        for (const t of tokens) {
+          if (hay.includes(t)) score += 3;
+        }
+
+        // Intent boosts for common accounting questions.
+        if (invoiceIntent) {
+          if (desc.includes('accounts payable')) score += 80;
+          if (desc.includes('operating expenses')) score += 30;
+          if (accNum === '211000') score += 100;
+          if (accNum === '610000') score += 25;
+        }
+
+        if (accrualIntent) {
+          if (desc.includes('accrued')) score += 30;
+          if (accNum === '221000') score += 20;
         }
 
         return { acc, score };
@@ -224,7 +251,14 @@
       }
 
       summary.textContent = `Showing ${results.length} match(es) for "${rawQuery}" (${modeLabel} mode).`;
-      out.innerHTML = results.map(r => `
+      const top = results[0];
+      const showRecommendation = modeLabel === 'smart' && top;
+      const recommendation = showRecommendation
+        ? `<div class="result" style="border-color:#2563eb"><div class="muted">Top recommendation</div><div class="account">${escapeHtml(top.account)}</div><div>${escapeHtml(top.description)}</div></div>`
+        : '';
+
+      const remaining = showRecommendation ? results.slice(1) : results;
+      out.innerHTML = recommendation + remaining.map(r => `
         <div class="result">
           <div class="account">${escapeHtml(r.account)}</div>
           <div>${escapeHtml(r.description)}</div>
