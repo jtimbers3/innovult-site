@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $template = 'C:\Users\jtimb\OneDrive\innovult\Engagements\TSA\Deliverables\TFDW_ITSC Weekly Recap_WE20260301.pptx'
-$outDeck = 'C:\Users\jtimb\Downloads\TFDW_BI_Training_Starter_From_TeamsVideo_v2.pptx'
+$outDeck = 'C:\Users\jtimb\Downloads\TFDW_BI_Training_JobAid_From_TeamsVideo_v3.pptx'
 $framesDir = 'C:\Users\jtimb\.openclaw\workspace\video_frames'
 
 Copy-Item -LiteralPath $template -Destination $outDeck -Force
@@ -36,16 +36,25 @@ function Add-TrainingSlide {
 }
 
 $slidesData = @(
-    @{ t='Introduction'; b=@('Purpose: provide a practical starter guide for BI reporting workflows','Audience: analysts, report developers, and business owners','Goal: create repeatable, quality-controlled reporting habits'); img='frame-004.jpg' },
-    @{ t='Logging In'; b=@('Open the BI tool and authenticate with approved credentials','Confirm workspace access and role permissions','If access fails: verify VPN/network and account entitlements'); img='frame-012.jpg' },
-    @{ t='Navigation'; b=@('Identify main menu areas: workspace, datasets, reports, and settings','Use search and favorites to quickly locate content','Follow naming standards to avoid selecting wrong assets'); img='frame-022.jpg' },
-    @{ t='Filters'; b=@('Apply page/report filters in a consistent order','Validate date range and key dimension filters before analysis','Save or document filter states used for recurring reports'); img='frame-034.jpg' },
-    @{ t='Reports'; b=@('Open report pages and review KPI definitions before interpretation','Check visual-level logic and drill-down paths','Use control totals to validate the report is accurate'); img='frame-048.jpg' },
-    @{ t='Running Reports'; b=@('Set required parameters and run the report','Monitor query/refresh status and confirm completion','Capture notable variances and add business context notes'); img='frame-064.jpg' },
-    @{ t='Exporting Data'; b=@('Export to approved format (CSV/XLSX/PDF) based on audience need','Validate row counts and key totals post-export','Store outputs in approved location with version/date naming'); img='frame-078.jpg' },
-    @{ t='Quality Checks Before Sharing'; b=@('Reconcile totals against source/control report','Check labels, date stamps, and confidentiality markings','Have a second reviewer validate high-impact reports'); img='frame-092.jpg' },
-    @{ t='Weekly BI Operating Rhythm'; b=@('Refresh, validate, analyze, and publish on a fixed cadence','Track open data issues and assign owners','Maintain a change log for report logic and assumptions'); img='frame-108.jpg' },
-    @{ t='Next Steps'; b=@('Convert these modules into standard onboarding material','Add role-based exercises for analysts and leads','Build a BI SOP library from this training baseline'); img='frame-113.jpg' }
+    @{ t='Introduction to TFDW'; b=@('Audience: Budget Analysts, Accountants, CORs, and Program Offices','Use this job aid to complete common reporting tasks in Oracle Analytics Server','Focus: run reports correctly, avoid common errors, and export trusted data'); img='frame-004.jpg' },
+    @{ t='Accessing the BI Environment'; b=@('Open the approved TFDW BI URL and sign in with your enterprise credentials','Confirm you can see the expected folders/dashboards after login','If access is denied, submit access request through your normal governance path'); img='frame-010.jpg' },
+    @{ t='TFDW Home Page Overview'; b=@('Identify key areas: dashboard menu, report links, and status indicators','Use landing page links to jump directly to reporting areas','Tip: bookmark the landing page only (not deep links) for stable access'); img='frame-014.jpg' },
+    @{ t='Checking Daily Data Load Status'; b=@('Open the load/status page or widget shown in the walkthrough','Verify latest load date/time before running analysis','If load is incomplete/stale, pause reporting and notify support'); img='frame-018.jpg' },
+    @{ t='Navigating Dashboards'; b=@('Use dashboard tabs/links to move between functional report areas','Confirm you are in the correct dashboard before applying prompts','Best practice: keep one dashboard per browser tab to reduce confusion'); img='frame-024.jpg' },
+    @{ t='Understanding Dashboard Page Layout'; b=@('Review page zones: prompts at top, results in center, controls on side/top','Identify where report tables, charts, and notes are displayed','Additional information needed to complete this slide.'); img='frame-028.jpg' },
+    @{ t='Using Dashboard Prompts (Filters)'; b=@('Set required prompts first (example: fiscal year and organization)','Apply prompts in the order demonstrated to limit data volume early','Tip: broad prompts can slow performance and return hard-to-read outputs'); img='frame-033.jpg' },
+    @{ t='Searching the List of Values (LOV)'; b=@('Use LOV search to find valid values instead of free-typing','Select exact values and confirm selections are applied before running','Tip: search by partial text/code when full value is unknown'); img='frame-037.jpg' },
+    @{ t='Running Reports'; b=@('After prompts are set, click Apply/Run to execute the query','Wait for refresh to complete before interacting with results','If runtime is long, narrow filters and rerun'); img='frame-044.jpg' },
+    @{ t='Running Reports — Performance Tips'; b=@('Start with a narrow period/org scope, then expand as needed','Avoid running multiple heavy dashboards simultaneously','Additional information needed to complete this slide.'); img='frame-048.jpg' },
+    @{ t='Understanding Report Results'; b=@('Validate row counts, totals, and key fields against expected ranges','Interpret results in context of selected prompts and report logic','Capture anomalies for follow-up before sharing externally'); img='frame-054.jpg' },
+    @{ t='Using View Selectors'; b=@('Use view selector controls to switch table/chart/summary views','Confirm that selected view still reflects current prompt values','Tip: verify same totals across views to ensure consistency'); img='frame-060.jpg' },
+    @{ t='Exporting Report Data'; b=@('Use export controls to download data in approved format (CSV/XLSX/PDF)','Confirm export scope (current view vs full report) before downloading','Check exported totals match on-screen totals'); img='frame-068.jpg' },
+    @{ t='Exporting Data — Validation Checklist'; b=@('Open exported file and verify date stamp, filters, and row counts','Apply file naming convention with report name + date/time','Store files only in approved locations for controlled data handling'); img='frame-074.jpg' },
+    @{ t='Best Practices for Running Reports'; b=@('Always check data load status first','Apply minimum necessary filters before run','Document prompt values used when sharing report outputs'); img='frame-084.jpg' },
+    @{ t='Common Errors and Troubleshooting'; b=@('Issue: no data returned -> verify prompts/LOV selections and rerun','Issue: stale data -> recheck daily load status and refresh','Issue: timeout/performance -> narrow filters and run smaller scope first'); img='frame-096.jpg' },
+    @{ t='Common Errors — System Feedback Examples'; b=@('Capture exact error text/screenshot when issue occurs','Record dashboard name, prompts used, and time of failure','Additional information needed to complete this slide.'); img='frame-102.jpg' },
+    @{ t='Getting Support'; b=@('Escalate with: dashboard name, prompts, timestamp, and screenshot','Include whether issue affects one report or multiple dashboards','Use designated BI support channel/process for fastest triage'); img='frame-110.jpg' },
+    @{ t='Quick Reference: End-to-End Workflow'; b=@('1) Check load status  2) Navigate dashboard  3) Set prompts/LOV','4) Run report  5) Validate results  6) Export and share','Use this sequence every time to reduce rework and reporting errors'); img='frame-113.jpg' }
 )
 
 foreach ($s in $slidesData) {
