@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $template = 'C:\Users\jtimb\OneDrive\innovult\Engagements\TSA\Deliverables\TFDW_ITSC Weekly Recap_WE20260301.pptx'
-$outDeck = 'C:\Users\jtimb\Downloads\TFDW_BI_Training_Starter_From_TeamsVideo.pptx'
+$outDeck = 'C:\Users\jtimb\Downloads\TFDW_BI_Training_Starter_From_TeamsVideo_v2.pptx'
 $framesDir = 'C:\Users\jtimb\.openclaw\workspace\video_frames'
 
 Copy-Item -LiteralPath $template -Destination $outDeck -Force
@@ -36,18 +36,16 @@ function Add-TrainingSlide {
 }
 
 $slidesData = @(
-    @{ t='Business Intelligence Training Starter (from Teams recording)'; b=@('Purpose: establish repeatable BI workflow and analyst standards','Audience: BI analysts, report developers, product owners','Output: step-by-step runbook + examples + QA checklist'); img='frame-005.jpg' },
-    @{ t='Training Map (Non-chronological Modules)'; b=@('Module A: Environment & Access','Module B: Data Connection & Profiling','Module C: Modeling & Calculations','Module D: Reporting, QA, and Publish'); img='frame-015.jpg' },
-    @{ t='Module A — Environment & Access'; b=@('Confirm tool access (workspace, data source, permissions)','Validate refresh/service account readiness','Document environment assumptions before build begins'); img='frame-025.jpg' },
-    @{ t='Module A — Workspace & File Hygiene'; b=@('Use standard naming conventions for files/pages/measures','Create folder structure for sources, transformed data, outputs','Track change history and owner on each iteration'); img='frame-035.jpg' },
-    @{ t='Module B — Connect to Source Data'; b=@('Connect using approved connector/method','Capture source metadata and extraction timestamp','Record any filtering parameters used during ingest'); img='frame-045.jpg' },
-    @{ t='Module B — Data Profiling & Quality Checks'; b=@('Check nulls, duplicates, key uniqueness, and date coverage','Identify outliers and business-rule violations early','Log issues and route unresolved items to data owners'); img='frame-055.jpg' },
-    @{ t='Module C — Transformation Standards'; b=@('Apply repeatable transformations with clear naming','Separate raw, cleansed, and business-ready layers','Keep logic transparent so another analyst can reproduce'); img='frame-065.jpg' },
-    @{ t='Module C — Data Model Design'; b=@('Define star-schema style relationships where possible','Validate granularity alignment before joining datasets','Create a field dictionary for shared understanding'); img='frame-075.jpg' },
-    @{ t='Module C — Measures / Calculations'; b=@('Define business formulas with plain-language descriptions','Test measures against known control totals','Flag assumptions directly in model documentation'); img='frame-085.jpg' },
-    @{ t='Module D — Visual Design & Storytelling'; b=@('Build visuals to answer business questions, not just show data','Use consistent colors, labels, and KPI formatting','Prioritize executive summary views + drill-down paths'); img='frame-095.jpg' },
-    @{ t='Module D — Validation, UAT, and Publish'; b=@('Run QA checklist (totals, filters, edge cases, performance)','Capture user acceptance feedback and action items','Publish with versioning and support owner assigned'); img='frame-105.jpg' },
-    @{ t='Operational Runbook (What to do every week)'; b=@('Refresh data and validate control totals','Review KPI shifts and explain key deltas','Publish recap + risks + next actions in weekly cadence'); img='frame-113.jpg' }
+    @{ t='Introduction'; b=@('Purpose: provide a practical starter guide for BI reporting workflows','Audience: analysts, report developers, and business owners','Goal: create repeatable, quality-controlled reporting habits'); img='frame-004.jpg' },
+    @{ t='Logging In'; b=@('Open the BI tool and authenticate with approved credentials','Confirm workspace access and role permissions','If access fails: verify VPN/network and account entitlements'); img='frame-012.jpg' },
+    @{ t='Navigation'; b=@('Identify main menu areas: workspace, datasets, reports, and settings','Use search and favorites to quickly locate content','Follow naming standards to avoid selecting wrong assets'); img='frame-022.jpg' },
+    @{ t='Filters'; b=@('Apply page/report filters in a consistent order','Validate date range and key dimension filters before analysis','Save or document filter states used for recurring reports'); img='frame-034.jpg' },
+    @{ t='Reports'; b=@('Open report pages and review KPI definitions before interpretation','Check visual-level logic and drill-down paths','Use control totals to validate the report is accurate'); img='frame-048.jpg' },
+    @{ t='Running Reports'; b=@('Set required parameters and run the report','Monitor query/refresh status and confirm completion','Capture notable variances and add business context notes'); img='frame-064.jpg' },
+    @{ t='Exporting Data'; b=@('Export to approved format (CSV/XLSX/PDF) based on audience need','Validate row counts and key totals post-export','Store outputs in approved location with version/date naming'); img='frame-078.jpg' },
+    @{ t='Quality Checks Before Sharing'; b=@('Reconcile totals against source/control report','Check labels, date stamps, and confidentiality markings','Have a second reviewer validate high-impact reports'); img='frame-092.jpg' },
+    @{ t='Weekly BI Operating Rhythm'; b=@('Refresh, validate, analyze, and publish on a fixed cadence','Track open data issues and assign owners','Maintain a change log for report logic and assumptions'); img='frame-108.jpg' },
+    @{ t='Next Steps'; b=@('Convert these modules into standard onboarding material','Add role-based exercises for analysts and leads','Build a BI SOP library from this training baseline'); img='frame-113.jpg' }
 )
 
 foreach ($s in $slidesData) {
