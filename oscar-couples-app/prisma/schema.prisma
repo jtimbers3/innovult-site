@@ -1,0 +1,178 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ScoringMode {
+  STANDARD
+  WEIGHTED
+  PARTY
+}
+
+model User {
+  id             String             @id @default(cuid())
+  name           String?
+  email          String             @unique
+  passwordHash   String
+  image          String?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  teamMembership CoupleMembership?
+  groupLinks     GroupMembership[]
+  ballots        Ballot[]
+  triviaAttempts TriviaAttempt[]
+}
+
+model CoupleTeam {
+  id          String             @id @default(cuid())
+  name        String
+  slogan      String?
+  avatarUrl   String?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  memberships CoupleMembership[]
+  ballots     Ballot[]
+  snapshots   ScoreSnapshot[]
+}
+
+model CoupleMembership {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  teamId    String
+  role      String   @default("MEMBER")
+  joinedAt  DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  team      CoupleTeam @relation(fields: [teamId], references: [id])
+}
+
+model Group {
+  id              String            @id @default(cuid())
+  name            String
+  inviteCode      String            @unique
+  isPrivate       Boolean           @default(true)
+  createdByUserId String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  members         GroupMembership[]
+}
+
+model GroupMembership {
+  id        String   @id @default(cuid())
+  groupId   String
+  userId    String
+  teamId    String?
+  role      String   @default("MEMBER")
+  joinedAt  DateTime @default(now())
+  group     Group    @relation(fields: [groupId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  @@unique([groupId, userId])
+}
+
+model AwardsYear {
+  id            String           @id @default(cuid())
+  year          Int              @unique
+  title         String
+  ballotLockAt  DateTime
+  scoringMode   ScoringMode      @default(STANDARD)
+  createdAt     DateTime         @default(now())
+  categories    Category[]
+  ballots       Ballot[]
+  snapshots     ScoreSnapshot[]
+}
+
+model Category {
+  id              String   @id @default(cuid())
+  awardsYearId    String
+  slug            String
+  name            String
+  points          Int      @default(1)
+  isMajor         Boolean  @default(false)
+  displayOrder    Int
+  awardsYear      AwardsYear @relation(fields: [awardsYearId], references: [id])
+  nominees        Nominee[]
+  officialResult  OfficialResult?
+  @@unique([awardsYearId, slug])
+}
+
+model Nominee {
+  id          String   @id @default(cuid())
+  categoryId  String
+  name        String
+  metadata    Json?
+  category    Category @relation(fields: [categoryId], references: [id])
+}
+
+model Ballot {
+  id             String      @id @default(cuid())
+  awardsYearId   String
+  teamId         String
+  userId         String
+  submittedAt    DateTime?
+  isLocked       Boolean     @default(false)
+  confidenceMode Boolean     @default(false)
+  createdAt      DateTime    @default(now())
+  awardsYear     AwardsYear  @relation(fields: [awardsYearId], references: [id])
+  team           CoupleTeam  @relation(fields: [teamId], references: [id])
+  user           User        @relation(fields: [userId], references: [id])
+  picks          BallotPick[]
+  @@unique([awardsYearId, teamId])
+}
+
+model BallotPick {
+  id             String   @id @default(cuid())
+  ballotId       String
+  categoryId     String
+  nomineeId      String
+  confidenceRank Int?
+  createdAt      DateTime @default(now())
+  ballot         Ballot   @relation(fields: [ballotId], references: [id])
+  @@unique([ballotId, categoryId])
+}
+
+model OfficialResult {
+  id            String   @id @default(cuid())
+  categoryId    String   @unique
+  nomineeId     String
+  announcedAt   DateTime @default(now())
+  enteredByUser String
+  category      Category @relation(fields: [categoryId], references: [id])
+}
+
+model ScoreSnapshot {
+  id            String   @id @default(cuid())
+  awardsYearId  String
+  teamId        String
+  points        Int
+  correctPicks  Int
+  totalPicks    Int
+  rank          Int?
+  updatedAt     DateTime @default(now())
+  awardsYear    AwardsYear @relation(fields: [awardsYearId], references: [id])
+  team          CoupleTeam @relation(fields: [teamId], references: [id])
+  @@unique([awardsYearId, teamId])
+}
+
+model TriviaQuestion {
+  id           String          @id @default(cuid())
+  question     String
+  options      Json
+  correctIndex Int
+  category     String
+  createdAt    DateTime        @default(now())
+  attempts     TriviaAttempt[]
+}
+
+model TriviaAttempt {
+  id             String         @id @default(cuid())
+  userId         String
+  questionId     String
+  selectedIndex  Int
+  isCorrect      Boolean
+  createdAt      DateTime       @default(now())
+  user           User           @relation(fields: [userId], references: [id])
+  question       TriviaQuestion @relation(fields: [questionId], references: [id])
+}
