@@ -5,24 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>App Launcher Hub</title>
   <style>
-    body { font-family: Segoe UI, Arial, sans-serif; background:#0b1020; color:#e8ecf4; margin:0; }
-    .wrap { max-width: 980px; margin: 32px auto; padding: 0 16px; }
+    :root {
+      --bg: #0b1020;
+      --card: #121a33;
+      --border: #243055;
+      --text: #e8ecf4;
+      --muted: #9fb0d2;
+      --primary: #2563eb;
+      --secondary: #334155;
+      --success: #059669;
+    }
+
+    * { box-sizing: border-box; }
+    body { font-family: Segoe UI, Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; }
+    .wrap { max-width: 1100px; margin: 32px auto; padding: 0 16px 24px; }
     h1 { margin: 0 0 8px; }
-    .muted { color:#9fb0d2; margin-bottom:20px; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
-    .card { background:#121a33; border:1px solid #243055; border-radius:12px; padding:14px; }
-    .title { font-size:1.05rem; font-weight:700; margin-bottom:6px; }
-    .desc { color:#b7c6e6; font-size:.95rem; min-height:40px; }
-    .row { margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
-    a.btn { text-decoration:none; color:#fff; background:#2563eb; padding:8px 10px; border-radius:8px; font-size:.9rem; }
-    a.btn.secondary { background:#334155; }
+    h2 { margin: 22px 0 10px; color: #c8d7f5; font-size: 1.05rem; }
+    .muted { color: var(--muted); margin-bottom: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+    .title { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .desc { color: #b7c6e6; font-size: .95rem; min-height: 40px; }
+    .row { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+    a.btn {
+      text-decoration: none;
+      color: #fff;
+      background: var(--primary);
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: .9rem;
+      display: inline-block;
+    }
+    a.btn.secondary { background: var(--secondary); }
+    a.btn.success { background: var(--success); }
+    .tip { margin-top: 20px; font-size: .9rem; color: var(--muted); }
+    code { background: #0e1630; border: 1px solid #2b3d6f; border-radius: 6px; padding: 1px 6px; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>One-Click App Launcher</h1>
-    <div class="muted">Open any app you've built in this workspace with one click.</div>
+    <div class="muted">Central hub for all apps and tools in this workspace.</div>
 
+    <h2>Web Apps (Live URLs)</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="title">Innovult Site</div>
+        <div class="desc">Next.js website project (innovult-site).</div>
+        <div class="row">
+          <a class="btn" href="http://localhost:3000" target="_blank">Open :3000</a>
+          <a class="btn secondary" href="file:///C:/Users/jtimb/.openclaw/workspace/innovult-site" target="_blank">Open Folder</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="title">Mission Control</div>
+        <div class="desc">Mission control Next.js app.</div>
+        <div class="row">
+          <a class="btn" href="http://localhost:3001" target="_blank">Open :3001</a>
+          <a class="btn secondary" href="file:///C:/Users/jtimb/.openclaw/workspace/mission-control" target="_blank">Open Folder</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="title">Oscar Couples App</div>
+        <div class="desc">Oscar predictions, history, standings, and scoring app.</div>
+        <div class="row">
+          <a class="btn" href="http://localhost:3002" target="_blank">Open :3002</a>
+          <a class="btn secondary" href="file:///C:/Users/jtimb/.openclaw/workspace/oscar-couples-app" target="_blank">Open Folder</a>
+        </div>
+      </div>
+    </div>
+
+    <h2>Static Dashboards & Pages</h2>
     <div class="grid">
       <div class="card">
         <div class="title">Innovult Recruiting Dashboard</div>
@@ -50,29 +105,36 @@
 
       <div class="card">
         <div class="title">APFS Forecast</div>
-        <div class="desc">APFS forecast page.</div>
+        <div class="desc">APFS forecast dashboard page.</div>
         <div class="row">
           <a class="btn" href="./apfs_forecast.html" target="_blank">Open</a>
         </div>
       </div>
-
 
       <div class="card">
         <div class="title">Federal Accounting Manual (Excel)</div>
         <div class="desc">Spreadsheet-compatible accounting treatment manual template.</div>
         <div class="row">
           <a class="btn" href="./federal-accounting-treatment-manual.xls">Open in Excel</a>
-          <a class="btn secondary" href="./federal-accounting-treatment-manual.xml" target="_blank">Open XML Source</a>
+          <a class="btn secondary" href="./federal-accounting-treatment-manual.xml" target="_blank">Open XML</a>
         </div>
       </div>
+    </div>
 
+    <h2>Utility Projects</h2>
+    <div class="grid">
       <div class="card">
-        <div class="title">Innovult Site (Local Dev)</div>
-        <div class="desc">Opens local app if running on localhost:3000.</div>
+        <div class="title">Photo Montage Builder</div>
+        <div class="desc">Python pipeline for selecting photos and rendering montage videos.</div>
         <div class="row">
-          <a class="btn secondary" href="http://localhost:3000" target="_blank">Open localhost:3000</a>
+          <a class="btn success" href="file:///C:/Users/jtimb/.openclaw/workspace/photo-montage/run_montage.bat" target="_blank">Run Montage</a>
+          <a class="btn secondary" href="file:///C:/Users/jtimb/.openclaw/workspace/photo-montage/README.md" target="_blank">Open README</a>
         </div>
       </div>
+    </div>
+
+    <div class="tip">
+      Tip: If a localhost app doesn't open, start it first in its folder with <code>npm run dev</code>.
     </div>
   </div>
 </body>
