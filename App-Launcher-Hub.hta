@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>App Launcher Hub</title>
+  <hta:application
+    id="appLauncher"
+    applicationname="AppLauncherHub"
+    border="thin"
+    caption="yes"
+    showintaskbar="yes"
+    singleinstance="yes"
+    sysmenu="yes"
+    scroll="no"
+  />
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; background:#0b1020; color:#e8ecf4; margin:0; }
+    .wrap { max-width: 980px; margin: 20px auto; padding: 0 16px 18px; }
+    h1 { margin: 0 0 8px; }
+    .muted { color:#9fb0d2; margin-bottom: 16px; }
+    .grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .card { background:#121a33; border:1px solid #243055; border-radius:12px; padding:12px; }
+    .title { font-weight:700; margin-bottom:8px; }
+    button { border:0; border-radius:8px; padding:8px 10px; cursor:pointer; color:#fff; margin-right:6px; margin-top:6px; }
+    .start { background:#059669; }
+    .open  { background:#2563eb; }
+    .secondary { background:#334155; }
+  </style>
+  <script language="javascript">
+    function sh() { return new ActiveXObject("WScript.Shell"); }
+
+    function runCmd(path) {
+      sh().Run('"' + path + '"', 1, false);
+    }
+
+    function openUrl(url) {
+      sh().Run(url, 1, false);
+    }
+
+    function openFile(path) {
+      sh().Run('"' + path + '"', 1, false);
+    }
+
+    function startInnovult() { runCmd("C:\\Users\\jtimb\\.openclaw\\workspace\\Start-Innovult-Site.cmd"); }
+    function startMissionControl() { runCmd("C:\\Users\\jtimb\\.openclaw\\workspace\\Start-Mission-Control.cmd"); }
+    function startOscar() { runCmd("C:\\Users\\jtimb\\.openclaw\\workspace\\Start-Oscar-Couples-App.cmd"); }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <h1>One-Click App Launcher</h1>
+    <div class="muted">This launcher can start local dev servers and open apps directly.</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="title">Innovult Site</div>
+        <button class="start" onclick="startInnovult()">Start & Open</button>
+        <button class="open" onclick="openUrl('http://localhost:3000')">Open URL</button>
+      </div>
+
+      <div class="card">
+        <div class="title">Mission Control</div>
+        <button class="start" onclick="startMissionControl()">Start & Open</button>
+        <button class="open" onclick="openUrl('http://localhost:3001')">Open URL</button>
+      </div>
+
+      <div class="card">
+        <div class="title">Oscar Couples App</div>
+        <button class="start" onclick="startOscar()">Start & Open</button>
+        <button class="open" onclick="openUrl('http://localhost:3002')">Open URL</button>
+      </div>
+
+      <div class="card">
+        <div class="title">Static Tools</div>
+        <button class="secondary" onclick="openFile('C:\\Users\\jtimb\\.openclaw\\workspace\\Innovult-Recruiting-Dashboard.html')">Recruiting Dashboard</button>
+        <button class="secondary" onclick="openFile('C:\\Users\\jtimb\\.openclaw\\workspace\\Innovult-Subagents.html')">Sub-Agents</button>
+        <button class="secondary" onclick="openFile('C:\\Users\\jtimb\\.openclaw\\workspace\\ussgl-helper\\index.html')">USSGL Helper</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

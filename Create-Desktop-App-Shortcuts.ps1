@@ -20,5 +20,5 @@ function New-Shortcut {
   Write-Host "Created: $path"
 }
 
-New-Shortcut -Name 'App Launcher Hub' -Target 'C:\Windows\System32\cmd.exe' -Arguments '/c start "" "file:///C:/Users/jtimb/.openclaw/workspace/App-Launcher-Hub.html"'
+New-Shortcut -Name 'App Launcher Hub' -Target 'C:\Windows\System32\mshta.exe' -Arguments '"C:\Users\jtimb\.openclaw\workspace\App-Launcher-Hub.hta"'
 New-Shortcut -Name 'Open Federal Accounting Manual (Excel)' -Target (Join-Path $ws 'Open-Federal-Accounting-Manual.cmd')
