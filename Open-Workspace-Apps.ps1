@@ -15,7 +15,15 @@ foreach ($app in $apps) {
   }
 }
 
-# Localhost app shortcuts (open if already running)
-Start-Process "http://localhost:3000"
-Start-Process "http://localhost:3001"
-Start-Process "http://localhost:3002"
+# Start local dev apps and open URLs
+$startupScripts = @(
+  Join-Path $workspace "Start-Innovult-Site.cmd",
+  Join-Path $workspace "Start-Mission-Control.cmd",
+  Join-Path $workspace "Start-Oscar-Couples-App.cmd"
+)
+
+foreach ($script in $startupScripts) {
+  if (Test-Path $script) {
+    Start-Process $script
+  }
+}
