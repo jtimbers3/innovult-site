@@ -10,27 +10,50 @@ type HistoryPageProps = {
 export default async function HistoryPage({ searchParams }: HistoryPageProps) {
   const params = searchParams ?? {};
 
-  const years = await db.awardsYear.findMany({
-    orderBy: { year: "desc" },
-    select: { id: true, year: true, title: true }
-  });
+  let years: Array<{ id: string; year: number; title: string }> = [];
+  let selectedAwardsYear:
+    | {
+        year: number;
+        title: string;
+        categories: Array<{
+          id: string;
+          name: string;
+          nominees: Array<{ id: string; name: string }>;
+          officialResult: { nomineeId: string } | null;
+        }>;
+      }
+    | null = null;
+  let dbSetupError = false;
 
-  const selectedYear = Number(params.year) || years[0]?.year;
+  try {
+    years = await db.awardsYear.findMany({
+      orderBy: { year: "desc" },
+      select: { id: true, year: true, title: true }
+    });
 
-  const selectedAwardsYear = selectedYear
-    ? await db.awardsYear.findUnique({
-        where: { year: selectedYear },
-        include: {
-          categories: {
-            orderBy: { displayOrder: "asc" },
-            include: {
-              nominees: { orderBy: { name: "asc" } },
-              officialResult: true
+    const selectedYear = Number(params.year) || years[0]?.year;
+
+    selectedAwardsYear = selectedYear
+      ? await db.awardsYear.findUnique({
+          where: { year: selectedYear },
+          select: {
+            year: true,
+            title: true,
+            categories: {
+              orderBy: { displayOrder: "asc" },
+              select: {
+                id: true,
+                name: true,
+                nominees: { orderBy: { name: "asc" }, select: { id: true, name: true } },
+                officialResult: { select: { nomineeId: true } }
+              }
             }
           }
-        }
-      })
-    : null;
+        })
+      : null;
+  } catch {
+    dbSetupError = true;
+  }
 
   return (
     <div className="space-y-6">
@@ -40,7 +63,20 @@ export default async function HistoryPage({ searchParams }: HistoryPageProps) {
         <p className="text-sm text-slate-300">Click a year to browse all categories, nominees, and winners.</p>
       </div>
 
-      {years.length === 0 ? (
+      {dbSetupError ? (
+        <div className="card space-y-2">
+          <p className="font-medium text-amber-200">History needs database setup first.</p>
+          <p className="text-sm text-slate-300">
+            Add <code className="rounded bg-slate-800 px-1.5 py-0.5">DATABASE_URL</code> in
+            <code className="ml-1 rounded bg-slate-800 px-1.5 py-0.5">oscar-couples-app/.env</code>, then run Prisma migrate/seed.
+          </p>
+          <p className="text-xs text-slate-400">
+            Use: <code className="rounded bg-slate-800 px-1.5 py-0.5">cp .env.example .env</code>,
+            <code className="ml-1 rounded bg-slate-800 px-1.5 py-0.5">npx prisma migrate dev</code>,
+            <code className="ml-1 rounded bg-slate-800 px-1.5 py-0.5">npm run prisma:seed</code>
+          </p>
+        </div>
+      ) : years.length === 0 ? (
         <div className="card">No awards years available yet.</div>
       ) : (
         <>
