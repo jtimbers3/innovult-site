@@ -72,7 +72,10 @@ export default async function HistoryPage({ searchParams }: HistoryPageProps) {
                             }`}
                           >
                             <div className="flex items-center justify-between gap-3">
-                              <span>{nominee.name}</span>
+                              <div className="flex min-w-0 flex-col">
+                                <span>{nominee.name}</span>
+                                {nominee.work && <span className="text-xs text-slate-300">for {nominee.work}</span>}
+                              </div>
                               {isWinner && (
                                 <span className="rounded-full bg-amber-400 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-950">
                                   Winner

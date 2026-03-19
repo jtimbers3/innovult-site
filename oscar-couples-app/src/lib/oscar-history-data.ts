@@ -1,6 +1,7 @@
 export type OscarNominee = {
   id: string;
   name: string;
+  work?: string;
   winner?: boolean;
 };
 
@@ -46,33 +47,33 @@ export const OSCAR_HISTORY: OscarYear[] = [
         id: "best-director",
         name: "Best Director",
         nominees: [
-          { id: "sean-baker", name: "Sean Baker", winner: true },
-          { id: "brady-corbet", name: "Brady Corbet" },
-          { id: "james-mangold", name: "James Mangold" },
-          { id: "jacques-audiard", name: "Jacques Audiard" },
-          { id: "coralie-fargeat", name: "Coralie Fargeat" }
+          { id: "sean-baker", name: "Sean Baker", work: "Anora", winner: true },
+          { id: "brady-corbet", name: "Brady Corbet", work: "The Brutalist" },
+          { id: "james-mangold", name: "James Mangold", work: "A Complete Unknown" },
+          { id: "jacques-audiard", name: "Jacques Audiard", work: "Emilia Pérez" },
+          { id: "coralie-fargeat", name: "Coralie Fargeat", work: "The Substance" }
         ]
       },
       {
         id: "best-actress",
         name: "Best Actress",
         nominees: [
-          { id: "mikey-madison", name: "Mikey Madison", winner: true },
-          { id: "demi-moore", name: "Demi Moore" },
-          { id: "fernanda-torres", name: "Fernanda Torres" },
-          { id: "karla-sofia-gascon", name: "Karla Sofía Gascón" },
-          { id: "cynthia-erivo", name: "Cynthia Erivo" }
+          { id: "mikey-madison", name: "Mikey Madison", work: "Anora", winner: true },
+          { id: "demi-moore", name: "Demi Moore", work: "The Substance" },
+          { id: "fernanda-torres", name: "Fernanda Torres", work: "I’m Still Here" },
+          { id: "karla-sofia-gascon", name: "Karla Sofía Gascón", work: "Emilia Pérez" },
+          { id: "cynthia-erivo", name: "Cynthia Erivo", work: "Wicked" }
         ]
       },
       {
         id: "best-actor",
         name: "Best Actor",
         nominees: [
-          { id: "adrien-brody", name: "Adrien Brody", winner: true },
-          { id: "timothee-chalamet", name: "Timothée Chalamet" },
-          { id: "colman-domingo", name: "Colman Domingo" },
-          { id: "ralph-fiennes", name: "Ralph Fiennes" },
-          { id: "sebastian-stan", name: "Sebastian Stan" }
+          { id: "adrien-brody", name: "Adrien Brody", work: "The Brutalist", winner: true },
+          { id: "timothee-chalamet", name: "Timothée Chalamet", work: "A Complete Unknown" },
+          { id: "colman-domingo", name: "Colman Domingo", work: "Sing Sing" },
+          { id: "ralph-fiennes", name: "Ralph Fiennes", work: "Conclave" },
+          { id: "sebastian-stan", name: "Sebastian Stan", work: "The Apprentice" }
         ]
       },
       {
@@ -113,33 +114,33 @@ export const OSCAR_HISTORY: OscarYear[] = [
         id: "best-director",
         name: "Best Director",
         nominees: [
-          { id: "christopher-nolan", name: "Christopher Nolan", winner: true },
-          { id: "justine-triet", name: "Justine Triet" },
-          { id: "martin-scorsese", name: "Martin Scorsese" },
-          { id: "yosorgos-lanthimos", name: "Yorgos Lanthimos" },
-          { id: "jonathan-glazer", name: "Jonathan Glazer" }
+          { id: "christopher-nolan", name: "Christopher Nolan", work: "Oppenheimer", winner: true },
+          { id: "justine-triet", name: "Justine Triet", work: "Anatomy of a Fall" },
+          { id: "martin-scorsese", name: "Martin Scorsese", work: "Killers of the Flower Moon" },
+          { id: "yosorgos-lanthimos", name: "Yorgos Lanthimos", work: "Poor Things" },
+          { id: "jonathan-glazer", name: "Jonathan Glazer", work: "The Zone of Interest" }
         ]
       },
       {
         id: "best-actress",
         name: "Best Actress",
         nominees: [
-          { id: "emma-stone", name: "Emma Stone", winner: true },
-          { id: "annette-bening", name: "Annette Bening" },
-          { id: "lily-gladstone", name: "Lily Gladstone" },
-          { id: "sandra-huller", name: "Sandra Hüller" },
-          { id: "carey-mulligan", name: "Carey Mulligan" }
+          { id: "emma-stone", name: "Emma Stone", work: "Poor Things", winner: true },
+          { id: "annette-bening", name: "Annette Bening", work: "Nyad" },
+          { id: "lily-gladstone", name: "Lily Gladstone", work: "Killers of the Flower Moon" },
+          { id: "sandra-huller", name: "Sandra Hüller", work: "Anatomy of a Fall" },
+          { id: "carey-mulligan", name: "Carey Mulligan", work: "Maestro" }
         ]
       },
       {
         id: "best-actor",
         name: "Best Actor",
         nominees: [
-          { id: "cillian-murphy", name: "Cillian Murphy", winner: true },
-          { id: "bradley-cooper", name: "Bradley Cooper" },
-          { id: "colman-domingo", name: "Colman Domingo" },
-          { id: "paul-giamatti", name: "Paul Giamatti" },
-          { id: "jeffrey-wright", name: "Jeffrey Wright" }
+          { id: "cillian-murphy", name: "Cillian Murphy", work: "Oppenheimer", winner: true },
+          { id: "bradley-cooper", name: "Bradley Cooper", work: "Maestro" },
+          { id: "colman-domingo", name: "Colman Domingo", work: "Rustin" },
+          { id: "paul-giamatti", name: "Paul Giamatti", work: "The Holdovers" },
+          { id: "jeffrey-wright", name: "Jeffrey Wright", work: "American Fiction" }
         ]
       },
       {
