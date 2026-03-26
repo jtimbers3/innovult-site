@@ -3,9 +3,12 @@
 _Learn about the person you're helping. Update this as you go._
 
 - **Name:**
+  James
 - **What to call them:**
+  James
 - **Pronouns:** _(optional)_
 - **Timezone:**
+  America/New_York
 - **Notes:**
 
 ## Context
