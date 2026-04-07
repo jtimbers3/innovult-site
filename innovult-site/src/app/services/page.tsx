@@ -53,8 +53,8 @@ export default function ServicesPage() {
           </div>
           <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200">
             <Image
-              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80"
-              alt="Abstract blue technology network"
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80"
+              alt="Business consulting analytics dashboard"
               fill
               className="object-cover"
             />
