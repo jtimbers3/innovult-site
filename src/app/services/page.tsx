@@ -40,12 +40,12 @@ export default function ServicesPage() {
             across complex IT initiatives.
           </p>
         </div>
-        <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200">
+        <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
           <Image
-            src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80"
-            alt="Digital services dashboard"
+            src="/globe.svg"
+            alt="Abstract global technology graphic"
             fill
-            className="object-cover"
+            className="object-contain p-8"
           />
         </div>
       </section>
