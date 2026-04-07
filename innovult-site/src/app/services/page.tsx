@@ -51,12 +51,12 @@ export default function ServicesPage() {
               IT initiatives.
             </p>
           </div>
-          <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+          <div className="relative h-64 overflow-hidden rounded-xl border border-slate-200">
             <Image
-              src="/globe.svg"
-              alt="Abstract global technology graphic"
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80"
+              alt="Abstract blue technology network"
               fill
-              className="object-contain p-8"
+              className="object-cover"
             />
           </div>
         </section>
