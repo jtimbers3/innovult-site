@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" preserveAspectRatio="none">
+  <defs>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="12"/>
+      <feColorMatrix type="saturate" values=".35"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .16"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="grass" x1="0" x2="0" y1="0" y2="1">
+      <stop stop-color="#64c977"/>
+      <stop offset=".55" stop-color="#259751"/>
+      <stop offset="1" stop-color="#0e4f31"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#grass)"/>
+  <path d="M0 0h1200v700H0z" fill="#fff" opacity=".08" filter="url(#noise)"/>
+  <g opacity=".32">
+    <path d="M80 0h92L24 700h-92zM286 0h92L230 700h-92zM492 0h92L436 700h-92zM698 0h92L642 700h-92zM904 0h92L848 700h-92zM1110 0h92l-148 700h-92z" fill="#c6efbe"/>
+    <path d="M172 0h114L138 700H24zM378 0h114L344 700H230zM584 0h114L550 700H436zM790 0h114L756 700H642zM996 0h114L962 700H848z" fill="#0f743d" opacity=".45"/>
+  </g>
+</svg>

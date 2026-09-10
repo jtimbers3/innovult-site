@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 250" role="img" aria-label="Pitcher">
+  <defs>
+    <linearGradient id="skin" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffe4bd"/><stop offset="1" stop-color="#c97843"/></linearGradient>
+    <linearGradient id="jersey" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#fff8e5"/><stop offset=".3" stop-color="#fff8e5"/><stop offset=".31" stop-color="#ef4451"/><stop offset=".62" stop-color="#ef4451"/><stop offset=".63" stop-color="#173a67"/><stop offset="1" stop-color="#0b2340"/></linearGradient>
+    <linearGradient id="pants" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#fff8e8"/><stop offset="1" stop-color="#d7cfbd"/></linearGradient>
+    <filter id="drop" x="-40%" y="-30%" width="180%" height="170%"><feDropShadow dx="0" dy="10" stdDeviation="6" flood-color="#07182d" flood-opacity=".32"/></filter>
+  </defs>
+  <ellipse cx="86" cy="232" rx="53" ry="13" fill="#07182d" opacity=".27"/>
+  <g filter="url(#drop)">
+    <path d="M60 122c-24 16-37 35-43 56-3 12 11 20 20 11 9-9 16-33 38-45z" fill="url(#skin)"/>
+    <path d="M111 113c15-22 30-33 45-33 13 0 18 14 9 23-8 8-28 9-43 29z" fill="url(#skin)"/>
+    <path d="M60 101h54c16 0 29 13 29 29v57c0 15-12 27-27 27H58c-15 0-27-12-27-27v-57c0-16 13-29 29-29z" fill="url(#jersey)" stroke="#fff8e5" stroke-width="6"/>
+    <path d="M80 102h13v108H80z" fill="#fff8e5" opacity=".92"/>
+    <circle cx="87" cy="68" r="30" fill="url(#skin)" stroke="#fff8e5" stroke-width="5"/>
+    <path d="M54 60c8-25 52-28 66 0v16H54z" fill="#102a4c"/>
+    <path d="M100 59h38c8 0 11 9 6 14-7 6-29 8-46 3z" fill="#ffd65c"/>
+    <circle cx="78" cy="69" r="3" fill="#5b2b14"/><circle cx="97" cy="69" r="3" fill="#5b2b14"/>
+    <path d="M76 82c7 5 17 5 24 0" fill="none" stroke="#7a3d22" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M64 211l-17 34" stroke="url(#pants)" stroke-width="20" stroke-linecap="round"/>
+    <path d="M109 211l19 34" stroke="url(#pants)" stroke-width="20" stroke-linecap="round"/>
+    <path d="M39 246h34" stroke="#173a67" stroke-width="8" stroke-linecap="round"/>
+    <path d="M109 246h36" stroke="#173a67" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="153" cy="87" rx="19" ry="23" fill="#8b471f"/>
+    <path d="M141 75c9 6 16 16 20 30" fill="none" stroke="#5b2b14" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="20" cy="176" r="8" fill="#ffffff"/>
+    <path d="M17 172c7 3 9 8 7 13" fill="none" stroke="#d93442" stroke-width="2" opacity=".55"/>
+  </g>
+</svg>

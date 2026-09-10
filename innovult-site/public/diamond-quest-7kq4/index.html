@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <title>Mason and Rumi's Diamond Quest</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body.game-locked .game-shell {
+        filter: blur(10px);
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .secret-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: none;
+        place-items: center;
+        padding: 24px;
+        background: linear-gradient(180deg, rgba(10, 58, 102, 0.96), rgba(5, 18, 31, 0.96));
+        color: white;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      body.game-locked .secret-gate {
+        display: grid;
+      }
+
+      .secret-gate form {
+        width: min(420px, 100%);
+        display: grid;
+        gap: 14px;
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 2px solid rgba(255, 255, 255, 0.32);
+        border-radius: 18px;
+        box-shadow: 0 22px 55px rgba(0, 0, 0, 0.34);
+      }
+
+      .secret-gate h1 {
+        margin: 0;
+        font-size: 1.75rem;
+        line-height: 1.05;
+      }
+
+      .secret-gate p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 1rem;
+        line-height: 1.45;
+      }
+
+      .secret-gate input,
+      .secret-gate button {
+        min-height: 54px;
+        border-radius: 999px;
+        font: inherit;
+        font-weight: 800;
+      }
+
+      .secret-gate input {
+        padding: 0 18px;
+        border: 2px solid rgba(255, 255, 255, 0.48);
+        background: white;
+        color: #0a3a66;
+      }
+
+      .secret-gate button {
+        border: 0;
+        background: #65dcdf;
+        color: #082944;
+      }
+
+      .secret-error {
+        min-height: 20px;
+        color: #ffd166;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body class="game-locked">
+    <section class="secret-gate" aria-label="Private game access">
+      <form id="secret-gate-form">
+        <h1>Diamond Quest</h1>
+        <p>Enter the family passcode to play.</p>
+        <input id="secret-code" type="password" autocomplete="off" inputmode="text" aria-label="Passcode" />
+        <button type="submit">Play Ball</button>
+        <p id="secret-error" class="secret-error" aria-live="polite"></p>
+      </form>
+    </section>
+    <main class="game-shell">
+      <section class="stadium" aria-label="Mason and Rumi's baseball field">
+        <div class="sky">
+          <div class="stadium-structure" aria-hidden="true">
+            <div class="upper-deck"></div>
+            <div class="lower-bowl"></div>
+            <div class="stadium-banners">
+              <span>READ</span>
+              <span>PLAY</span>
+              <span>HIT</span>
+            </div>
+          </div>
+          <div class="scoreboard" aria-live="polite">
+            <div>
+              <span class="score-label">Runs</span>
+              <strong id="runs">0</strong>
+            </div>
+            <div>
+              <span class="score-label">Inning</span>
+              <strong id="inning">1</strong>
+            </div>
+            <div>
+              <span class="score-label">Outs</span>
+              <strong id="streak">0</strong>
+            </div>
+          </div>
+          <div class="kid-photo-strip" aria-label="Mason and Rumi">
+            <figure>
+              <img src="assets/mason-at-park.png" alt="Mason" />
+              <figcaption>Mason</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/rumi-and-mason.png" alt="Rumi" />
+              <figcaption>Rumi</figcaption>
+            </figure>
+          </div>
+          <div class="park-board" aria-hidden="true">
+            <div class="light-rack light-rack-left"></div>
+            <div class="light-rack light-rack-right"></div>
+            <div class="park-sign">MASON + RUMI PARK</div>
+            <div class="board-stack">
+              <div class="side-panel script-panel">JBL</div>
+              <div class="video-panel">
+                <span id="jumbotron-status">MASON IS UP</span>
+                <strong id="jumbotron-message">PLAY BALL</strong>
+              </div>
+              <div class="side-panel curly-panel">MR</div>
+            </div>
+          </div>
+          <div class="crowd" aria-hidden="true"></div>
+        </div>
+
+        <div class="field-wrap">
+          <div class="field">
+            <div class="outfield-wall" aria-hidden="true">
+              <span>LEFT FIELD</span>
+              <span>HOME RUN</span>
+              <span>RIGHT FIELD</span>
+            </div>
+            <div class="outfield"></div>
+            <div class="dugout-rail dugout-rail-left" aria-hidden="true"></div>
+            <div class="dugout-rail dugout-rail-right" aria-hidden="true"></div>
+            <div class="field-perspective">
+              <div class="infield-depth" aria-hidden="true"></div>
+              <div class="mound"></div>
+              <div id="pitcher" class="player-token pitcher-token baseball-sprite pitcher-sprite" aria-hidden="true">
+                <img class="sprite-art" src="assets/illustrated/rumi-pitcher.png" alt="" />
+              </div>
+              <div id="batter" class="player-token batter-token baseball-sprite batter-sprite" aria-hidden="true">
+                <img class="sprite-art" src="assets/illustrated/mason-batter.png" alt="" />
+              </div>
+              <div id="pitch-ball" class="pitch-ball" aria-hidden="true"></div>
+              <div id="runner" class="runner baseball-sprite runner-sprite" data-runner-slot="0" aria-hidden="true">
+                <img class="sprite-art" src="assets/illustrated/mason-runner.png" alt="" />
+              </div>
+              <div class="runner baseball-sprite runner-sprite" data-runner-slot="1" aria-hidden="true">
+                <img class="sprite-art" src="assets/illustrated/mason-runner.png" alt="" />
+              </div>
+              <div class="runner baseball-sprite runner-sprite" data-runner-slot="2" aria-hidden="true">
+                <img class="sprite-art" src="assets/illustrated/mason-runner.png" alt="" />
+              </div>
+              <div class="runner baseball-sprite runner-sprite" data-runner-slot="3" aria-hidden="true">
+                <img class="sprite-art" src="assets/illustrated/mason-runner.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dugout" aria-label="Reading game controls">
+        <div class="top-row">
+          <button id="home-button" class="game-bar-button" type="button">Home</button>
+          <div class="player-heading">
+            <p class="eyebrow">Mason + Rumi</p>
+            <h1 id="round-title">Warm-up Pitch</h1>
+          </div>
+          <button id="sound-toggle" class="game-bar-button" type="button" aria-label="Toggle sound">
+            <span aria-hidden="true">Pause</span>
+          </button>
+        </div>
+
+        <div class="profile-row" aria-label="Choose player">
+          <button class="profile-button active" data-profile="rumi" type="button" aria-pressed="true">
+            <span>Rumi</span>
+            <strong>Rookie League</strong>
+          </button>
+          <button class="profile-button" data-profile="mason" type="button" aria-pressed="false">
+            <span>Mason</span>
+            <strong>Major League</strong>
+          </button>
+        </div>
+
+        <div class="mode-tabs" role="tablist" aria-label="Game mode">
+          <button class="tab active" data-mode="word" type="button">Word Hit</button>
+          <button class="tab" data-mode="sentence" type="button">Sentence Sprint</button>
+          <button class="tab" data-mode="rhyme" type="button">Rhyme Catch</button>
+        </div>
+
+        <div class="coach-card">
+          <div class="announcer-row">
+            <figure class="player-card" id="player-card">
+              <img id="player-photo" src="assets/mason-at-park.png" alt="Mason at the ballpark" />
+              <figcaption id="player-name">Mason</figcaption>
+            </figure>
+            <p id="coach-line">Listen to the announcer, then read the choices.</p>
+          </div>
+          <div id="prompt" class="prompt-word">What do you swing?</div>
+          <div id="target-word" class="target-word" aria-live="polite"></div>
+          <div id="phonics-strip" class="phonics-strip" aria-live="polite"></div>
+          <div id="choices" class="choices" aria-label="Answer choices"></div>
+          <button id="listen" class="listen-button" type="button">
+            <span class="listen-icon" aria-hidden="true">&#128266;</span>
+            <span>Hear It Again</span>
+          </button>
+          <div class="developer-settings" aria-label="Voice settings">
+            <label for="voice-select">Neural voice</label>
+            <select id="voice-select">
+              <option value="nova">Nova</option>
+              <option value="coral">Coral</option>
+              <option value="sage">Sage</option>
+            </select>
+            <label for="browser-voice-select">Browser fallback voice</label>
+            <select id="browser-voice-select">
+              <option value="">Auto: best detected English voice</option>
+            </select>
+            <span id="tts-status">Voice: checking...</span>
+          </div>
+        </div>
+
+        <div class="feedback-row">
+          <p id="feedback" class="feedback">Step up to the plate.</p>
+          <button id="new-pitch" class="secondary-button" type="button">Next Pitch</button>
+        </div>
+
+        <button id="start-game" class="start-game" type="button">Play Ball</button>
+
+        <div class="parent-panel">
+          <div>
+            <span class="score-label">Skill Focus</span>
+            <p id="skill-focus">CVC baseball words and sight-word confidence.</p>
+          </div>
+          <label class="toggle">
+            <input id="easy-mode" type="checkbox" checked />
+            <span>Big kid hints</span>
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+    <script>
+      (() => {
+        const passcode = "playball";
+        const key = "diamondQuestPrivateAccess";
+        const form = document.querySelector("#secret-gate-form");
+        const input = document.querySelector("#secret-code");
+        const error = document.querySelector("#secret-error");
+        const unlock = () => {
+          sessionStorage.setItem(key, "ok");
+          document.body.classList.remove("game-locked");
+        };
+        if (sessionStorage.getItem(key) === "ok") unlock();
+        form?.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if ((input?.value || "").trim().toLowerCase() === passcode) {
+            unlock();
+            return;
+          }
+          if (error) error.textContent = "Try again.";
+          input?.select();
+        });
+      })();
+    </script>
+  </body>
+</html>
