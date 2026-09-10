@@ -5392,9 +5392,11 @@ h1 {
 .choice {
   display: grid !important;
   place-items: center !important;
+  box-sizing: border-box !important;
   min-width: 0 !important;
+  max-width: 100% !important;
   padding: 7px 9px 9px !important;
-  overflow: visible !important;
+  overflow: hidden !important;
   color: #17314e !important;
   font-size: var(--choice-font-size, clamp(1.75rem, 3.25vw, 2.72rem)) !important;
   font-weight: 900 !important;
@@ -5402,6 +5404,7 @@ h1 {
   text-align: center !important;
   white-space: nowrap !important;
   word-break: keep-all !important;
+  text-overflow: clip !important;
 }
 
 .choices[data-count="4"] {
@@ -5428,8 +5431,25 @@ h1 {
 }
 
 @media (max-width: 560px) {
+  .choices {
+    width: min(100%, calc(100vw - 14px)) !important;
+    gap: 6px !important;
+  }
+
   .choice {
-    font-size: var(--choice-font-size, clamp(1.1rem, 7.2vw, 1.72rem)) !important;
-    padding-inline: 5px !important;
+    min-height: clamp(58px, 10.5vh, 76px) !important;
+    border-width: 4px !important;
+    border-radius: 16px !important;
+    box-shadow:
+      0 8px 0 #cf9d3e,
+      0 14px 20px rgba(7, 24, 45, 0.24) !important;
+    font-size: var(--choice-font-size, clamp(0.92rem, 5.6vw, 1.48rem)) !important;
+    line-height: 0.9 !important;
+    padding: 5px 3px 7px !important;
+  }
+
+  .choice::before {
+    inset: 6px !important;
+    border-radius: 11px !important;
   }
 }

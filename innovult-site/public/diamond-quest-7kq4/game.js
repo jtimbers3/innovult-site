@@ -907,10 +907,12 @@ function renderChoices(question) {
 
 function getChoiceFontSize(label) {
   const length = String(label || "").trim().length;
-  if (length <= 3) return "clamp(2.05rem, 3.75vw, 3.2rem)";
-  if (length <= 5) return "clamp(1.85rem, 3.35vw, 2.85rem)";
-  if (length <= 7) return "clamp(1.55rem, 2.75vw, 2.28rem)";
-  return "clamp(1.25rem, 2.25vw, 1.88rem)";
+  if (length <= 3) return "clamp(1.75rem, 3.4vw, 3.05rem)";
+  if (length <= 5) return "clamp(1.55rem, 3vw, 2.65rem)";
+  if (length <= 7) return "clamp(1.28rem, 2.45vw, 2.12rem)";
+  if (length <= 10) return "clamp(1rem, 1.95vw, 1.62rem)";
+  if (length <= 13) return "clamp(0.86rem, 1.65vw, 1.34rem)";
+  return "clamp(0.72rem, 1.4vw, 1.12rem)";
 }
 
 function shouldPreserveChoiceCase(label) {
